@@ -1,6 +1,6 @@
 ﻿namespace KingSurvival.GameCore
 {
-    public class Pawn : ChessPiece, KingSurvival.IChessPiece
+    public class Pawn : IChessPiece
     {
     }
 }

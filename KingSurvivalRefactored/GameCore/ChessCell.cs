@@ -1,4 +1,4 @@
-﻿namespace KingSurvival
+﻿namespace KingSurvival.GameCore
 {
     public struct ChessCell
     {

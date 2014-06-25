@@ -1,6 +1,6 @@
 ﻿namespace KingSurvival.GameCore
 {
-    class ChessBoard
+    public class ChessBoard
     {
     }
 }

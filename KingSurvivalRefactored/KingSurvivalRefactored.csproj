@@ -67,12 +67,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ChessCell.cs" />
+    <Compile Include="GameCore\ChessCell.cs" />
     <Compile Include="GameCore\ChessBoard.cs" />
-    <Compile Include="GameCore\ChessPiece.cs" />
     <Compile Include="GameCore\King.cs" />
     <Compile Include="GameCore\Pawn.cs" />
-    <Compile Include="IChessPiece.cs" />
+    <Compile Include="GameCore\IChessPiece.cs" />
     <Compile Include="KingSurvival.cs" />
   </ItemGroup>
   <ItemGroup>
