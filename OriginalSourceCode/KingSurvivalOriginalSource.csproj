@@ -5,7 +5,7 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>9.0.21022</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{3A2A101E-EC05-4513-B9D8-D8D04D5D45E4}</ProjectGuid>
+    <ProjectGuid>{2C2CA12D-B5D5-4A67-A69B-2E0F90E1B83A}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>KingSurvival</RootNamespace>
