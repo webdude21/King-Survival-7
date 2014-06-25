@@ -1,4 +1,4 @@
-﻿namespace KingSurvival.GameCore
+﻿namespace KingSurvivalRefactored.GameCore
 {
     public interface IChessPiece
     {

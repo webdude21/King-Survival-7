@@ -6,8 +6,7 @@
 //   
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
-namespace KingSurvival.GameCore
+namespace KingSurvivalRefactored.GameCore
 {
     public struct ChessCell
     {

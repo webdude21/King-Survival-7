@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace KingSurvival
+namespace KingSurvivalRefactored
 {
     class kingg
     {

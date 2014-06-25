@@ -8,7 +8,7 @@
     <ProjectGuid>{3A2A101E-EC05-4513-B9D8-D8D04D5D45E4}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>KingSurvival</RootNamespace>
+    <RootNamespace>KingSurvivalRefactored</RootNamespace>
     <AssemblyName>KingSurvival</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
@@ -17,6 +17,7 @@
     <UpgradeBackupLocation>
     </UpgradeBackupLocation>
     <OldToolsVersion>3.5</OldToolsVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
     <PublishUrl>publish\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
@@ -29,7 +30,6 @@
     <MapFileExtensions>true</MapFileExtensions>
     <ApplicationRevision>0</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
-    <IsWebBootstrapper>false</IsWebBootstrapper>
     <UseApplicationTrust>false</UseApplicationTrust>
     <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
@@ -70,9 +70,12 @@
     <Compile Include="GameCore\ChessCell.cs" />
     <Compile Include="GameCore\ChessBoard.cs" />
     <Compile Include="GameCore\GameEngine.cs" />
+    <Compile Include="GameCore\IMovable.cs" />
     <Compile Include="GameCore\King.cs" />
     <Compile Include="GameCore\Pawn.cs" />
     <Compile Include="GameCore\IChessPiece.cs" />
+    <Compile Include="GameRenderer\ConsoleRenderer.cs" />
+    <Compile Include="GameRenderer\IRenderer.cs" />
     <Compile Include="KingSurvival.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -93,7 +96,6 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="GameRenderer\" />
     <Folder Include="Properties\" />
     <Folder Include="UserInteraction\" />
   </ItemGroup>

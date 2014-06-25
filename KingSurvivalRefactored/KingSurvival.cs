@@ -1,4 +1,4 @@
-﻿namespace KingSurvival
+﻿namespace KingSurvivalRefactored
 {
     using System;
 
