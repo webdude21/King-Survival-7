@@ -69,6 +69,7 @@
   <ItemGroup>
     <Compile Include="GameCore\ChessCell.cs" />
     <Compile Include="GameCore\ChessBoard.cs" />
+    <Compile Include="GameCore\GameEngine.cs" />
     <Compile Include="GameCore\King.cs" />
     <Compile Include="GameCore\Pawn.cs" />
     <Compile Include="GameCore\IChessPiece.cs" />
@@ -92,7 +93,9 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="GameRenderer\" />
     <Folder Include="Properties\" />
+    <Folder Include="UserInteraction\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="KingSurvivalClassDiagram.cd" />

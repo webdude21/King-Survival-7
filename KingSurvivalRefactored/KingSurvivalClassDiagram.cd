@@ -1,40 +1,40 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="KingSurvival.GameCore.Pawn" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="8.25" Y="3" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>GameCore\Pawn.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
   <Class Name="KingSurvival.GameCore.ChessBoard" Collapsed="true">
-    <Position X="3.5" Y="1.25" Width="1.5" />
+    <Position X="6.25" Y="2" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>GameCore\ChessBoard.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="KingSurvival.GameCore.King" Collapsed="true" BaseTypeListCollapsed="true">
-    <Position X="5.25" Y="1.25" Width="1.5" />
+    <Position X="8.25" Y="2" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>GameCore\King.cs</FileName>
     </TypeIdentifier>
-    <Lollipop Position="0.2" Collapsed="true" />
+    <Lollipop Position="0.2" />
   </Class>
-  <Class Name="KingSurvival.GameCore.Pawn" Collapsed="true" BaseTypeListCollapsed="true">
-    <Position X="3.5" Y="2.25" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>GameCore\Pawn.cs</FileName>
-    </TypeIdentifier>
-    <Lollipop Position="0.2" Collapsed="true" />
-  </Class>
-  <Struct Name="KingSurvival.ChessCell" Collapsed="true">
-    <Position X="3.5" Y="3.5" Width="1.5" />
+  <Struct Name="KingSurvival.GameCore.ChessCell" Collapsed="true">
+    <Position X="4.25" Y="2" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAQAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>ChessCell.cs</FileName>
+      <FileName>GameCore\ChessCell.cs</FileName>
     </TypeIdentifier>
   </Struct>
-  <Interface Name="KingSurvival.IChessPiece" Collapsed="true">
-    <Position X="3.5" Y="4.75" Width="1.5" />
+  <Interface Name="KingSurvival.GameCore.IChessPiece" Collapsed="true">
+    <Position X="8.25" Y="4" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>IChessPiece.cs</FileName>
+      <FileName>GameCore\IChessPiece.cs</FileName>
     </TypeIdentifier>
   </Interface>
   <Font Name="Segoe UI" Size="9" />

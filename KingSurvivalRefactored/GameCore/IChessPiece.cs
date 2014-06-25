@@ -2,5 +2,6 @@
 {
     public interface IChessPiece
     {
+        ChessCell Position { get; set; }
     }
 }
