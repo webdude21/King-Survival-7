@@ -1,8 +1,10 @@
 ﻿namespace KingSurvivalRefactored.GameCore
 {
-    public class Pawn : IChessPiece, IMovable
+    public class Pawn : ChessPiece, IMovable
     {
-        public ChessCell Position { get; set; }
+        public Pawn(ChessCell position)
+            : base(position)
+        { }
 
         public void Move()
         {

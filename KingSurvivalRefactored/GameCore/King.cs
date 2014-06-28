@@ -1,8 +1,11 @@
 ﻿namespace KingSurvivalRefactored.GameCore
 {
-    public class King : IChessPiece, IMovable
+    public class King : ChessPiece, IMovable
     {
-        public ChessCell Position { get; set; }
+        public King(ChessCell position) 
+            : base(position) 
+        { }
+
 
         public void Move()
         {
