@@ -1,70 +1,90 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1">
   <Class Name="KingSurvivalRefactored.GameCore.ChessBoard" Collapsed="true">
-    <Position X="1.25" Y="0.5" Width="1.5" />
+    <Position X="5.75" Y="0.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>GameCore\ChessBoard.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="KingSurvivalRefactored.GameCore.GameEngine" Collapsed="true">
-    <Position X="4.75" Y="0.5" Width="1.5" />
+    <Position X="7.5" Y="1.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAQAAAAAAAAAAAAIAAAAIAAAAAAAAAAAAAAQCAAAAA=</HashCode>
       <FileName>GameCore\GameEngine.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="KingSurvivalRefactored.GameCore.King" Collapsed="true" BaseTypeListCollapsed="true">
-    <Position X="1.25" Y="1.5" Width="1.5" />
+  <Class Name="KingSurvivalRefactored.GameCore.King" BaseTypeListCollapsed="true">
+    <Position X="1.25" Y="5.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>GameCore\King.cs</FileName>
     </TypeIdentifier>
-    <Lollipop Position="0.2" />
   </Class>
-  <Class Name="KingSurvivalRefactored.GameCore.Pawn" Collapsed="true" BaseTypeListCollapsed="true">
-    <Position X="3" Y="1.5" Width="1.5" />
+  <Class Name="KingSurvivalRefactored.GameCore.Pawn" BaseTypeListCollapsed="true">
+    <Position X="3.5" Y="5.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>GameCore\Pawn.cs</FileName>
     </TypeIdentifier>
-    <Lollipop Position="0.2" Collapsed="true" />
   </Class>
   <Class Name="KingSurvivalRefactored.GameRenderer.ConsoleRenderer" Collapsed="true" BaseTypeListCollapsed="true">
-    <Position X="3" Y="0.5" Width="1.5" />
+    <Position X="7.5" Y="0.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAA=</HashCode>
       <FileName>GameRenderer\ConsoleRenderer.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" Collapsed="true" />
   </Class>
+  <Class Name="KingSurvivalRefactored.GameCore.ChessPiece">
+    <Position X="2.5" Y="3" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAIAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>GameCore\ChessPiece.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="KingSurvivalRefactored.GameCore.Factory" Collapsed="true">
+    <Position X="2.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAIAAAAAAAAIAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>GameCore\Factory.cs</FileName>
+    </TypeIdentifier>
+  </Class>
   <Struct Name="KingSurvivalRefactored.GameCore.ChessCell" Collapsed="true">
-    <Position X="1.25" Y="2.75" Width="1.5" />
+    <Position X="5.75" Y="2.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAQAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>GameCore\ChessCell.cs</FileName>
     </TypeIdentifier>
   </Struct>
-  <Interface Name="KingSurvivalRefactored.GameCore.IChessPiece" Collapsed="true">
-    <Position X="1.25" Y="4" Width="1.5" />
+  <Interface Name="KingSurvivalRefactored.GameCore.IChessPiece">
+    <Position X="0.5" Y="4" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>GameCore\IChessPiece.cs</FileName>
     </TypeIdentifier>
   </Interface>
-  <Interface Name="KingSurvivalRefactored.GameCore.IMovable" Collapsed="true">
-    <Position X="3" Y="4" Width="1.5" />
+  <Interface Name="KingSurvivalRefactored.GameCore.IMovable">
+    <Position X="0.5" Y="2.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>GameCore\IMovable.cs</FileName>
     </TypeIdentifier>
   </Interface>
   <Interface Name="KingSurvivalRefactored.GameRenderer.IRenderer" Collapsed="true">
-    <Position X="4.75" Y="4" Width="1.5" />
+    <Position X="5.75" Y="4" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAA=</HashCode>
       <FileName>GameRenderer\IRenderer.cs</FileName>
     </TypeIdentifier>
   </Interface>
+  <Enum Name="KingSurvivalRefactored.GameCore.Movements" Collapsed="true">
+    <Position X="5.75" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAQIAAAAAEAAAAAAAAACAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>GameCore\Movements.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
   <Font Name="Segoe UI" Size="9" />
 </ClassDiagram>

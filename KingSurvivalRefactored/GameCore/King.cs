@@ -1,15 +1,42 @@
 ﻿namespace KingSurvivalRefactored.GameCore
 {
-    public class King : ChessPiece, IMovable
+    using System;
+
+    public class King : ChessPiece
     {
-        public King(ChessCell position) 
-            : base(position) 
+        public King(ChessCell position)
+            : base(position)
         { }
 
-
-        public void Move()
+        public override void Move(Movements direction)
         {
-            throw new System.NotImplementedException();
+            var currentPosition = base.Position;
+
+            switch (direction)
+            {
+                case Movements.ForwardLeft:
+                    currentPosition.XCoordinate--;
+                    currentPosition.YCoordinate--;
+                    base.Position = currentPosition;
+                    break;
+                case Movements.ForwardRight:
+                    currentPosition.XCoordinate++;
+                    currentPosition.YCoordinate--;
+                    base.Position = currentPosition;
+                    break;
+                case Movements.BackwardLeft:
+                    currentPosition.XCoordinate--;
+                    currentPosition.YCoordinate++;
+                    base.Position = currentPosition;
+                    break;
+                case Movements.BackwardRight:
+                    currentPosition.XCoordinate++;
+                    currentPosition.YCoordinate++;
+                    base.Position = currentPosition;
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException("direction", direction, "Invalid Movement");
+            }
         }
     }
 }

@@ -9,12 +9,12 @@
 
 namespace KingSurvivalRefactored.GameCore
 {
-    internal class GameEngine
+    public class GameEngine
     {
-        var pawnA = Factory.GetPawn(new ChessCell(1,0));
-     /*   var pawnB = Factory.GetPawn(new ChessCell(3,0));
-        var pawnC = Factory.GetPawn(new ChessCell(5,0));
-        var pawnD = Factory.GetPawn(new ChessCell(7,0));
-        var king = Factory.GetKing(new ChessCell(4, 7));*/
+        IChessPiece pawnA = Factory.GetPawn(new ChessCell(1, 0));
+        IChessPiece pawnB = Factory.GetPawn(new ChessCell(3, 0));
+        IChessPiece pawnC = Factory.GetPawn(new ChessCell(5, 0));
+        IChessPiece pawnD = Factory.GetPawn(new ChessCell(7, 0));
+        IChessPiece king = Factory.GetKing(new ChessCell(4, 7));
     }
 }

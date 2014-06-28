@@ -73,6 +73,7 @@
     <Compile Include="GameCore\GameEngine.cs" />
     <Compile Include="GameCore\IMovable.cs" />
     <Compile Include="GameCore\King.cs" />
+    <Compile Include="GameCore\Movements.cs" />
     <Compile Include="GameCore\Pawn.cs" />
     <Compile Include="GameCore\IChessPiece.cs" />
     <Compile Include="GameCore\Factory.cs" />

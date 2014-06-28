@@ -9,8 +9,8 @@
 
 namespace KingSurvivalRefactored.GameCore
 {
-    interface IMovable
+    public interface IMovable
     {
-        void Move();
+       void Move(Movements direction);
     }
 }
