@@ -1,7 +1,7 @@
 ﻿namespace KingSurvivalRefactored.GameCore
 {
 
-    public static class Factory
+    public static class PieceFactory
     {
         public static IChessPiece GetPawn(ChessCell position)
         {
