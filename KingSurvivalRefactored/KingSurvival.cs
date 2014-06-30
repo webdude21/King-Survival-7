@@ -322,29 +322,28 @@
             m[pawnC.Position.YCoordinate, pawnC.Position.XCoordinate] = 'C';
             m[kingK.Position.YCoordinate, kingK.Position.XCoordinate] = 'K';
             (new KingSurvival()).Print(m);
-            var flag2 = false;
+            bool? flag2 = false;
 
             flag2 = Play(m, flag2);
-            if (flag2)
+            if (flag2==true)
             {
                 Console.WriteLine("Pawn`s win!");
             }
-            else
+            else if (flag2==false)
             {
                 Console.WriteLine("King`s win!");
-            }
+            } 
         }
 
-        private static bool Play(char[,] m, bool flag2)
+        private static bool? Play(char[,] m, bool? flag2)
         {
-            while (kingK.Position.YCoordinate > 0 && kingK.Position.YCoordinate < size && !flag2)
+            while (kingK.Position.YCoordinate > 0 && kingK.Position.YCoordinate < size && !flag2==true)
             {
                 flag = true;
                 while (flag)
                 {
                     flag = false;
 
-                    (new KingSurvival()).Print(m);
                     Console.Write("King`s Turn:");
                     var input = Console.ReadLine();
                     if (input == string.Empty)
@@ -394,7 +393,10 @@
 
                     (new KingSurvival()).Print(m);
 
-                    CheckForExitCommand(commands);
+                    if (CheckForExitCommand(commands))
+                    {
+                        return null;
+                    }
 
                 }
 
@@ -475,7 +477,10 @@
 
                     (new KingSurvival()).Print(m);
 
-                    CheckForExitCommand(commands);
+                    if (CheckForExitCommand(commands))
+                    {
+                        return null;
+                    }
 
                 }
             }
@@ -483,15 +488,16 @@
             return flag2;
         }
 
-        private static void CheckForExitCommand(string[] commands)
+        private static bool CheckForExitCommand(string[] commands)
         {
             if (commands.Length > 1)
             {
                 if (commands[1] == "EXIT")
                 {
-                    Environment.Exit(10);
+                    return true;
                 }
             }
+            return false;
         }
     }
 }

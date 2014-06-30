@@ -60,7 +60,7 @@
 
             KingSurvivalRefactored.KingSurvival.Main();
 
-            Assert.AreEqual(textWriter.ToString(), screen);
+            Assert.AreEqual(textWriter, screen);
         }
     }
 }
