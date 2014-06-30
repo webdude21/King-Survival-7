@@ -2,40 +2,40 @@
 {
     using System;
     using System.IO;
-
     using KingSurvival;
-
     using Microsoft.VisualStudio.TestTools.UnitTesting;
 
     [TestClass]
     public class TestKingSurvival
     {
         [TestMethod]
-        public void InitialScreenTest()
+        public void TestDefaultScenario()
         {
-  var testScenario = 
-@"  0 1 2 3 4 5 6 7
+            const string KingWinsScreen = 
+@"    0 1 2 3 4 5 6 7
    -----------------
-0 | A - B - C – D - |
-1 | - + – + – + – + |
-2 | + – + – + – + - |
+0 | + - + - + – K - |
+1 | - + – C – + – D |
+2 | A – B – + – + - |
 3 | - + – + – + – + |
 4 | + – + – + – + - |
 5 | - + – + – + – + |
 6 | + – + – + – + - |
-7 | - + – K – + – + |
+7 | - + – + – + – + |
    -----------------
-King’s turn:";
-            
-            Assert.AreEqual(testScenario, this.ReadTheConsole());
-        }
+King wins in 7 turns.";
 
-        public string ReadTheConsole()
-        {
-            var textWriter  = new StringWriter();
+            var textWriter = new StringWriter();
             Console.SetOut(textWriter);
             KingSurvival.Main();
-            return textWriter.ToString();
+
+            const string TestFilePath = @"input.txt";
+            if (File.Exists(TestFilePath))
+            {
+                Console.SetIn(new StreamReader(TestFilePath));
+            }
+
+            Assert.AreEqual(textWriter.ToString(), KingWinsScreen);
         }
     }
 }
