@@ -60,7 +60,11 @@
 
             KingSurvivalRefactored.KingSurvival.Main();
 
-            Assert.AreEqual(textWriter, screen);
+
+            var resultScreens = textWriter.ToString().Split(':');
+            var result = resultScreens[resultScreens.Length - 1];
+
+            Assert.AreEqual(result, screen);
         }
     }
 }
