@@ -91,11 +91,14 @@
                 __m[pawnD.Position.YCoordinate, pawnD.Position.XCoordinate] = '-';
             }
 
-            __m[kingK.Position.YCoordinate, kingK.Position.XCoordinate] = '-';
+            __m[kingK.Position.YCoordinate, kingK.Position.XCoordinate] = '+';
             __m[kingK.Position.YCoordinate + dirY, kingK.Position.XCoordinate + dirX] = 'K';
+
             var kingcurrentPosition = kingK.Position;
+            
             kingcurrentPosition.YCoordinate += dirY;
             kingcurrentPosition.XCoordinate += dirX;
+            
             kingK.Position = kingcurrentPosition;
         }
 
@@ -140,12 +143,16 @@
             }
 
             // ako ne grymne do momenta znachi e validen hoda
-            matrix[pawnA.Position.YCoordinate, pawnA.Position.XCoordinate] = '-';
+            matrix[pawnA.Position.YCoordinate, pawnA.Position.XCoordinate] = '+';
             matrix[pawnA.Position.YCoordinate + dirY, pawnA.Position.XCoordinate + dirX] = 'A';
+
             var pawnCurrentPosition = pawnA.Position;
+
             pawnCurrentPosition.YCoordinate += dirY;
             pawnCurrentPosition.XCoordinate += dirX;
+
             pawnA.Position = pawnCurrentPosition;
+
             return false;
         }
 
@@ -186,12 +193,16 @@
                 return false;
             }
 
-            matrix[pawnB.Position.YCoordinate, pawnB.Position.XCoordinate] = '-';
+            matrix[pawnB.Position.YCoordinate, pawnB.Position.XCoordinate] = '+';
             matrix[pawnB.Position.YCoordinate + dirY, pawnB.Position.XCoordinate + dirX] = 'B';
+
             var pawnCurrentPosition = pawnB.Position;
+
             pawnCurrentPosition.YCoordinate += dirY;
             pawnCurrentPosition.XCoordinate += dirX;
+
             pawnB.Position = pawnCurrentPosition;
+
             return false;
         }
 
@@ -232,7 +243,7 @@
                 return false;
             }
 
-            matrix[pawnC.Position.YCoordinate, pawnC.Position.XCoordinate] = '-';
+            matrix[pawnC.Position.YCoordinate, pawnC.Position.XCoordinate] = '+';
             matrix[pawnC.Position.YCoordinate + dirY, pawnC.Position.XCoordinate + dirX] = 'C';
 
             var pawnCurrentPosition = pawnC.Position;
@@ -282,7 +293,7 @@
                 return false;
             }
 
-            matrix[pawnD.Position.YCoordinate, pawnD.Position.XCoordinate] = '-';
+            matrix[pawnD.Position.YCoordinate, pawnD.Position.XCoordinate] = '+';
             matrix[pawnD.Position.YCoordinate + dirY, pawnD.Position.XCoordinate + dirX] = 'D';
         
             var pawnCurrentPosition = pawnD.Position;
