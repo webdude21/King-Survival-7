@@ -1,59 +1,17 @@
 ﻿namespace KingSurvivalRefactored
 {
+    using KingSurvivalRefactored.GameCore;
     using System;
-
-    internal class kingg
-    {
-        public kingg()
-        {
-            this.X = 0;
-            this.Y = 0;
-        }
-
-        public kingg(int x, int y)
-        {
-            this.X = x;
-            this.Y = y;
-        }
-
-        public int X { get; set; }
-
-        public int Y { get; set; }
-    }
-
-    internal class paww
-    {
-        // tova e klasa Peshka, koito zadava peshak s koordinati X i Y
-        public paww()
-        {
-            this.X = 0;
-            this.Y = 0;
-        }
-
-        public paww(int x, int y)
-        {
-            this.X = x;
-            this.Y = y;
-        }
-
-        public int X { get; set; }
-
-        public int Y { get; set; }
-    }
 
     internal class KingSurvival
     {
         private static int size = 8;
 
-        private static kingg car = new kingg(4, 7);
-
-        private static paww peshkaA = new paww(1, 0);
-
-        private static paww peshkaB = new paww(3, 0);
-
-        private static paww peshkaC = new paww(5, 0);
-
-        private static paww peshkaD = new paww(7, 0);
+        private static IChessPiece pawnA = PieceFactory.GetPawn(new ChessCell(0, 0));
+        private static IChessPiece pawnB = PieceFactory.GetPawn(new ChessCell(2, 0));
+        private static IChessPiece pawnC = PieceFactory.GetPawn(new ChessCell(4, 0));
+        private static IChessPiece pawnD = PieceFactory.GetPawn(new ChessCell(6, 0));
+        private static IChessPiece kingK = PieceFactory.GetKing(new ChessCell(3, 7));
 
         private static bool flag = true;
 
@@ -65,70 +23,6 @@
             }
         }
 
-        public static paww PeshkaD
-        {
-            get
-            {
-                return peshkaD;
-            }
-
-            set
-            {
-                peshkaD = value;
-            }
-        }
-
-        public static paww PeshkaC
-        {
-            get
-            {
-                return peshkaC;
-            }
-
-            set
-            {
-                peshkaC = value;
-            }
-        }
-
-        public static paww PeshkaB
-        {
-            get
-            {
-                return peshkaB;
-            }
-
-            set
-            {
-                peshkaB = value;
-            }
-        }
-
-        public static paww PeshkaA
-        {
-            get
-            {
-                return peshkaA;
-            }
-
-            set
-            {
-                peshkaA = value;
-            }
-        }
-
-        public static kingg Car
-        {
-            get
-            {
-                return car;
-            }
-
-            set
-            {
-                car = value;
-            }
-        }
 
         public static int Size
         {
@@ -155,7 +49,7 @@
 
         private static void Try(int dirX, int dirY, char[,] __m)
         {
-            if (car.X + dirX < 0 || car.X + dirX > size - 1)
+            if (kingK.Position.XCoordinate + dirX < 0 || kingK.Position.XCoordinate + dirX > size - 1)
             {
                 Console.WriteLine("Invalid Move!");
                 Console.WriteLine("**Press a key to continue**");
@@ -164,7 +58,7 @@
                 return;
             }
 
-            if (car.Y + dirY < 0 || car.Y + dirY > size - 1)
+            if (kingK.Position.YCoordinate + dirY < 0 || kingK.Position.YCoordinate + dirY > size - 1)
             {
                 Console.WriteLine("Invalid Move!");
                 Console.WriteLine("**Press a key to continue**");
@@ -173,34 +67,36 @@
                 return;
             }
 
-            if (__m[car.Y + dirY, car.X + dirX] == 'A')
+            if (__m[kingK.Position.YCoordinate + dirY, kingK.Position.XCoordinate + dirX] == 'A')
             {
-                __m[car.Y + dirY, car.X + dirX] = 'K';
-                __m[peshkaA.Y, peshkaA.X] = '-';
+                __m[kingK.Position.YCoordinate + dirY, kingK.Position.XCoordinate + dirX] = 'K';
+                __m[pawnA.Position.YCoordinate, pawnA.Position.XCoordinate] = '-';
             }
 
-            if (__m[car.Y + dirY, car.X + dirX] == 'B')
+            if (__m[kingK.Position.YCoordinate + dirY, kingK.Position.XCoordinate + dirX] == 'B')
             {
-                __m[car.Y + dirY, car.X + dirX] = 'K';
-                __m[peshkaB.Y, peshkaB.X] = '-';
+                __m[kingK.Position.YCoordinate + dirY, kingK.Position.XCoordinate + dirX] = 'K';
+                __m[pawnB.Position.YCoordinate, pawnB.Position.XCoordinate] = '-';
             }
 
-            if (__m[car.Y + dirY, car.X + dirX] == 'C')
+            if (__m[kingK.Position.YCoordinate + dirY, kingK.Position.XCoordinate + dirX] == 'C')
             {
-                __m[car.Y + dirY, car.X + dirX] = 'K';
-                __m[peshkaC.Y, peshkaC.X] = '-';
+                __m[kingK.Position.YCoordinate + dirY, kingK.Position.XCoordinate + dirX] = 'K';
+                __m[pawnC.Position.YCoordinate, pawnC.Position.XCoordinate] = '-';
             }
 
-            if (__m[car.Y + dirY, car.X + dirX] == 'D')
+            if (__m[kingK.Position.YCoordinate + dirY, kingK.Position.XCoordinate + dirX] == 'D')
             {
-                __m[car.Y + dirY, car.X + dirX] = 'K';
-                __m[peshkaD.Y, peshkaD.X] = '-';
+                __m[kingK.Position.YCoordinate + dirY, kingK.Position.XCoordinate + dirX] = 'K';
+                __m[pawnD.Position.YCoordinate, pawnD.Position.XCoordinate] = '-';
             }
 
-            __m[car.Y, car.X] = '-';
-            __m[car.Y + dirY, car.X + dirX] = 'K';
-            car.Y += dirY;
-            car.X += dirX;
+            __m[kingK.Position.YCoordinate, kingK.Position.XCoordinate] = '-';
+            __m[kingK.Position.YCoordinate + dirY, kingK.Position.XCoordinate + dirX] = 'K';
+            var kingcurrentPosition = kingK.Position;
+            kingcurrentPosition.YCoordinate += dirY;
+            kingcurrentPosition.XCoordinate += dirX;
+            kingK.Position = kingcurrentPosition;
         }
 
         // abe tuka sym gi napravil edni... ama raboti
@@ -208,7 +104,7 @@
         private static bool PawnAMove(int dirX, int dirY, char[,] matrix)
         {
             // sledvat mnogo proverki
-            if (peshkaA.X + dirX < 0 || peshkaA.X + dirX > size - 1)
+            if (pawnA.Position.XCoordinate + dirX < 0 || pawnA.Position.XCoordinate + dirX > size - 1)
             {
                 Console.WriteLine("Invalid Move!");
                 Console.WriteLine("**Press a key to continue**");
@@ -217,7 +113,8 @@
                 return false;
             }
 
-            if (peshkaA.Y + dirY < 0 || peshkaA.Y + dirY > size - 1)
+            
+            if (pawnA.Position.YCoordinate + dirY < 0 || pawnA.Position.YCoordinate + dirY > size - 1)
             {
                 Console.WriteLine("Invalid Move!");
                 Console.WriteLine("**Press a key to continue**");
@@ -226,14 +123,14 @@
                 return false;
             }
 
-            if (matrix[peshkaA.Y + dirY, peshkaA.X + dirX] == 'K')
+            if (matrix[pawnA.Position.YCoordinate + dirY, pawnA.Position.XCoordinate + dirX] == 'K')
             {
                 Console.WriteLine("Pawn`s win!");
                 return true;
             }
 
-            if (matrix[peshkaA.Y + dirY, peshkaA.X + dirX] == 'D' || matrix[peshkaA.Y + dirY, peshkaA.X + dirX] == 'B'
-                || matrix[peshkaA.Y + dirY, peshkaA.X + dirX] == 'C')
+            if (matrix[pawnA.Position.YCoordinate + dirY, pawnA.Position.XCoordinate + dirX] == 'D' || matrix[pawnA.Position.YCoordinate + dirY, pawnA.Position.XCoordinate + dirX] == 'B'
+                || matrix[pawnA.Position.YCoordinate + dirY, pawnA.Position.XCoordinate + dirX] == 'C')
             {
                 Console.WriteLine("Invalid Move!");
                 Console.WriteLine("**Press a key to continue**");
@@ -243,17 +140,19 @@
             }
 
             // ako ne grymne do momenta znachi e validen hoda
-            matrix[peshkaA.Y, peshkaA.X] = '-';
-            matrix[peshkaA.Y + dirY, peshkaA.X + dirX] = 'A';
-            peshkaA.Y += dirY;
-            peshkaA.X += dirX;
+            matrix[pawnA.Position.YCoordinate, pawnA.Position.XCoordinate] = '-';
+            matrix[pawnA.Position.YCoordinate + dirY, pawnA.Position.XCoordinate + dirX] = 'A';
+            var pawnCurrentPosition = pawnA.Position;
+            pawnCurrentPosition.YCoordinate += dirY;
+            pawnCurrentPosition.XCoordinate += dirX;
+            pawnA.Position = pawnCurrentPosition;
             return false;
         }
 
         private static bool PawnBMove(int dirX, int dirY, char[,] matrix)
         {
             // za dokumentaciq pregledai PawnAMove
-            if (peshkaB.X + dirX < 0 || peshkaB.X + dirX > size - 1)
+            if (pawnB.Position.XCoordinate + dirX < 0 || pawnB.Position.XCoordinate + dirX > size - 1)
             {
                 Console.WriteLine("Invalid Move!");
                 Console.WriteLine("**Press a key to continue**");
@@ -262,7 +161,7 @@
                 return false;
             }
 
-            if (peshkaB.Y + dirY < 0 || peshkaB.Y + dirY > size - 1)
+            if (pawnB.Position.YCoordinate + dirY < 0 || pawnB.Position.YCoordinate + dirY > size - 1)
             {
                 Console.WriteLine("Invalid Move!");
                 Console.WriteLine("**Press a key to continue**");
@@ -271,14 +170,14 @@
                 return false;
             }
 
-            if (matrix[peshkaB.Y + dirY, peshkaB.X + dirX] == 'K')
+            if (matrix[pawnB.Position.YCoordinate + dirY, pawnB.Position.XCoordinate + dirX] == 'K')
             {
                 Console.WriteLine("Pawn`s win!");
                 return true;
             }
 
-            if (matrix[peshkaB.Y + dirY, peshkaB.X + dirX] == 'A' || matrix[peshkaB.Y + dirY, peshkaB.X + dirX] == 'C'
-                || matrix[peshkaB.Y + dirY, peshkaB.X + dirX] == 'D')
+            if (matrix[pawnB.Position.YCoordinate + dirY, pawnB.Position.XCoordinate + dirX] == 'A' || matrix[pawnB.Position.YCoordinate + dirY, pawnB.Position.XCoordinate + dirX] == 'C'
+                || matrix[pawnB.Position.YCoordinate + dirY, pawnB.Position.XCoordinate + dirX] == 'D')
             {
                 Console.WriteLine("Invalid Move!");
                 Console.WriteLine("**Press a key to continue**");
@@ -287,17 +186,19 @@
                 return false;
             }
 
-            matrix[peshkaB.Y, peshkaB.X] = '-';
-            matrix[peshkaB.Y + dirY, peshkaB.X + dirX] = 'B';
-            peshkaB.Y += dirY;
-            peshkaB.X += dirX;
+            matrix[pawnB.Position.YCoordinate, pawnB.Position.XCoordinate] = '-';
+            matrix[pawnB.Position.YCoordinate + dirY, pawnB.Position.XCoordinate + dirX] = 'B';
+            var pawnCurrentPosition = pawnB.Position;
+            pawnCurrentPosition.YCoordinate += dirY;
+            pawnCurrentPosition.XCoordinate += dirX;
+            pawnB.Position = pawnCurrentPosition;
             return false;
         }
 
         private static bool PawnCMove(int dirX, int dirY, char[,] matrix)
         {
             // za dokumentaciq pregledai PawnAMove
-            if (peshkaC.X + dirX < 0 || peshkaC.X + dirX > size - 1)
+            if (pawnC.Position.XCoordinate + dirX < 0 || pawnC.Position.XCoordinate + dirX > size - 1)
             {
                 Console.WriteLine("Invalid Move!");
                 Console.WriteLine("**Press a key to continue**");
@@ -306,7 +207,7 @@
                 return false;
             }
 
-            if (peshkaC.Y + dirY < 0 || peshkaC.Y + dirY > size - 1)
+            if (pawnC.Position.YCoordinate + dirY < 0 || pawnC.Position.YCoordinate + dirY > size - 1)
             {
                 Console.WriteLine("Invalid Move!");
                 Console.WriteLine("**Press a key to continue**");
@@ -315,14 +216,14 @@
                 return false;
             }
 
-            if (matrix[peshkaC.Y + dirY, peshkaC.X + dirX] == 'K')
+            if (matrix[pawnC.Position.YCoordinate + dirY, pawnC.Position.XCoordinate + dirX] == 'K')
             {
                 Console.WriteLine("Pawn`s win!");
                 return true;
             }
 
-            if (matrix[peshkaC.Y + dirY, peshkaC.X + dirX] == 'A' || matrix[peshkaC.Y + dirY, peshkaC.X + dirX] == 'B'
-                || matrix[peshkaC.Y + dirY, peshkaC.X + dirX] == 'D')
+            if (matrix[pawnC.Position.YCoordinate + dirY, pawnC.Position.XCoordinate + dirX] == 'A' || matrix[pawnC.Position.YCoordinate + dirY, pawnC.Position.XCoordinate + dirX] == 'B'
+                || matrix[pawnC.Position.YCoordinate + dirY, pawnC.Position.XCoordinate + dirX] == 'D')
             {
                 Console.WriteLine("Invalid Move!");
                 Console.WriteLine("**Press a key to continue**");
@@ -331,17 +232,23 @@
                 return false;
             }
 
-            matrix[peshkaC.Y, peshkaC.X] = '-';
-            matrix[peshkaC.Y + dirY, peshkaC.X + dirX] = 'C';
-            peshkaC.Y += dirY;
-            peshkaC.X += dirX;
+            matrix[pawnC.Position.YCoordinate, pawnC.Position.XCoordinate] = '-';
+            matrix[pawnC.Position.YCoordinate + dirY, pawnC.Position.XCoordinate + dirX] = 'C';
+
+            var pawnCurrentPosition = pawnC.Position;
+           
+            pawnCurrentPosition.YCoordinate += dirY;
+            pawnCurrentPosition.XCoordinate += dirX;
+           
+            pawnC.Position = pawnCurrentPosition;
+      
             return false;
         }
 
         private static bool PawnDMove(int dirX, int dirY, char[,] matrix)
         {
             // za dokumentaciq pregledai PawnAMove
-            if (peshkaD.Y + dirY < 0 || peshkaD.Y + dirY > size - 1)
+            if (pawnD.Position.YCoordinate + dirY < 0 || pawnD.Position.YCoordinate + dirY > size - 1)
             {
                 Console.WriteLine("Invalid Move!");
                 Console.WriteLine("**Press a key to continue**");
@@ -350,7 +257,7 @@
                 return false;
             }
 
-            if (peshkaD.X + dirX < 0 || peshkaD.X + dirX > size - 1)
+            if (pawnD.Position.XCoordinate + dirX < 0 || pawnD.Position.XCoordinate + dirX > size - 1)
             {
                 Console.WriteLine("Invalid Move!");
                 Console.WriteLine("**Press a key to continue**");
@@ -359,14 +266,14 @@
                 return false;
             }
 
-            if (matrix[peshkaD.Y + dirY, peshkaD.X + dirX] == 'K')
+            if (matrix[pawnD.Position.YCoordinate + dirY, pawnD.Position.XCoordinate + dirX] == 'K')
             {
                 Console.WriteLine("Pawn`s win!");
                 return true;
             }
 
-            if (matrix[peshkaD.Y + dirY, peshkaD.X + dirX] == 'A' || matrix[peshkaD.Y + dirY, peshkaD.X + dirX] == 'B'
-                || matrix[peshkaD.Y + dirY, peshkaD.X + dirX] == 'C')
+            if (matrix[pawnD.Position.YCoordinate + dirY, pawnD.Position.XCoordinate + dirX] == 'A' || matrix[pawnD.Position.YCoordinate + dirY, pawnD.Position.XCoordinate + dirX] == 'B'
+                || matrix[pawnD.Position.YCoordinate + dirY, pawnD.Position.XCoordinate + dirX] == 'C')
             {
                 Console.WriteLine("Invalid Move!");
                 Console.WriteLine("**Press a key to continue**");
@@ -375,10 +282,16 @@
                 return false;
             }
 
-            matrix[peshkaD.Y, peshkaD.X] = '-';
-            matrix[peshkaD.Y + dirY, peshkaD.X + dirX] = 'D';
-            peshkaD.Y += dirY;
-            peshkaD.X += dirX;
+            matrix[pawnD.Position.YCoordinate, pawnD.Position.XCoordinate] = '-';
+            matrix[pawnD.Position.YCoordinate + dirY, pawnD.Position.XCoordinate + dirX] = 'D';
+        
+            var pawnCurrentPosition = pawnD.Position;
+
+            pawnCurrentPosition.YCoordinate += dirY;
+            pawnCurrentPosition.XCoordinate += dirX;
+
+            pawnD.Position = pawnCurrentPosition;
+
             return false;
         }
 
@@ -392,11 +305,11 @@
                     { '+', '-', '+', '-', '+', '-', '+', '-' }, { '-', '+', '-', '+', '-', '+', '-', '+' }
                 };
 
-            m[peshkaA.Y, peshkaA.X] = 'A';
-            m[peshkaD.Y, peshkaD.X] = 'D';
-            m[peshkaB.Y, peshkaB.X] = 'B';
-            m[peshkaC.Y, peshkaC.X] = 'C';
-            m[car.Y, car.X] = 'K';
+            m[pawnA.Position.YCoordinate, pawnA.Position.XCoordinate] = 'A';
+            m[pawnD.Position.YCoordinate, pawnD.Position.XCoordinate] = 'D';
+            m[pawnB.Position.YCoordinate, pawnB.Position.XCoordinate] = 'B';
+            m[pawnC.Position.YCoordinate, pawnC.Position.XCoordinate] = 'C';
+            m[kingK.Position.YCoordinate, kingK.Position.XCoordinate] = 'K';
             (new KingSurvival()).Print(m);
             var flag2 = false;
 
@@ -413,7 +326,7 @@
 
         private static bool Play(char[,] m, bool flag2)
         {
-            while (car.Y > 0 && car.Y < size && !flag2)
+            while (kingK.Position.YCoordinate > 0 && kingK.Position.YCoordinate < size && !flag2)
             {
                 flag = true;
                 while (flag)
