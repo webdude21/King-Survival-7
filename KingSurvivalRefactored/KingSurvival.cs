@@ -3,7 +3,7 @@
     using KingSurvivalRefactored.GameCore;
     using System;
 
-    internal class KingSurvival
+    public class KingSurvival
     {
         private static int size = 8;
 
@@ -306,7 +306,7 @@
             return false;
         }
 
-        private static void Main()
+        public static void Main()
         {
             char[,] m =
                 {

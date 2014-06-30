@@ -54,13 +54,15 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\OriginalSourceCode\KingSurvivalOriginalSource.csproj">
-      <Project>{2c2ca12d-b5d5-4a67-a69b-2e0f90e1b83a}</Project>
-      <Name>KingSurvivalOriginalSource</Name>
-    </ProjectReference>
+    <Content Include="ResultTest01.txt" />
+    <Content Include="TestScenario.txt" />
+    <Content Include="InputTest01.txt" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="TestScenario.txt" />
+    <ProjectReference Include="..\KingSurvivalRefactored\KingSurvivalRefactored.csproj">
+      <Project>{3a2a101e-ec05-4513-b9d8-d8d04d5d45e4}</Project>
+      <Name>KingSurvivalRefactored</Name>
+    </ProjectReference>
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">
