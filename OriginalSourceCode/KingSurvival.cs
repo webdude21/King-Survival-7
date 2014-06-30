@@ -1,8 +1,8 @@
-﻿using System;
-
-namespace KingSurvivalRefactored
+﻿namespace KingSurvival
 {
-    class kingg
+    using System;
+
+    public class kingg
     {
         int x;
         int y;
@@ -19,16 +19,17 @@ namespace KingSurvivalRefactored
         }
         public int X
         {
-            get { return x; }
-            set { x = value; }
+            get { return this.x; }
+            set { this.x = value; }
         }
         public int Y
         {
-            get { return y; }
-            set { y = value; }
+            get { return this.y; }
+            set { this.y = value; }
         }
     }
-    class paww
+
+    public class paww
     {
         //tova e klasa Peshka, koito zadava peshak s koordinati X i Y
 
@@ -47,18 +48,18 @@ namespace KingSurvivalRefactored
         }
         public int X
         {
-            get { return x; }
-            set { x = value; }
+            get { return this.x; }
+            set { this.x = value; }
         }
         public int Y
         {
-            get { return y; }
-            set { y = value; }
+            get { return this.y; }
+            set { this.y = value; }
         }
 
     }
 
-    class KingSurvival
+    public class KingSurvival
     {
         static int size = 8;
         static kingg car = new kingg(4, 7);
@@ -149,7 +150,7 @@ namespace KingSurvivalRefactored
             }
         }
 
-        void Print(char[,] matrix)
+        public void Print(char[,] matrix)
         {
             Console.Clear();
             
@@ -171,7 +172,7 @@ namespace KingSurvivalRefactored
             }
         }
 
-        static void Try(int dirX, int dirY, char[,] __m)
+        public static void Try(int dirX, int dirY, char[,] __m)
         {
 
             if (car.X + dirX < 0 || car.X + dirX > size - 1)
@@ -383,9 +384,9 @@ namespace KingSurvivalRefactored
             return false;
         }
 
-        static void Main()
+        public static void Main()
         {
-            char[,] m = new char[,]   {{'+','-','+','-','+','-','+','-'},
+            char[,] m = new char[,]         {{'+','-','+','-','+','-','+','-'},
                                             {'-','+','-','+','-','+','-','+'},
                                             {'+','-','+','-','+','-','+','-'},
                                             {'-','+','-','+','-','+','-','+'},
