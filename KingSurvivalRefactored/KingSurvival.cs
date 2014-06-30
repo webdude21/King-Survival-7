@@ -346,15 +346,15 @@
 
                     (new KingSurvival()).Print(m);
                     Console.Write("King`s Turn:");
-                    var direction = Console.ReadLine();
-                    if (direction == string.Empty)
+                    var input = Console.ReadLine();
+                    if (input == string.Empty)
                     {
                         flag = true;
                         continue;
                     }
 
-                    var commands = direction.ToUpper().Split(' ');
-                    direction = commands[0];
+                    var commands = input.ToUpper().Split(' ');
+                    var direction = commands[0];
                     
                     switch (direction)
                     {
@@ -392,7 +392,10 @@
                             }
                     }
 
+                    (new KingSurvival()).Print(m);
+
                     CheckForExitCommand(commands);
+
                 }
 
                 while (!flag)
@@ -400,15 +403,15 @@
                     flag = true;
                     (new KingSurvival()).Print(m);
                     Console.Write("Pawn`s Turn:");
-                    var direction = Console.ReadLine();
-                    if (direction == string.Empty)
+                    var input = Console.ReadLine();
+                    if (input == string.Empty)
                     {
                         flag = false;
                         continue;
                     }
 
-                    var commands = direction.ToUpper().Split(' ');
-                    direction = commands[0];
+                    var commands = input.ToUpper().Split(' ');
+                    var direction = commands[0];
 
                     switch (direction)
                     {
@@ -470,9 +473,10 @@
                             }
                     }
 
+                    (new KingSurvival()).Print(m);
+
                     CheckForExitCommand(commands);
 
-                    (new KingSurvival()).Print(m);
                 }
             }
 
