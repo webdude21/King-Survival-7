@@ -353,8 +353,9 @@
                         continue;
                     }
 
-                    direction = direction.ToUpper();
-
+                    var commands = direction.ToUpper().Split(' ');
+                    direction = commands[0];
+                    
                     switch (direction)
                     {
                         case "KUL":
@@ -390,6 +391,8 @@
                                 break;
                             }
                     }
+
+                    CheckForExitCommand(commands);
                 }
 
                 while (!flag)
@@ -397,16 +400,17 @@
                     flag = true;
                     (new KingSurvival()).Print(m);
                     Console.Write("Pawn`s Turn:");
-                    var dd = Console.ReadLine();
-                    if (dd == string.Empty)
+                    var direction = Console.ReadLine();
+                    if (direction == string.Empty)
                     {
                         flag = false;
                         continue;
                     }
 
-                    dd = dd.ToUpper();
+                    var commands = direction.ToUpper().Split(' ');
+                    direction = commands[0];
 
-                    switch (dd)
+                    switch (direction)
                     {
                         case "ADR":
                             {
@@ -466,11 +470,24 @@
                             }
                     }
 
+                    CheckForExitCommand(commands);
+
                     (new KingSurvival()).Print(m);
                 }
             }
 
             return flag2;
+        }
+
+        private static void CheckForExitCommand(string[] commands)
+        {
+            if (commands.Length > 1)
+            {
+                if (commands[1] == "EXIT")
+                {
+                    Environment.Exit(10);
+                }
+            }
         }
     }
 }
