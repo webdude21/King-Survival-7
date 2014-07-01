@@ -314,7 +314,7 @@
             pawnD = PieceFactory.GetPawn(new ChessCell(6, 0));
             kingK = PieceFactory.GetKing(new ChessCell(3, 7));
 
-            char[,] m =
+            char[,] ChessBoard =
                 {
                     { '+', '-', '+', '-', '+', '-', '+', '-' }, { '-', '+', '-', '+', '-', '+', '-', '+' }, 
                     { '+', '-', '+', '-', '+', '-', '+', '-' }, { '-', '+', '-', '+', '-', '+', '-', '+' }, 
@@ -322,15 +322,15 @@
                     { '+', '-', '+', '-', '+', '-', '+', '-' }, { '-', '+', '-', '+', '-', '+', '-', '+' }
                 };
 
-            m[pawnA.Position.YCoordinate, pawnA.Position.XCoordinate] = 'A';
-            m[pawnD.Position.YCoordinate, pawnD.Position.XCoordinate] = 'D';
-            m[pawnB.Position.YCoordinate, pawnB.Position.XCoordinate] = 'B';
-            m[pawnC.Position.YCoordinate, pawnC.Position.XCoordinate] = 'C';
-            m[kingK.Position.YCoordinate, kingK.Position.XCoordinate] = 'K';
-            (new KingSurvival()).Print(m);
+            ChessBoard[pawnA.Position.YCoordinate, pawnA.Position.XCoordinate] = 'A';
+            ChessBoard[pawnD.Position.YCoordinate, pawnD.Position.XCoordinate] = 'D';
+            ChessBoard[pawnB.Position.YCoordinate, pawnB.Position.XCoordinate] = 'B';
+            ChessBoard[pawnC.Position.YCoordinate, pawnC.Position.XCoordinate] = 'C';
+            ChessBoard[kingK.Position.YCoordinate, kingK.Position.XCoordinate] = 'K';
+            (new KingSurvival()).Print(ChessBoard);
             bool? flag2 = false;
 
-            flag2 = Play(m, flag2);
+            flag2 = Play(ChessBoard, flag2);
             if (flag2==true)
             {
                 Console.WriteLine("Pawn`s win!");
@@ -341,7 +341,7 @@
             } 
         }
 
-        private static bool? Play(char[,] m, bool? flag2)
+        private static bool? Play(char[,] chessBoard, bool? flag2)
         {
             while (kingK.Position.YCoordinate > 0 && kingK.Position.YCoordinate < size && !flag2==true)
             {
@@ -365,25 +365,25 @@
                     {
                         case "KUL":
                             {
-                                Try(-1, -1, m);
+                                Try(-1, -1, chessBoard);
                                 break;
                             }
 
                         case "KUR":
                             {
-                                Try(1, -1, m);
+                                Try(1, -1, chessBoard);
                                 break;
                             }
 
                         case "KDL":
                             {
-                                Try(-1, 1, m);
+                                Try(-1, 1, chessBoard);
                                 break;
                             }
 
                         case "KDR":
                             {
-                                Try(1, 1, m);
+                                Try(1, 1, chessBoard);
                                 break;
                             }
 
@@ -397,7 +397,7 @@
                             }
                     }
 
-                    (new KingSurvival()).Print(m);
+                    (new KingSurvival()).Print(chessBoard);
 
                     if (CheckForExitCommand(commands))
                     {
@@ -414,7 +414,7 @@
                 while (!flag)
                 {
                     flag = true;
-                    (new KingSurvival()).Print(m);
+                    (new KingSurvival()).Print(chessBoard);
                     Console.Write("Pawn`s Turn:");
                     var input = Console.ReadLine();
                     if (input == string.Empty)
@@ -430,49 +430,49 @@
                     {
                         case "ADR":
                             {
-                                flag2 = PawnAMove(1, 1, m);
+                                flag2 = PawnAMove(1, 1, chessBoard);
                                 break;
                             }
 
                         case "ADL":
                             {
-                                flag2 = PawnAMove(-1, 1, m);
+                                flag2 = PawnAMove(-1, 1, chessBoard);
                                 break;
                             }
 
                         case "BDL":
                             {
-                                flag2 = PawnBMove(-1, 1, m);
+                                flag2 = PawnBMove(-1, 1, chessBoard);
                                 break;
                             }
 
                         case "BDR":
                             {
-                                flag2 = PawnBMove(1, 1, m);
+                                flag2 = PawnBMove(1, 1, chessBoard);
                                 break;
                             }
 
                         case "CDL":
                             {
-                                flag2 = PawnCMove(-1, 1, m);
+                                flag2 = PawnCMove(-1, 1, chessBoard);
                                 break;
                             }
 
                         case "CDR":
                             {
-                                flag2 = PawnCMove(1, 1, m);
+                                flag2 = PawnCMove(1, 1, chessBoard);
                                 break;
                             }
 
                         case "DDR":
                             {
-                                flag2 = PawnDMove(1, 1, m);
+                                flag2 = PawnDMove(1, 1, chessBoard);
                                 break;
                             }
 
                         case "DDL":
                             {
-                                flag2 = PawnDMove(-1, 1, m);
+                                flag2 = PawnDMove(-1, 1, chessBoard);
                                 break;
                             }
 
@@ -486,7 +486,7 @@
                             }
                     }
 
-                    (new KingSurvival()).Print(m);
+                    (new KingSurvival()).Print(chessBoard);
 
                     if (CheckForExitCommand(commands))
                     {
