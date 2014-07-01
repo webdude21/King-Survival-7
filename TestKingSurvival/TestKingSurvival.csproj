@@ -54,9 +54,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="ResultTest01.txt" />
-    <Content Include="TestScenario.txt" />
-    <Content Include="InputTest01.txt" />
+    <Content Include="TestsData\ResultTest01.txt" />
+    <Content Include="TestsData\InputTest00.txt" />
+    <Content Include="TestsData\InputTest01.txt" />
+    <Content Include="TestsData\ResultTest00.txt" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\KingSurvivalRefactored\KingSurvivalRefactored.csproj">

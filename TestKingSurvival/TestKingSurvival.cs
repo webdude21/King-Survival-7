@@ -8,43 +8,41 @@
     [TestClass]
     public class TestKingSurvival
     {
-        /* [TestMethod]
-         public void TestDefaultScenario()
-         {
-             const string KingWinsScreen =
- @"    0 1 2 3 4 5 6 7
-    -----------------
- 0 | + - + - + – K - |
- 1 | - + – C – + – D |
- 2 | A – B – + – + - |
- 3 | - + – + – + – + |
- 4 | + – + – + – + - |
- 5 | - + – + – + – + |
- 6 | + – + – + – + - |
- 7 | - + – + – + – + |
-    -----------------
- King wins in 7 turns.";
+     
+        [TestMethod]
+        public void TestDefaultScenario()
+        {
+            string screen;
+            string ResultTestFilePath = @"..\..\TestsData\ResultTest00.txt";
+            string InputTestFilePath = @"..\..\TestsData\InputTest00.txt";
 
-             var textWriter = new StringWriter();
-             Console.SetOut(textWriter);
+            using (StreamReader sr = new StreamReader(ResultTestFilePath))
+            {
+                screen = sr.ReadToEnd();
+            }
 
-             const string TestFilePath = @"input.txt";
-             if (File.Exists(TestFilePath))
-             {
-                 Console.SetIn(new StreamReader(TestFilePath));
-             }
+            var textWriter = new StringWriter();
 
-             KingSurvival.Main();
+            Console.SetOut(textWriter);
 
-             Assert.AreEqual(textWriter.ToString(), KingWinsScreen);
-         }*/
+            Console.SetIn(new StreamReader(InputTestFilePath));
+
+
+            KingSurvivalRefactored.KingSurvival.Main();
+
+
+            var resultScreens = textWriter.ToString().Split(':');
+            var result = resultScreens[resultScreens.Length - 1];
+
+            Assert.AreEqual(result, screen);
+        }
 
         [TestMethod]
         public void Test1()
         {
             string screen;
-            const string ResultTestFilePath = @"..\..\ResultTest01.txt";
-            const string InputTestFilePath = @"..\..\InputTest01.txt";
+            string ResultTestFilePath = @"..\..\TestsData\ResultTest01.txt";
+            string InputTestFilePath = @"..\..\TestsData\InputTest01.txt";
 
             using (StreamReader sr = new StreamReader(ResultTestFilePath))
             {

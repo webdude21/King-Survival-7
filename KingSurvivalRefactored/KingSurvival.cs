@@ -7,11 +7,11 @@
     {
         private static int size = 8;
 
-        private static IChessPiece pawnA = PieceFactory.GetPawn(new ChessCell(0, 0));
-        private static IChessPiece pawnB = PieceFactory.GetPawn(new ChessCell(2, 0));
-        private static IChessPiece pawnC = PieceFactory.GetPawn(new ChessCell(4, 0));
-        private static IChessPiece pawnD = PieceFactory.GetPawn(new ChessCell(6, 0));
-        private static IChessPiece kingK = PieceFactory.GetKing(new ChessCell(3, 7));
+        private static IChessPiece pawnA;
+        private static IChessPiece pawnB;
+        private static IChessPiece pawnC;
+        private static IChessPiece pawnD;
+        private static IChessPiece kingK;
 
         private static bool flag = true;
 
@@ -308,6 +308,12 @@
 
         public static void Main()
         {
+            pawnA = PieceFactory.GetPawn(new ChessCell(0, 0));
+            pawnB = PieceFactory.GetPawn(new ChessCell(2, 0));
+            pawnC = PieceFactory.GetPawn(new ChessCell(4, 0));
+            pawnD = PieceFactory.GetPawn(new ChessCell(6, 0));
+            kingK = PieceFactory.GetKing(new ChessCell(3, 7));
+
             char[,] m =
                 {
                     { '+', '-', '+', '-', '+', '-', '+', '-' }, { '-', '+', '-', '+', '-', '+', '-', '+' }, 
@@ -396,6 +402,11 @@
                     if (CheckForExitCommand(commands))
                     {
                         return null;
+                    }
+
+                    if (kingK.Position.YCoordinate == 0)
+                    {
+                        return false;
                     }
 
                 }
