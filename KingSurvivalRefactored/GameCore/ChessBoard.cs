@@ -9,7 +9,29 @@
 
 namespace KingSurvivalRefactored.GameCore
 {
-    public class ChessBoard
+    using System;
+    private class ChessBoard
     {
+        private static volatile ChessBoard instance;
+        private static object syncRoot = new Object();
+
+        private ChessBoard() {}
+        public static ChessBoard Instance 
+        {
+            get
+            {
+                if (instance == null)
+                {
+                    lock (syncRoot) 
+                    {
+                       if (instance == null) 
+                       {
+                            instance = new ChessBoard();
+                       }
+                    }
+                }
+                return instance;
+            }
+        }
     }
 }
