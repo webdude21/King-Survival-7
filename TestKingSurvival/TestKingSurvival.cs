@@ -8,43 +8,29 @@
     [TestClass]
     public class TestKingSurvival
     {
-     
         [TestMethod]
         public void TestDefaultScenario()
         {
-            string screen;
-            string ResultTestFilePath = @"..\..\TestsData\ResultTest00.txt";
-            string InputTestFilePath = @"..\..\TestsData\InputTest00.txt";
+            const string ResultTestFilePath = @"..\..\TestsData\ResultTest00.txt";
+            const string InputTestFilePath = @"..\..\TestsData\InputTest00.txt";
 
-            using (StreamReader sr = new StreamReader(ResultTestFilePath))
-            {
-                screen = sr.ReadToEnd();
-            }
-
-            var textWriter = new StringWriter();
-
-            Console.SetOut(textWriter);
-
-            Console.SetIn(new StreamReader(InputTestFilePath));
-
-
-            KingSurvivalRefactored.KingSurvival.Main();
-
-
-            var resultScreens = textWriter.ToString().Split(':');
-            var result = resultScreens[resultScreens.Length - 1];
-
-            Assert.AreEqual(result, screen);
+            ConsoleTest(ResultTestFilePath, InputTestFilePath);
         }
 
         [TestMethod]
         public void Test1()
         {
-            string screen;
-            string ResultTestFilePath = @"..\..\TestsData\ResultTest01.txt";
-            string InputTestFilePath = @"..\..\TestsData\InputTest01.txt";
+            const string ResultTestFilePath = @"..\..\TestsData\ResultTest01.txt";
+            const string InputTestFilePath = @"..\..\TestsData\InputTest01.txt";
 
-            using (StreamReader sr = new StreamReader(ResultTestFilePath))
+            ConsoleTest(ResultTestFilePath, InputTestFilePath);
+        }
+
+        private static void ConsoleTest(string resultTestFilePath, string inputTestFilePath)
+        {
+            string screen;
+
+            using (StreamReader sr = new StreamReader(resultTestFilePath))
             {
                 screen = sr.ReadToEnd();
             }
@@ -52,12 +38,9 @@
             var textWriter = new StringWriter();
 
             Console.SetOut(textWriter);
-
-            Console.SetIn(new StreamReader(InputTestFilePath));
-
+            Console.SetIn(new StreamReader(inputTestFilePath));
 
             KingSurvivalRefactored.KingSurvival.Main();
-
 
             var resultScreens = textWriter.ToString().Split(':');
             var result = resultScreens[resultScreens.Length - 1];
