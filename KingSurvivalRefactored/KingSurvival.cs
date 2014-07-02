@@ -13,23 +13,6 @@
 
         private static bool flag = true;
 
-        public static bool IsKingTurn
-        {
-            get
-            {
-                return flag;
-            }
-        }
-
-
-        public static int Size
-        {
-            get
-            {
-                return size;
-            }
-        }
-
         private void Print(char[,] matrix)
         {
             Console.Clear();
