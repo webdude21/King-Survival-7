@@ -50,8 +50,8 @@
             if (king.Position.XCoordinate + dirX < 0 || king.Position.XCoordinate + dirX > size - 1)
             {
                 Console.WriteLine("Invalid Move!");
-                Console.WriteLine("**Press a key to continue**");
-                Console.ReadKey();
+                Console.WriteLine("**Press Enter to continue**");
+                Console.ReadLine();
                 flag = true;
                 return;
             }
@@ -59,8 +59,8 @@
             if (king.Position.YCoordinate + dirY < 0 || king.Position.YCoordinate + dirY > size - 1)
             {
                 Console.WriteLine("Invalid Move!");
-                Console.WriteLine("**Press a key to continue**");
-                Console.ReadKey();
+                Console.WriteLine("**Press Enter to continue**");
+                Console.ReadLine();
                 flag = true;
                 return;
             }
@@ -100,56 +100,54 @@
             king.Position = kingcurrentPosition;
         }
 
-        // abe tuka sym gi napravil edni... ama raboti
-        // kvo kat sa 4 metoda
-        private static bool PawnMove(int dirX, int dirY, char[,] matrix, IChessPiece pawn, char pawnName)
+        private static bool PawnMove(int dirX, int dirY, char[,] matrix, int pawnNumber, char pawnName)
         {
             // sledvat mnogo proverki
-            if (pawn.Position.XCoordinate + dirX < 0 || pawn.Position.XCoordinate + dirX > size - 1)
+            if (pawns[pawnNumber].Position.XCoordinate + dirX < 0 || pawns[pawnNumber].Position.XCoordinate + dirX > size - 1)
             {
                 Console.WriteLine("Invalid Move!");
-                Console.WriteLine("**Press a key to continue**");
-                Console.ReadKey();
+                Console.WriteLine("**Press Enter to continue**");
+                Console.ReadLine();
                 flag = false;
                 return false;
             }
 
             
-            if (pawn.Position.YCoordinate + dirY < 0 || pawn.Position.YCoordinate + dirY > size - 1)
+            if (pawns[pawnNumber].Position.YCoordinate + dirY < 0 || pawns[pawnNumber].Position.YCoordinate + dirY > size - 1)
             {
                 Console.WriteLine("Invalid Move!");
-                Console.WriteLine("**Press a key to continue**");
-                Console.ReadKey();
+                Console.WriteLine("**Press Enter to continue**");
+                Console.ReadLine();
                 flag = false;
                 return false;
             }
 
-            if (matrix[pawn.Position.YCoordinate + dirY, pawn.Position.XCoordinate + dirX] == 'K')
+            if (matrix[pawns[pawnNumber].Position.YCoordinate + dirY, pawns[pawnNumber].Position.XCoordinate + dirX] == 'K')
             {
                 Console.WriteLine("Pawn`s win!");
                 return true;
             }
-            /*
-            if (matrix[pawnA.Position.YCoordinate + dirY, pawnA.Position.XCoordinate + dirX] == 'D' || matrix[pawnA.Position.YCoordinate + dirY, pawnA.Position.XCoordinate + dirX] == 'B'
-                || matrix[pawnA.Position.YCoordinate + dirY, pawnA.Position.XCoordinate + dirX] == 'C')
+            
+            // check cell is empty to move.
+            if (matrix[pawns[pawnNumber].Position.YCoordinate + dirY, pawns[pawnNumber].Position.XCoordinate + dirX] != '+')
             {
                 Console.WriteLine("Invalid Move!");
-                Console.WriteLine("**Press a key to continue**");
-                Console.ReadKey();
+                Console.WriteLine("**Press Enter to continue**");
+                Console.ReadLine();
                 flag = false;
                 return false;
-            }*/
+            }
 
             // ako ne grymne do momenta znachi e validen hoda
-            matrix[pawn.Position.YCoordinate, pawn.Position.XCoordinate] = '+';
-            matrix[pawn.Position.YCoordinate + dirY, pawn.Position.XCoordinate + dirX] = pawnName;
+            matrix[pawns[pawnNumber].Position.YCoordinate, pawns[pawnNumber].Position.XCoordinate] = '+';
+            matrix[pawns[pawnNumber].Position.YCoordinate + dirY, pawns[pawnNumber].Position.XCoordinate + dirX] = pawnName;
 
-            var pawnCurrentPosition = pawn.Position;
+            var pawnCurrentPosition = pawns[pawnNumber].Position;
 
             pawnCurrentPosition.YCoordinate += dirY;
             pawnCurrentPosition.XCoordinate += dirX;
 
-            pawn.Position = pawnCurrentPosition;
+            pawns[pawnNumber].Position = pawnCurrentPosition;
 
             return false;
         }
@@ -241,8 +239,8 @@
                             {
                                 flag = true;
                                 Console.WriteLine("Invalid input!");
-                                Console.WriteLine("**Press a key to continue**");
-                                Console.ReadKey();
+                                Console.WriteLine("**Press Enter to continue**");
+                                Console.ReadLine();
                                 break;
                             }
                     }
@@ -280,49 +278,49 @@
                     {
                         case "ADR":
                             {
-                                flag2 = PawnMove(1, 1, chessBoard,pawns[0],'A');
+                                flag2 = PawnMove(1, 1, chessBoard,0,'A');
                                 break;
                             }
 
                         case "ADL":
                             {
-                                flag2 = PawnMove(-1, 1, chessBoard, pawns[0], 'A');
+                                flag2 = PawnMove(-1, 1, chessBoard, 0, 'A');
                                 break;
                             }
 
                         case "BDL":
                             {
-                                flag2 = PawnMove(-1, 1, chessBoard, pawns[1], 'B');
+                                flag2 = PawnMove(-1, 1, chessBoard, 1, 'B');
                                 break;
                             }
 
                         case "BDR":
                             {
-                                flag2 = PawnMove(1, 1, chessBoard, pawns[1], 'B');
+                                flag2 = PawnMove(1, 1, chessBoard, 1, 'B');
                                 break;
                             }
 
                         case "CDL":
                             {
-                                flag2 = PawnMove(-1, 1, chessBoard, pawns[2], 'C');
+                                flag2 = PawnMove(-1, 1, chessBoard, 2, 'C');
                                 break;
                             }
 
                         case "CDR":
                             {
-                                flag2 = PawnMove(1, 1, chessBoard, pawns[2], 'C');
+                                flag2 = PawnMove(1, 1, chessBoard,2, 'C');
                                 break;
                             }
 
                         case "DDR":
                             {
-                                flag2 = PawnMove(1, 1, chessBoard, pawns[3], 'D');
+                                flag2 = PawnMove(1, 1, chessBoard, 3, 'D');
                                 break;
                             }
 
                         case "DDL":
                             {
-                                flag2 = PawnMove(-1, 1, chessBoard, pawns[3], 'D');
+                                flag2 = PawnMove(-1, 1, chessBoard, 3, 'D');
                                 break;
                             }
 
@@ -330,8 +328,8 @@
                             {
                                 flag = false;
                                 Console.WriteLine("Invalid input!");
-                                Console.WriteLine("**Press a key to continue**");
-                                Console.ReadKey();
+                                Console.WriteLine("**Press Enter to continue**");
+                                Console.ReadLine();
                                 break;
                             }
                     }

@@ -26,6 +26,15 @@
             ConsoleTest(ResultTestFilePath, InputTestFilePath);
         }
 
+         [TestMethod]
+        public void PawnsOverlapTest()
+        {
+            const string ResultTestFilePath = @"..\..\TestsData\ResultTest02.txt";
+            const string InputTestFilePath = @"..\..\TestsData\InputTest02.txt";
+
+            ConsoleTest(ResultTestFilePath, InputTestFilePath);
+        }
+
         private static void ConsoleTest(string resultTestFilePath, string inputTestFilePath)
         {
             string screen;

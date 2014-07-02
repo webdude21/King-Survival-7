@@ -58,6 +58,8 @@
     <Content Include="TestsData\InputTest00.txt" />
     <Content Include="TestsData\InputTest01.txt" />
     <Content Include="TestsData\ResultTest00.txt" />
+    <Content Include="TestsData\InputTest02.txt" />
+    <Content Include="TestsData\ResultTest02.txt" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\KingSurvivalRefactored\KingSurvivalRefactored.csproj">
