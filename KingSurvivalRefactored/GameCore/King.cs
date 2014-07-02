@@ -15,22 +15,22 @@
 
             switch (direction)
             {
-                case Movements.ForwardLeft:
+                case Movements.UpLeft:
                     currentPosition.XCoordinate--;
                     currentPosition.YCoordinate--;
                     this.Position = currentPosition;
                     break;
-                case Movements.ForwardRight:
+                case Movements.UpRight:
                     currentPosition.XCoordinate++;
                     currentPosition.YCoordinate--;
                     this.Position = currentPosition;
                     break;
-                case Movements.BackwardLeft:
+                case Movements.DownLeft:
                     currentPosition.XCoordinate--;
                     currentPosition.YCoordinate++;
                     this.Position = currentPosition;
                     break;
-                case Movements.BackwardRight:
+                case Movements.DownRight:
                     currentPosition.XCoordinate++;
                     currentPosition.YCoordinate++;
                     this.Position = currentPosition;
