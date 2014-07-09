@@ -3,33 +3,38 @@
 //   Telerik Academy 2013-2014
 // </copyright>
 // <summary>
-//   Implement the Composite pattern for ChessBoard, so it internally contains all of ChessPieces in it
+//   Implement the Singleton pattern for ChessBoard.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
 namespace KingSurvivalRefactored.GameCore
 {
-    using System;
     public class ChessBoard
     {
-        private static volatile ChessBoard instance;
-        private static object syncRoot = new Object();
+        private static readonly object SyncRoot = new object();
 
-        private ChessBoard() {}
-        public static ChessBoard Instance 
+        private static volatile ChessBoard instance;
+
+        private ChessBoard()
+        {
+        }
+
+        public static ChessBoard Instance
         {
             get
             {
-                if (instance == null)
+                if (instance != null)
                 {
-                    lock (syncRoot) 
+                    return instance;
+                }
+
+                lock (SyncRoot)
+                {
+                    if (instance == null)
                     {
-                       if (instance == null) 
-                       {
-                            instance = new ChessBoard();
-                       }
+                        instance = new ChessBoard();
                     }
                 }
+
                 return instance;
             }
         }

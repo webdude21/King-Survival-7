@@ -2,6 +2,12 @@
 {
     public enum Movements
     {
-        UpLeft, UpRight, DownLeft, DownRight
+        UpLeft, 
+
+        UpRight, 
+
+        DownLeft, 
+
+        DownRight
     }
 }

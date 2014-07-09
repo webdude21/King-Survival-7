@@ -18,7 +18,7 @@
         }
 
         [TestMethod]
-        public void Test1()
+        public void OneTurnThenExit()
         {
             const string ResultTestFilePath = @"..\..\TestsData\ResultTest01.txt";
             const string InputTestFilePath = @"..\..\TestsData\InputTest01.txt";
@@ -39,7 +39,7 @@
         {
             string screen;
 
-            using (StreamReader sr = new StreamReader(resultTestFilePath))
+            using (var sr = new StreamReader(resultTestFilePath))
             {
                 screen = sr.ReadToEnd();
             }
@@ -49,7 +49,7 @@
             Console.SetOut(textWriter);
             Console.SetIn(new StreamReader(inputTestFilePath));
 
-            KingSurvivalRefactored.KingSurvival.Main();
+            KingSurvival.Main();
 
             var resultScreens = textWriter.ToString().Split(':');
             var result = resultScreens[resultScreens.Length - 1];
