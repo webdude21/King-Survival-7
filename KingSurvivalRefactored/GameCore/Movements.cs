@@ -3,11 +3,8 @@
     public enum Movements
     {
         UpLeft, 
-
         UpRight, 
-
         DownLeft, 
-
         DownRight
     }
 }
