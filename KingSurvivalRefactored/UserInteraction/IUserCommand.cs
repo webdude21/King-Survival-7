@@ -4,8 +4,6 @@
 
     public interface IUserCommand
     {
-        Movements ReadCommand();
-
-        void IssueMoveCommand(IMovable comandee);
+        void ExecuteUserCommand(IMovable comandee);
     }
 }

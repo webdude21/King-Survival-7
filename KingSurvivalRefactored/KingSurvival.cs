@@ -4,6 +4,7 @@
     using System.Collections.Generic;
 
     using KingSurvivalRefactored.GameCore;
+    using KingSurvivalRefactored.UserInteraction;
 
     public class KingSurvival
     {
@@ -143,22 +144,25 @@
 
         public static void Main()
         {
-            pawns = new List<IChessPiece>();
-            pawns.Add(PieceFactory.GetPawn(new ChessCell(0, 0)));
-            pawns.Add(PieceFactory.GetPawn(new ChessCell(2, 0)));
-            pawns.Add(PieceFactory.GetPawn(new ChessCell(4, 0)));
-            pawns.Add(PieceFactory.GetPawn(new ChessCell(6, 0)));
+
+            pawns = new List<IChessPiece>
+                        {
+                            PieceFactory.GetPawn(new ChessCell(0, 0)),
+                            PieceFactory.GetPawn(new ChessCell(2, 0)),
+                            PieceFactory.GetPawn(new ChessCell(4, 0)),
+                            PieceFactory.GetPawn(new ChessCell(6, 0))
+                        };
             king = PieceFactory.GetKing(new ChessCell(3, 7));
 
             char[,] chessBoard =
                 {
-                    { '+', '-', '+', '-', '+', '-', '+', '-' }, 
-                    { '-', '+', '-', '+', '-', '+', '-', '+' }, 
-                    { '+', '-', '+', '-', '+', '-', '+', '-' }, 
-                    { '-', '+', '-', '+', '-', '+', '-', '+' }, 
-                    { '+', '-', '+', '-', '+', '-', '+', '-' }, 
-                    { '-', '+', '-', '+', '-', '+', '-', '+' }, 
-                    { '+', '-', '+', '-', '+', '-', '+', '-' }, 
+                    { '+', '-', '+', '-', '+', '-', '+', '-' },
+                    { '-', '+', '-', '+', '-', '+', '-', '+' },
+                    { '+', '-', '+', '-', '+', '-', '+', '-' },
+                    { '-', '+', '-', '+', '-', '+', '-', '+' },
+                    { '+', '-', '+', '-', '+', '-', '+', '-' },
+                    { '-', '+', '-', '+', '-', '+', '-', '+' },
+                    { '+', '-', '+', '-', '+', '-', '+', '-' },
                     { '-', '+', '-', '+', '-', '+', '-', '+' }
                 };
 
@@ -171,7 +175,8 @@
             (new KingSurvival()).Print(chessBoard);
             bool? flag2 = false;
 
-            flag2 = Play(chessBoard, flag2);
+            var consoleCommander = new ConsoleCommander();
+            flag2 = Play(chessBoard, flag2, consoleCommander);
             if (flag2 == true)
             {
                 Console.WriteLine("Pawn`s win!");
@@ -182,7 +187,7 @@
             }
         }
 
-        private static bool? Play(char[,] chessBoard, bool? flag2)
+        private static bool? Play(char[,] chessBoard, bool? flag2, IUserCommand userCommander)
         {
             while (king.Position.YCoordinate > 0 && king.Position.YCoordinate < Size && !flag2 == true)
             {
@@ -192,63 +197,20 @@
                     flag = false;
 
                     Console.Write("King`s Turn:");
-                    var input = Console.ReadLine();
-                    if (input == string.Empty)
-                    {
-                        flag = true;
-                        continue;
-                    }
-
-                    var commands = input.ToUpper().Split(' ');
-                    var direction = commands[0];
-
-                    switch (direction)
-                    {
-                        case "KUL":
-                            {
-                                Try(-1, -1, chessBoard);
-                                break;
-                            }
-
-                        case "KUR":
-                            {
-                                Try(1, -1, chessBoard);
-                                break;
-                            }
-
-                        case "KDL":
-                            {
-                                Try(-1, 1, chessBoard);
-                                break;
-                            }
-
-                        case "KDR":
-                            {
-                                Try(1, 1, chessBoard);
-                                break;
-                            }
-
-                        default:
-                            {
-                                flag = true;
-                                Console.WriteLine("Invalid input!");
-                                Console.WriteLine("**Press Enter to continue**");
-                                Console.ReadLine();
-                                break;
-                            }
-                    }
+                    userCommander.ExecuteUserCommand(king);
 
                     (new KingSurvival()).Print(chessBoard);
 
-                    if (CheckForExitCommand(commands))
-                    {
-                        return null;
-                    }
 
-                    if (king.Position.YCoordinate == 0)
-                    {
-                        return false;
-                    }
+                    //if (CheckForExitCommand(commands))
+                    //{
+                    //    return null;
+                    //}
+
+                    //if (king.Position.YCoordinate == 0)
+                    //{
+                    //    return false;
+                    //}
                 }
 
                 while (!flag)
