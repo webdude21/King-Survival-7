@@ -80,6 +80,8 @@
     <Compile Include="GameRenderer\ConsoleRenderer.cs" />
     <Compile Include="GameRenderer\IRenderer.cs" />
     <Compile Include="KingSurvival.cs" />
+    <Compile Include="UserInteraction\ConsoleCommander.cs" />
+    <Compile Include="UserInteraction\IUserCommand.cs" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
@@ -100,7 +102,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Properties\" />
-    <Folder Include="UserInteraction\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="KingSurvivalClassDiagram.cd" />
