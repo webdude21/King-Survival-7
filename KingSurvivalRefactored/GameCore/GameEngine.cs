@@ -9,8 +9,13 @@
 
 namespace KingSurvivalRefactored.GameCore
 {
-    public class GameEngine
+    using KingSurvivalRefactored.UserInteraction;
+
+    public class GameEngine : IGameEngine
     {
-       
+        public IUserCommand RecieveCommand(IUserInterface userInterface)
+        {
+            var command = userInterface.SendCommand();
+        }
     }
 }

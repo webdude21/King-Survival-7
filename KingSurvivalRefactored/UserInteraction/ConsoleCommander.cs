@@ -1,18 +1,19 @@
 ﻿namespace KingSurvivalRefactored.UserInteraction
 {
     using System;
+
     using KingSurvivalRefactored.GameCore;
 
-    public class ConsoleCommander
+    public class ConsoleCommander : IUserInterface
     {
         private const string InvalidCommandMessage = "The command is not valid!";
+
         private const string ArgumantNullOrEmpty = "The command is null or empty";
 
-        public void ExecuteUserCommand(IMovable comandee)
+        public IUserCommand SendCommand()
         {
             var direction = ReadUserCommand();
-            var userCommand = InterpretUserCommand(direction);
-            IssueMoveCommand(comandee, userCommand);
+            return InterpretUserCommand(direction);
         }
 
         private static string ReadUserCommand()
@@ -35,27 +36,31 @@
             return direction;
         }
 
-        private static Movements InterpretUserCommand(string direction)
+        private static IUserCommand InterpretUserCommand(string command)
         {
+            var nameOfReciever = command[0];
+            var directionCommand = command.Substring(1);
+            Movements movement;
 
-            switch (direction)
+            switch (directionCommand)
             {
-                case "KUL":
-                    return Movements.UpLeft;
-                case "KUR":
-                    return Movements.UpRight;
-                case "KDL":
-                    return Movements.DownLeft;
-                case "KDR":
-                    return Movements.DownRight;
+                case "UL":
+                    movement = Movements.UpLeft;
+                    break;
+                case "UR":
+                    movement = Movements.UpRight;
+                    break;
+                case "DL":
+                    movement = Movements.DownLeft;
+                    break;
+                case "DR":
+                    movement = Movements.DownRight;
+                    break;
                 default:
                     throw new ArgumentException(InvalidCommandMessage);
             }
-        }
 
-        private static void IssueMoveCommand(IMovable comandee, Movements command)
-        {
-            comandee.Move(command);
+            return new UserCommand(nameOfReciever, movement);
         }
 
         private static bool CheckForExitCommand(string[] commands)
@@ -67,6 +72,7 @@
                     return true;
                 }
             }
+
             return false;
         }
     }

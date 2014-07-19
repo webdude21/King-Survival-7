@@ -4,7 +4,8 @@
 
     public interface IUserCommand
     {
-        string ComandeeName { get; }
+        char ComandeeName { get; }
+
         Movements MoveCommand { get; }
     }
 }
