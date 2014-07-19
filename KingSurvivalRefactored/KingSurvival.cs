@@ -158,7 +158,7 @@
             //king = PieceFactory.GetKing(new ChessCell(3, 7));
 
               ChessBoard chessBoard;
-              chessBoard.Cells =  new Cell[8,8];
+              chessBoard.Cells = new Cell[8,8];
 
               chessBoard.Cells[0, 0].ChessFigure = new Figure('A');
               chessBoard.Cells[2, 0].ChessFigure = new Figure('B');

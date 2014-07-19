@@ -17,5 +17,13 @@ namespace KingSurvivalRefactored.GameCore
         {
             var command = userInterface.SendCommand();
         }
+
+        public void RunGame()
+        {
+            while (true)
+            {
+                
+            }
+        }
     }
 }

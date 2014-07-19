@@ -7,7 +7,6 @@
     public class ConsoleCommander : IUserInterface
     {
         private const string InvalidCommandMessage = "The command is not valid!";
-
         private const string ArgumantNullOrEmpty = "The command is null or empty";
 
         public IUserCommand SendCommand()
