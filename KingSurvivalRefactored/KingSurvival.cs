@@ -4,6 +4,7 @@
     using System.Collections.Generic;
 
     using KingSurvivalRefactored.GameCore;
+    using KingSurvivalRefactored.GameRenderer;
     using KingSurvivalRefactored.UserInteraction;
 
     public class KingSurvival
@@ -16,20 +17,20 @@
 
         private static bool flag = true;
 
-        private void Print(char[,] matrix)
-        {
-            Console.Clear();
+        //private void Print(char[,] matrix)
+        //{
+        //    Console.Clear();
 
-            for (var i = 0; i < Size; i++)
-            {
-                for (var j = 0; j < Size; j++)
-                {
-                    Console.Write("{0,2}", matrix[i, j]);
-                }
+        //    for (var i = 0; i < Size; i++)
+        //    {
+        //        for (var j = 0; j < Size; j++)
+        //        {
+        //            Console.Write("{0,2}", matrix[i, j]);
+        //        }
 
-                Console.WriteLine(string.Empty);
-            }
-        }
+        //        Console.WriteLine(string.Empty);
+        //    }
+        //}
 
         private static void Try(int dirX, int dirY, char[,] __m)
         {
@@ -154,22 +155,27 @@
             //            };
             //king = PieceFactory.GetKing(new ChessCell(3, 7));
 
-              Cell[,] chessBoard = new Cell[8,8];
+              ChessBoard chessBoard;
+              chessBoard.Cells =  new Cell[8,8];
 
-              chessBoard[0, 0].ChessFigure = new Figure('A');
-              chessBoard[0, 0].ChessFigure = new Figure('A');
+              chessBoard.Cells[0, 0].ChessFigure = new Figure('A');
+              chessBoard.Cells[2, 0].ChessFigure = new Figure('B');
+              chessBoard.Cells[4, 0].ChessFigure = new Figure('C');
+              chessBoard.Cells[6, 0].ChessFigure = new Figure('D');
+              chessBoard.Cells[2, 0].ChessFigure = new Figure('K');
 
             //chessBoard[pawns[0].Position.YCoordinate, pawns[0].Position.XCoordinate] = 'A';
             //chessBoard[pawns[1].Position.YCoordinate, pawns[1].Position.XCoordinate] = 'B';
             //chessBoard[pawns[2].Position.YCoordinate, pawns[2].Position.XCoordinate] = 'C';
             //chessBoard[pawns[3].Position.YCoordinate, pawns[3].Position.XCoordinate] = 'D';
 
-            chessBoard[king.Position.YCoordinate, king.Position.XCoordinate] = 'K';
-            (new KingSurvival()).Print(chessBoard);
+            //chessBoard[king.Position.YCoordinate, king.Position.XCoordinate] = 'K';
+            //(new KingSurvival()).Print(chessBoard);
+            
             bool? flag2 = false;
 
             var consoleCommander = new ConsoleCommander();
-            flag2 = Play(chessBoard, flag2, consoleCommander);
+            flag2 = Play(flag2, consoleCommander);
             if (flag2 == true)
             {
                 Console.WriteLine("Pawn`s win!");
@@ -180,7 +186,7 @@
             }
         }
 
-        private static bool? Play(char[,] chessBoard, bool? flag2, IUserCommand userCommander)
+        private static bool? Play(bool? flag2, IUserCommand userCommander)
         {
             while (king.Position.YCoordinate > 0 && king.Position.YCoordinate < Size && !flag2 == true)
             {

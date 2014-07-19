@@ -18,6 +18,8 @@ namespace KingSurvivalRefactored.GameCore
         {
         }
 
+        public Cell[,] Cells { get; set; }
+
         public static ChessBoard Instance
         {
             get
@@ -38,5 +40,6 @@ namespace KingSurvivalRefactored.GameCore
                 return instance;
             }
         }
+
     }
 }
