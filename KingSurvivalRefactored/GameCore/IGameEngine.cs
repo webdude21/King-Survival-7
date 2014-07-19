@@ -5,5 +5,7 @@
     public interface IGameEngine
     {
         IUserCommand RecieveCommand(IUserInterface userInterface);
+
+        void RunGame();
     }
 }
