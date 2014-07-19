@@ -6,7 +6,6 @@
 //    Implement Facade design pattern here
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
 namespace KingSurvivalRefactored.GameCore
 {
     using KingSurvivalRefactored.UserInteraction;
@@ -16,13 +15,13 @@ namespace KingSurvivalRefactored.GameCore
         public IUserCommand RecieveCommand(IUserInterface userInterface)
         {
             var command = userInterface.SendCommand();
+            return command;
         }
 
         public void RunGame()
         {
             while (true)
             {
-                
             }
         }
     }
