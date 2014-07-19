@@ -4,6 +4,6 @@
 
     public interface IGameEngine
     {
-        void RecieveCommand(IUserCommand userCommand);
+        IUserCommand RecieveCommand(IUserInterface userInterface);
     }
 }

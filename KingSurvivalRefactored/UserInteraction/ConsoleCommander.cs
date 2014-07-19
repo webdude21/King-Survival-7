@@ -10,17 +10,9 @@
 
         private const string ArgumantNullOrEmpty = "The command is null or empty";
 
-        private readonly IGameEngine gameEngine;
-
-        public ConsoleCommander(IGameEngine gameEngine)
-        {
-            // TODO to abstract GameEngine with Interface 
-            this.gameEngine = gameEngine;
-        }
-
         public IUserCommand SendCommand()
         {
-            this.gameEngine.RecieveCommand();
+            var currentCommand = ReadUserCommand();
         }
 
         public void ExecuteUserCommand(IMovable comandee)
@@ -50,21 +42,31 @@
             return direction;
         }
 
-        private static Movements InterpretUserCommand(string direction)
+        private static IUserCommand InterpretUserCommand(string command)
         {
-            switch (direction)
+            var nameOfReciever = command[0];
+            var directionCommand = command.Substring(1);
+            Movements movement;
+
+            switch (directionCommand)
             {
-                case "KUL":
-                    return Movements.UpLeft;
-                case "KUR":
-                    return Movements.UpRight;
-                case "KDL":
-                    return Movements.DownLeft;
-                case "KDR":
-                    return Movements.DownRight;
+                case "UL":
+                    movement = Movements.UpLeft;
+                    break;
+                case "UR":
+                    movement = Movements.UpRight;
+                    break;
+                case "DL":
+                    movement = Movements.DownLeft;
+                    break;
+                case "DR":
+                    movement = Movements.DownRight;
+                    break;
                 default:
                     throw new ArgumentException(InvalidCommandMessage);
             }
+
+            return new UserCommand(nameOfReciever, movement);
         }
 
         private static void IssueMoveCommand(IMovable comandee, Movements command)

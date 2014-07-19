@@ -13,9 +13,9 @@ namespace KingSurvivalRefactored.GameCore
 
     public class GameEngine : IGameEngine
     {
-        public void RecieveCommand(IUserCommand userCommand)
+        public IUserCommand RecieveCommand(IUserInterface userInterface)
         {
-            throw new System.NotImplementedException();
+            var command = userInterface.SendCommand();
         }
     }
 }
