@@ -84,6 +84,7 @@
     <Compile Include="KingSurvival.cs" />
     <Compile Include="UserInteraction\ConsoleCommander.cs" />
     <Compile Include="UserInteraction\IUserCommand.cs" />
+    <Compile Include="UserInteraction\UserCommand.cs" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include="Microsoft.Net.Client.3.5">

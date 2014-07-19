@@ -3,7 +3,7 @@
     using System;
     using KingSurvivalRefactored.GameCore;
 
-    public class ConsoleCommander : IUserCommand
+    public class ConsoleCommander
     {
         private const string InvalidCommandMessage = "The command is not valid!";
         private const string ArgumantNullOrEmpty = "The command is null or empty";

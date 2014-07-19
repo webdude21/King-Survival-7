@@ -4,6 +4,7 @@
 
     public interface IUserCommand
     {
-        void ExecuteUserCommand(IMovable comandee);
+        string ComandeeName { get; }
+        Movements MoveCommand { get; }
     }
 }
