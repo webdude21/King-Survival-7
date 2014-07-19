@@ -22,6 +22,7 @@ namespace KingSurvivalRefactored.GameCore
         {
             while (true)
             {
+
             }
         }
 
