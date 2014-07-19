@@ -12,14 +12,8 @@
 
         public IUserCommand SendCommand()
         {
-            var currentCommand = ReadUserCommand();
-        }
-
-        public void ExecuteUserCommand(IMovable comandee)
-        {
             var direction = ReadUserCommand();
-            var userCommand = InterpretUserCommand(direction);
-            IssueMoveCommand(comandee, userCommand);
+            return InterpretUserCommand(direction);
         }
 
         private static string ReadUserCommand()
@@ -67,11 +61,6 @@
             }
 
             return new UserCommand(nameOfReciever, movement);
-        }
-
-        private static void IssueMoveCommand(IMovable comandee, Movements command)
-        {
-            comandee.Move(command);
         }
 
         private static bool CheckForExitCommand(string[] commands)
