@@ -17,7 +17,7 @@
 
         private static bool flag = true;
 
-        IRenderer renderer = new ConsoleCommander();
+        IRenderer renderer = new ConsoleRenderer();
 
         //private void Print(char[,] matrix)
         //{
