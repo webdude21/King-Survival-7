@@ -18,6 +18,28 @@
                     {
                         Console.Write("{0,2}", board.Cells[i, j].ChessFigure.Name);
                     }
+                    else if (j%2==0)
+                    {
+                        if (i%2==0)
+                        {
+                            Console.Write("{0,2}", '+');
+                        }
+                        else
+                        {
+                            Console.Write("{0,2}", '-');
+                        }
+                    }
+                    else
+                    {
+                        if (i % 2 == 0)
+                        {
+                            Console.Write("{0,2}", '-');
+                        }
+                        else
+                        {
+                            Console.Write("{0,2}", '+');
+                        }
+                    }
                 }
                 Console.WriteLine(string.Empty);
 

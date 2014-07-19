@@ -37,7 +37,7 @@
             {
                 for (int x = 0; x < Size; x++)
                 {
-                    if (chessBoard.Cells[x, y].ChessFigure.Name == name)
+                    if (chessBoard.Cells[x, y]!=null && chessBoard.Cells[x, y].ChessFigure.Name == name)
                     {
                         xCoordinate = x;
                         yCoordinate = y;
@@ -74,10 +74,19 @@
             }
         }
 
-
         private static void KingMove(char name, Movements move)
         {
             int dirX=0, dirY=0, kingXCoordinate=0, kingYCoordinate=0;
+
+            if (name!='K')
+            {
+                Console.WriteLine("Invalid Move!");
+                Console.WriteLine("**Press Enter to continue**");
+                Console.ReadLine();
+                flag = true;
+                // TODO - throw exception invalid move exception
+                return;
+            }
 
             FindFigure('K', ref kingXCoordinate, ref kingYCoordinate);
             DecodeMovement(move, ref dirX, ref dirY);
@@ -129,15 +138,15 @@
             //__m[king.Position.YCoordinate, king.Position.XCoordinate] = '+';
             //__m[king.Position.YCoordinate + dirY, king.Position.XCoordinate + dirX] = 'K';
 
-            var kingcurrentPosition = king.Position;
+            //var kingcurrentPosition = king.Position;
 
-            kingcurrentPosition.YCoordinate += dirY;
-            kingcurrentPosition.XCoordinate += dirX;
+            //kingcurrentPosition.YCoordinate += dirY;
+            //kingcurrentPosition.XCoordinate += dirX;
 
-            king.Position = kingcurrentPosition;
+            //king.Position = kingcurrentPosition;
 
-            chessBoard.Cells[kingXCoordinate + dirX, kingYCoordinate + dirY].ChessFigure = chessBoard.Cells[kingXCoordinate, kingYCoordinate].ChessFigure;
-            chessBoard.Cells[kingXCoordinate, kingYCoordinate].ChessFigure = null;
+            chessBoard.Cells[kingXCoordinate + dirX, kingYCoordinate + dirY] =new Cell(chessBoard.Cells[kingXCoordinate, kingYCoordinate].ChessFigure);
+            chessBoard.Cells[kingXCoordinate, kingYCoordinate] = null;
         }
 
         private static bool PawnMove(int dirX, int dirY, int pawnNumber, char pawnName)
@@ -202,7 +211,7 @@
             chessBoard.Cells[2, 0]= new Cell( new Figure('B'));
             chessBoard.Cells[4, 0]= new Cell( new Figure('C'));
             chessBoard.Cells[6, 0]= new Cell( new Figure('D'));
-            chessBoard.Cells[2, 0]= new Cell( new Figure('K'));
+            chessBoard.Cells[3, 7]= new Cell( new Figure('K'));
 
             Renderer.Render(chessBoard);
 
@@ -221,7 +230,8 @@
 
         private static bool? Play(bool? flag2, IUserInterface userCommander)
         {
-            while (king.Position.YCoordinate > 0 && king.Position.YCoordinate < Size && !flag2 == true)
+            //king.Position.YCoordinate > 0 && king.Position.YCoordinate < Size && 
+            while (!flag2 == true)
             {
                 flag = true;
                 while (flag)
