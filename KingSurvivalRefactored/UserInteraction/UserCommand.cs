@@ -4,13 +4,13 @@
 
     internal class UserCommand : IUserCommand
     {
-        public UserCommand(string comandeeName, Movements moveCommand)
+        public UserCommand(char commandeeName, Movements moveCommand)
         {
             this.MoveCommand = moveCommand;
-            this.ComandeeName = comandeeName;
+            this.ComandeeName = commandeeName;
         }
 
-        public string ComandeeName { get; private set; }
+        public char ComandeeName { get; private set; }
 
         public Movements MoveCommand { get; private set; }
     }
