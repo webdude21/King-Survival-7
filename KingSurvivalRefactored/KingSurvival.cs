@@ -23,7 +23,7 @@
 
         private static readonly IUserInterface ConsoleCommander = new ConsoleCommander();
 
-        private static void Try(int dirX, int dirY)
+        private static void KingMove(int dirX, int dirY)
         {
             if (king.Position.XCoordinate + dirX < 0 || king.Position.XCoordinate + dirX > Size - 1)
             {
@@ -169,9 +169,9 @@
                     flag = false;
 
                     Console.Write("King`s Turn:");
-
-                    // userCommander.ExecuteUserCommand(king);
-                    // This should be handled through the GameEngine
+                    var command = userCommander.SendCommand();
+                    var name = command.ComandeeName;
+                    var move = command.MoveCommand;
 
                     Renderer.Render(ChessBoard);
                 }
