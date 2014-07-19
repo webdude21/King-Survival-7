@@ -17,6 +17,8 @@
 
         private static bool flag = true;
 
+        IRenderer renderer = new ConsoleCommander();
+
         //private void Print(char[,] matrix)
         //{
         //    Console.Clear();
@@ -171,10 +173,13 @@
 
             //chessBoard[king.Position.YCoordinate, king.Position.XCoordinate] = 'K';
             //(new KingSurvival()).Print(chessBoard);
-            
+
+            var renderer = new ConsoleRenderer();
+            renderer.Render(chessBoard);
+
             bool? flag2 = false;
 
-            var consoleCommander = new ConsoleCommander();
+            
             flag2 = Play(flag2, consoleCommander);
             if (flag2 == true)
             {
@@ -198,7 +203,7 @@
                     Console.Write("King`s Turn:");
                     userCommander.ExecuteUserCommand(king);
 
-                    (new KingSurvival()).Print(chessBoard);
+                    renderer.Render(chessBoard);
                 }
 
                 while (!flag)

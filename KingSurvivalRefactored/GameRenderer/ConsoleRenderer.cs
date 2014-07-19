@@ -5,12 +5,8 @@
 
     public class ConsoleRenderer : IRenderer
     {
-        //public void Render(IChessPiece chessRoot)
-        //{
-        //    throw new System.NotImplementedException();
-        //}
 
-        public void Render(Cell[,] board)
+        public void Render(ChessBoard board)
         {
             Console.Clear();
 
@@ -18,7 +14,7 @@
             {
                 for (var j = 0; j < 8; j++)
                 {
-                    Console.Write("{0,2}", board[i, j].ChessFigure.Name);
+                    Console.Write("{0,2}", board.Cells[i, j].ChessFigure.Name);
                 }
 
                 Console.WriteLine(string.Empty);
