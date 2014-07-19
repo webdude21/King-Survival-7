@@ -24,12 +24,20 @@
                 throw new ArgumentNullException(ArgumantNullOrEmpty);
             }
 
-            var direction = input.ToUpper().Split(' ')[0];
+            var commands = input.ToUpper().Split(' ');
+
+            if (CheckForExitCommand(commands))
+            {
+                return null;
+            }
+
+            var direction = commands[0];
             return direction;
         }
 
         private static Movements InterpretUserCommand(string direction)
         {
+
             switch (direction)
             {
                 case "KUL":
@@ -48,6 +56,18 @@
         private static void IssueMoveCommand(IMovable comandee, Movements command)
         {
             comandee.Move(command);
+        }
+
+        private static bool CheckForExitCommand(string[] commands)
+        {
+            if (commands.Length > 1)
+            {
+                if (commands[1] == "EXIT")
+                {
+                    return true;
+                }
+            }
+            return false;
         }
     }
 }

@@ -200,17 +200,6 @@
                     userCommander.ExecuteUserCommand(king);
 
                     (new KingSurvival()).Print(chessBoard);
-
-
-                    //if (CheckForExitCommand(commands))
-                    //{
-                    //    return null;
-                    //}
-
-                    //if (king.Position.YCoordinate == 0)
-                    //{
-                    //    return false;
-                    //}
                 }
 
                 while (!flag)
