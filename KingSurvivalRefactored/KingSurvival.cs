@@ -198,11 +198,11 @@
 
         public static void Main()
         {
-            chessBoard[0, 0].ChessFigure = new Figure('A');
-            chessBoard.Cells[2, 0].ChessFigure = new Figure('B');
-            chessBoard.Cells[4, 0].ChessFigure = new Figure('C');
-            chessBoard.Cells[6, 0].ChessFigure = new Figure('D');
-            chessBoard.Cells[2, 0].ChessFigure = new Figure('K');
+            chessBoard[0, 0] = new Cell(new Figure('A'));
+            chessBoard.Cells[2, 0]= new Cell( new Figure('B'));
+            chessBoard.Cells[4, 0]= new Cell( new Figure('C'));
+            chessBoard.Cells[6, 0]= new Cell( new Figure('D'));
+            chessBoard.Cells[2, 0]= new Cell( new Figure('K'));
 
             Renderer.Render(chessBoard);
 

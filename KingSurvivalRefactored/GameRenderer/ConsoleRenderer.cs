@@ -10,14 +10,17 @@
         {
             Console.Clear();
 
-            for (var i = 0; i < 8; i++)
+            for (var j = 0; j < 8; j++)
             {
-                for (var j = 0; j < 8; j++)
+                for (var i = 0; i < 8; i++)
                 {
-                    Console.Write("{0,2}", board.Cells[i, j].ChessFigure.Name);
+                    if (board.Cells[i, j] != null)
+                    {
+                        Console.Write("{0,2}", board.Cells[i, j].ChessFigure.Name);
+                    }
                 }
-
                 Console.WriteLine(string.Empty);
+
             }
         }
     }

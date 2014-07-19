@@ -20,7 +20,7 @@
 
             private set
             {
-                if (!Char.IsLetter(value) || !Char.IsUpper(value)) 
+                if (!Char.IsLetter(value) || !Char.IsUpper(value))
                 {
                     throw new ArgumentException("Invalid Figure Name");
                 }
