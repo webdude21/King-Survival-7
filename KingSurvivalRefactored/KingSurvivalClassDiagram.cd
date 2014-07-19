@@ -3,14 +3,14 @@
   <Class Name="KingSurvivalRefactored.GameCore.ChessBoard" Collapsed="true">
     <Position X="5.75" Y="0.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAEAAAAABAAAAAQAAAAAAAAAA=</HashCode>
       <FileName>GameCore\ChessBoard.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="KingSurvivalRefactored.GameCore.GameEngine" Collapsed="true">
     <Position X="7.5" Y="1.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAQAAAAAAAAAAAAIAAAAIAAAAAAAAAAAAAAQCAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>GameCore\GameEngine.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -36,19 +36,19 @@
     </TypeIdentifier>
     <Lollipop Position="0.2" Collapsed="true" />
   </Class>
-  <Class Name="KingSurvivalRefactored.GameCore.ChessPiece">
+  <Class Name="KingSurvivalRefactored.GameCore.Figure">
     <Position X="2.5" Y="3" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAIAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>GameCore\ChessPiece.cs</FileName>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAQAAAAEAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>GameCore\Figure.cs</FileName>
+      <NewMemberFileName>GameCore\ChessPiece.cs</NewMemberFileName>
     </TypeIdentifier>
-    <Lollipop Position="0.2" />
   </Class>
-  <Class Name="KingSurvivalRefactored.GameCore.Factory" Collapsed="true">
+  <Class Name="KingSurvivalRefactored.GameCore.PieceFactory" Collapsed="true">
     <Position X="2.5" Y="1.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAIAAAAAAAAIAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>GameCore\Factory.cs</FileName>
+      <FileName>GameCore\PieceFactory.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Struct Name="KingSurvivalRefactored.GameCore.ChessCell" Collapsed="true">
@@ -82,7 +82,7 @@
   <Enum Name="KingSurvivalRefactored.GameCore.Movements" Collapsed="true">
     <Position X="5.75" Y="5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAQIAAAAAEAAAAAAAAACAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAQAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAABAAA=</HashCode>
       <FileName>GameCore\Movements.cs</FileName>
     </TypeIdentifier>
   </Enum>

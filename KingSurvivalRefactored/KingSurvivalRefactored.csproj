@@ -67,9 +67,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="GameCore\Cell.cs" />
     <Compile Include="GameCore\ChessCell.cs" />
     <Compile Include="GameCore\ChessBoard.cs" />
     <Compile Include="GameCore\ChessPiece.cs" />
+    <Compile Include="GameCore\Figure.cs" />
     <Compile Include="GameCore\GameEngine.cs" />
     <Compile Include="GameCore\IMovable.cs" />
     <Compile Include="GameCore\King.cs" />
