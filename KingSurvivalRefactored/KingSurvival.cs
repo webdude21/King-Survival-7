@@ -17,7 +17,9 @@
 
         private static bool flag = true;
 
-        IRenderer renderer = new ConsoleRenderer();
+        private IRenderer renderer = new ConsoleRenderer();
+
+        private ChessBoard chessBoard = new ChessBoard();
 
         //private void Print(char[,] matrix)
         //{
@@ -157,7 +159,6 @@
             //            };
             //king = PieceFactory.GetKing(new ChessCell(3, 7));
 
-              ChessBoard chessBoard;
               chessBoard.Cells = new Cell[8,8];
 
               chessBoard.Cells[0, 0].ChessFigure = new Figure('A');

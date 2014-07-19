@@ -14,7 +14,7 @@ namespace KingSurvivalRefactored.GameCore
 
         private static volatile ChessBoard instance;
 
-        private ChessBoard()
+        public ChessBoard()
         {
         }
 
