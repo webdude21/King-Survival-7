@@ -24,5 +24,15 @@ namespace KingSurvivalRefactored.GameCore
             {
             }
         }
+
+        private void PawnMove(Pawn pawn)
+        {
+            
+        }
+
+        private void KingMove(King king)
+        {
+            
+        }
     }
 }
