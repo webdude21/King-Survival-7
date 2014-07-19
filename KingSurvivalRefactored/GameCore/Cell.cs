@@ -7,10 +7,10 @@
             this.ChessFigure = figure;
         }
 
-        public Cell() 
-        {
-        
-        }
+        //public Cell() 
+        //{
+        //    this.ChessFigure = new Figure(' ');
+        //}
 
         public Figure ChessFigure { get; set; }
     }

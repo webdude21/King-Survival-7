@@ -16,9 +16,23 @@ namespace KingSurvivalRefactored.GameCore
 
         public ChessBoard()
         {
+            this.Cells = new Cell[8, 8];
         }
 
         public Cell[,] Cells { get; set; }
+
+        public Cell this[int x, int y] 
+        {
+            get
+            {
+                return this.Cells[x, y];
+            }
+
+            set
+            {
+                this.Cells[x, y] = value;
+            }
+        }
 
         public static ChessBoard Instance
         {
