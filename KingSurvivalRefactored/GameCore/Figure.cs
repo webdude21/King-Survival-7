@@ -4,14 +4,14 @@
 
     public class Figure
     {
-        private string name;
+        private char name;
 
-        public Figure(string name)
+        public Figure(char name)
         {
             this.Name = name;
         }
 
-        public string Name
+        public char Name
         {
             get
             {
@@ -20,12 +20,12 @@
 
             private set
             {
-                if (value.Trim().Length != 1) 
+                if (!Char.IsLetter(value)) 
                 {
                     throw new ArgumentException("Invalid Figure Name");
                 }
 
-                this.name = value.Trim();
+                this.name = value;
             }
         }
 

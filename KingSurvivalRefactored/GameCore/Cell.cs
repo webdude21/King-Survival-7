@@ -7,6 +7,11 @@
             this.ChessFigure = figure;
         }
 
+        public Cell() 
+        {
+        
+        }
+
         public Figure ChessFigure { get; set; }
     }
 }

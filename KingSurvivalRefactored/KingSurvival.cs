@@ -145,31 +145,24 @@
         public static void Main()
         {
 
-            pawns = new List<IChessPiece>
-                        {
-                            PieceFactory.GetPawn(new ChessCell(0, 0)),
-                            PieceFactory.GetPawn(new ChessCell(2, 0)),
-                            PieceFactory.GetPawn(new ChessCell(4, 0)),
-                            PieceFactory.GetPawn(new ChessCell(6, 0))
-                        };
-            king = PieceFactory.GetKing(new ChessCell(3, 7));
+            //pawns = new List<IChessPiece>
+            //            {
+            //                PieceFactory.GetPawn(new ChessCell(0, 0)),
+            //                PieceFactory.GetPawn(new ChessCell(2, 0)),
+            //                PieceFactory.GetPawn(new ChessCell(4, 0)),
+            //                PieceFactory.GetPawn(new ChessCell(6, 0))
+            //            };
+            //king = PieceFactory.GetKing(new ChessCell(3, 7));
 
-            char[,] chessBoard =
-                {
-                    { '+', '-', '+', '-', '+', '-', '+', '-' },
-                    { '-', '+', '-', '+', '-', '+', '-', '+' },
-                    { '+', '-', '+', '-', '+', '-', '+', '-' },
-                    { '-', '+', '-', '+', '-', '+', '-', '+' },
-                    { '+', '-', '+', '-', '+', '-', '+', '-' },
-                    { '-', '+', '-', '+', '-', '+', '-', '+' },
-                    { '+', '-', '+', '-', '+', '-', '+', '-' },
-                    { '-', '+', '-', '+', '-', '+', '-', '+' }
-                };
+              Cell[,] chessBoard = new Cell[8,8];
 
-            chessBoard[pawns[0].Position.YCoordinate, pawns[0].Position.XCoordinate] = 'A';
-            chessBoard[pawns[1].Position.YCoordinate, pawns[1].Position.XCoordinate] = 'B';
-            chessBoard[pawns[2].Position.YCoordinate, pawns[2].Position.XCoordinate] = 'C';
-            chessBoard[pawns[3].Position.YCoordinate, pawns[3].Position.XCoordinate] = 'D';
+              chessBoard[0, 0].ChessFigure = new Figure('A');
+              chessBoard[0, 0].ChessFigure = new Figure('A');
+
+            //chessBoard[pawns[0].Position.YCoordinate, pawns[0].Position.XCoordinate] = 'A';
+            //chessBoard[pawns[1].Position.YCoordinate, pawns[1].Position.XCoordinate] = 'B';
+            //chessBoard[pawns[2].Position.YCoordinate, pawns[2].Position.XCoordinate] = 'C';
+            //chessBoard[pawns[3].Position.YCoordinate, pawns[3].Position.XCoordinate] = 'D';
 
             chessBoard[king.Position.YCoordinate, king.Position.XCoordinate] = 'K';
             (new KingSurvival()).Print(chessBoard);
