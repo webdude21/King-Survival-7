@@ -17,24 +17,11 @@
 
         private static bool flag = true;
 
-        private static IRenderer renderer = new ConsoleRenderer();
+        private static readonly IRenderer Renderer = new ConsoleRenderer();
 
-        private static ChessBoard chessBoard = new ChessBoard();
+        private static readonly ChessBoard ChessBoard = new ChessBoard();
 
-        //private void Print(char[,] matrix)
-        //{
-        //    Console.Clear();
-
-        //    for (var i = 0; i < Size; i++)
-        //    {
-        //        for (var j = 0; j < Size; j++)
-        //        {
-        //            Console.Write("{0,2}", matrix[i, j]);
-        //        }
-
-        //        Console.WriteLine(string.Empty);
-        //    }
-        //}
+        private static readonly IUserInterface ConsoleCommander = new ConsoleCommander();
 
         private static void Try(int dirX, int dirY)
         {
@@ -149,21 +136,19 @@
 
         public static void Main()
         {
-               
-              chessBoard.Cells = new Cell[8,8];
+            ChessBoard.Cells = new Cell[8, 8];
 
-              chessBoard.Cells[0, 0].ChessFigure = new Figure('A');
-              chessBoard.Cells[2, 0].ChessFigure = new Figure('B');
-              chessBoard.Cells[4, 0].ChessFigure = new Figure('C');
-              chessBoard.Cells[6, 0].ChessFigure = new Figure('D');
-              chessBoard.Cells[2, 0].ChessFigure = new Figure('K');
+            ChessBoard.Cells[0, 0].ChessFigure = new Figure('A');
+            ChessBoard.Cells[2, 0].ChessFigure = new Figure('B');
+            ChessBoard.Cells[4, 0].ChessFigure = new Figure('C');
+            ChessBoard.Cells[6, 0].ChessFigure = new Figure('D');
+            ChessBoard.Cells[2, 0].ChessFigure = new Figure('K');
 
-                     renderer.Render(chessBoard);
+            Renderer.Render(ChessBoard);
 
             bool? flag2 = false;
 
-            
-            flag2 = Play(flag2, consoleCommander);
+            flag2 = Play(flag2, ConsoleCommander);
             if (flag2 == true)
             {
                 Console.WriteLine("Pawn`s win!");
@@ -174,7 +159,7 @@
             }
         }
 
-        private static bool? Play(bool? flag2, IUserCommand userCommander)
+        private static bool? Play(bool? flag2, IUserInterface userCommander)
         {
             while (king.Position.YCoordinate > 0 && king.Position.YCoordinate < Size && !flag2 == true)
             {
@@ -184,15 +169,17 @@
                     flag = false;
 
                     Console.Write("King`s Turn:");
-                    userCommander.ExecuteUserCommand(king);
 
-                    renderer.Render(chessBoard);
+                    // userCommander.ExecuteUserCommand(king);
+                    // This should be handled through the GameEngine
+
+                    Renderer.Render(ChessBoard);
                 }
 
                 while (!flag)
                 {
                     flag = true;
-                    renderer.Render(chessBoard);
+                    Renderer.Render(ChessBoard);
                     Console.Write("Pawn`s Turn:");
                     var input = Console.ReadLine();
                     if (input == string.Empty)
@@ -208,49 +195,49 @@
                     {
                         case "ADR":
                             {
-                                flag2 = PawnMove(1, 1,  0, 'A');
+                                flag2 = PawnMove(1, 1, 0, 'A');
                                 break;
                             }
 
                         case "ADL":
                             {
-                                flag2 = PawnMove(-1, 1,  0, 'A');
+                                flag2 = PawnMove(-1, 1, 0, 'A');
                                 break;
                             }
 
                         case "BDL":
                             {
-                                flag2 = PawnMove(-1, 1,  1, 'B');
+                                flag2 = PawnMove(-1, 1, 1, 'B');
                                 break;
                             }
 
                         case "BDR":
                             {
-                                flag2 = PawnMove(1, 1,  1, 'B');
+                                flag2 = PawnMove(1, 1, 1, 'B');
                                 break;
                             }
 
                         case "CDL":
                             {
-                                flag2 = PawnMove(-1, 1,  2, 'C');
+                                flag2 = PawnMove(-1, 1, 2, 'C');
                                 break;
                             }
 
                         case "CDR":
                             {
-                                flag2 = PawnMove(1, 1,  2, 'C');
+                                flag2 = PawnMove(1, 1, 2, 'C');
                                 break;
                             }
 
                         case "DDR":
                             {
-                                flag2 = PawnMove(1, 1,  3, 'D');
+                                flag2 = PawnMove(1, 1, 3, 'D');
                                 break;
                             }
 
                         case "DDL":
                             {
-                                flag2 = PawnMove(-1, 1,  3, 'D');
+                                flag2 = PawnMove(-1, 1, 3, 'D');
                                 break;
                             }
 
@@ -264,7 +251,7 @@
                             }
                     }
 
-                    renderer.Render(chessBoard);
+                    Renderer.Render(ChessBoard);
 
                     if (CheckForExitCommand(commands))
                     {
