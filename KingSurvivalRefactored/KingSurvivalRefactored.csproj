@@ -73,6 +73,7 @@
     <Compile Include="GameCore\ChessPiece.cs" />
     <Compile Include="GameCore\Figure.cs" />
     <Compile Include="GameCore\GameEngine.cs" />
+    <Compile Include="GameCore\IGameEngine.cs" />
     <Compile Include="GameCore\IMovable.cs" />
     <Compile Include="GameCore\King.cs" />
     <Compile Include="GameCore\Movements.cs" />
@@ -84,6 +85,7 @@
     <Compile Include="KingSurvival.cs" />
     <Compile Include="UserInteraction\ConsoleCommander.cs" />
     <Compile Include="UserInteraction\IUserCommand.cs" />
+    <Compile Include="UserInteraction\IUserInterface.cs" />
     <Compile Include="UserInteraction\UserCommand.cs" />
   </ItemGroup>
   <ItemGroup>

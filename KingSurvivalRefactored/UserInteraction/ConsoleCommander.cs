@@ -1,12 +1,27 @@
 ﻿namespace KingSurvivalRefactored.UserInteraction
 {
     using System;
+
     using KingSurvivalRefactored.GameCore;
 
-    public class ConsoleCommander
+    public class ConsoleCommander : IUserInterface
     {
         private const string InvalidCommandMessage = "The command is not valid!";
+
         private const string ArgumantNullOrEmpty = "The command is null or empty";
+
+        private readonly IGameEngine gameEngine;
+
+        public ConsoleCommander(IGameEngine gameEngine)
+        {
+            // TODO to abstract GameEngine with Interface 
+            this.gameEngine = gameEngine;
+        }
+
+        public IUserCommand SendCommand()
+        {
+            this.gameEngine.RecieveCommand();
+        }
 
         public void ExecuteUserCommand(IMovable comandee)
         {
@@ -37,7 +52,6 @@
 
         private static Movements InterpretUserCommand(string direction)
         {
-
             switch (direction)
             {
                 case "KUL":
@@ -67,6 +81,7 @@
                     return true;
                 }
             }
+
             return false;
         }
     }
