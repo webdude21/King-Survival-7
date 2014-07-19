@@ -4,6 +4,6 @@
 
     public interface IRenderer
     {
-        void Render(Cell[,] chessRoot);
+        void Render(ChessBoard chessRoot);
     }
 }
