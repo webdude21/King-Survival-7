@@ -2,6 +2,6 @@
 {
     public interface IUserInterface
     {
-        IUserCommand SendCommand();
+        IUserCommand ReadUserCommand();
     }
 }

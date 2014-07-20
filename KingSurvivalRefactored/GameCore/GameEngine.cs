@@ -14,7 +14,7 @@ namespace KingSurvivalRefactored.GameCore
     {
         public IUserCommand RecieveCommand(IUserInterface userInterface)
         {
-            var command = userInterface.SendCommand();
+            var command = userInterface.ReadUserCommand();
             return command;
         }
 

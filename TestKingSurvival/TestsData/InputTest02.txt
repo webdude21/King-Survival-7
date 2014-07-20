@@ -1,3 +1,5 @@
 ﻿KUL
 ADR
-BDL EXIT
+BDL
+
+EXIT

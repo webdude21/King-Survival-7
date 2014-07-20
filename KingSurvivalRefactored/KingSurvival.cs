@@ -23,14 +23,8 @@
 
         private static readonly IUserInterface ConsoleCommander = new ConsoleCommander();
 
-        // var name = command.ComandeeName;
-        // var move = command.MoveCommand;
-
-        // KingMove(name, move);
         private static void FindFigure(char name, ref int xCoordinate, ref int yCoordinate)
         {
-            int[] result = { 10, 10 };
-
             for (var y = 0; y < Size; y++)
             {
                 for (var x = 0; x < Size; x++)
@@ -77,140 +71,74 @@
 
             if (name != 'K')
             {
-                Console.WriteLine("Invalid Move!");
-                Console.WriteLine("**Press Enter to continue**");
-                Console.ReadLine();
-                flag = true;
+                Renderer.InvalidFigure();
 
-                // TODO - throw exception invalid move exception
+                // TODO - throw invalid figure exception
                 return;
             }
 
             FindFigure('K', ref kingXCoordinate, ref kingYCoordinate);
             DecodeMovement(move, ref dirX, ref dirY);
 
-            if (kingXCoordinate + dirX < 0 || kingXCoordinate + dirX > Size - 1)
+            if (kingXCoordinate + dirX < 0 ||
+                kingXCoordinate + dirX > Size - 1 ||
+                kingYCoordinate + dirY < 0 ||
+                kingYCoordinate + dirY > Size - 1)
             {
-                Console.WriteLine("Invalid Move!");
-                Console.WriteLine("**Press Enter to continue**");
-                Console.ReadLine();
-                flag = true;
+                Renderer.InvalidMove();
 
-                // throw new invalid move execption
+                // throw invalid move execption
                 return;
             }
 
-            if (kingYCoordinate + dirY < 0 || kingYCoordinate + dirY > Size - 1)
-            {
-                Console.WriteLine("Invalid Move!");
-                Console.WriteLine("**Press Enter to continue**");
-                Console.ReadLine();
-                flag = true;
-
-                // throw new invalid move execption
-                return;
-            }
-
-            // if (__m[king.Position.YCoordinate + dirY, king.Position.XCoordinate + dirX] == 'A')
-            // {
-            // __m[king.Position.YCoordinate + dirY, king.Position.XCoordinate + dirX] = 'K';
-            // __m[pawns[0].Position.YCoordinate, pawns[0].Position.XCoordinate] = '-';
-            // }
-
-            // if (__m[king.Position.YCoordinate + dirY, king.Position.XCoordinate + dirX] == 'B')
-            // {
-            // __m[king.Position.YCoordinate + dirY, king.Position.XCoordinate + dirX] = 'K';
-            // __m[pawns[1].Position.YCoordinate, pawns[1].Position.XCoordinate] = '-';
-            // }
-
-            // if (__m[king.Position.YCoordinate + dirY, king.Position.XCoordinate + dirX] == 'C')
-            // {
-            // __m[king.Position.YCoordinate + dirY, king.Position.XCoordinate + dirX] = 'K';
-            // __m[pawns[2].Position.YCoordinate, pawns[2].Position.XCoordinate] = '-';
-            // }
-
-            // if (__m[king.Position.YCoordinate + dirY, king.Position.XCoordinate + dirX] == 'D')
-            // {
-            // __m[king.Position.YCoordinate + dirY, king.Position.XCoordinate + dirX] = 'K';
-            // __m[pawns[3].Position.YCoordinate, pawns[3].Position.XCoordinate] = '-';
-            // }
-
-            // __m[king.Position.YCoordinate, king.Position.XCoordinate] = '+';
-            // __m[king.Position.YCoordinate + dirY, king.Position.XCoordinate + dirX] = 'K';
-
-            // var kingcurrentPosition = king.Position;
-
-            // kingcurrentPosition.YCoordinate += dirY;
-            // kingcurrentPosition.XCoordinate += dirX;
-
-            // king.Position = kingcurrentPosition;
             ChessBoard.Cells[kingXCoordinate + dirX, kingYCoordinate + dirY] =
-                new Cell(ChessBoard.Cells[kingXCoordinate, kingYCoordinate].ChessFigure);
+          new Cell(ChessBoard.Cells[kingXCoordinate, kingYCoordinate].ChessFigure);
+
             ChessBoard.Cells[kingXCoordinate, kingYCoordinate] = null;
         }
 
-        private static bool PawnMove(int dirX, int dirY, int pawnNumber, char pawnName)
+        private static bool PawnMove(char name, Movements move)
         {
-            //// sledvat mnogo proverki
-            // if (pawns[pawnNumber].Position.XCoordinate + dirX < 0
-            // || pawns[pawnNumber].Position.XCoordinate + dirX > Size - 1)
-            // {
-            // Console.WriteLine("Invalid Move!");
-            // Console.WriteLine("**Press Enter to continue**");
-            // Console.ReadLine();
-            // flag = false;
-            // return false;
-            // }
+            int dirX = 0, dirY = 0, pawnXCoordinate = -1, pawnYCoordinate = -1;
 
-            // if (pawns[pawnNumber].Position.YCoordinate + dirY < 0
-            // || pawns[pawnNumber].Position.YCoordinate + dirY > Size - 1)
-            // {
-            // Console.WriteLine("Invalid Move!");
-            // Console.WriteLine("**Press Enter to continue**");
-            // Console.ReadLine();
-            // flag = false;
-            // return false;
-            // }
+            FindFigure(name, ref pawnXCoordinate, ref pawnYCoordinate);
 
-            // if (matrix[pawns[pawnNumber].Position.YCoordinate + dirY, pawns[pawnNumber].Position.XCoordinate + dirX]
-            // == 'K')
-            // {
-            // Console.WriteLine("Pawn`s win!");
-            // return true;
-            // }
+            if (pawnXCoordinate == -1 ||
+                (name != 'A' && name != 'B' && name != 'C' && name != 'D'))
+            {
+                Renderer.InvalidFigure();
 
-            //// check cell is empty to move.
-            // if (matrix[pawns[pawnNumber].Position.YCoordinate + dirY, pawns[pawnNumber].Position.XCoordinate + dirX]
-            // != '+')
-            // {
-            // Console.WriteLine("Invalid Move!");
-            // Console.WriteLine("**Press Enter to continue**");
-            // Console.ReadLine();
-            // flag = false;
-            // return false;
-            // }
+                // TODO - throw invalid figure exception
+                return false;
+            }
 
-            //// ako ne grymne do momenta znachi e validen hoda
-            // matrix[pawns[pawnNumber].Position.YCoordinate, pawns[pawnNumber].Position.XCoordinate] = '+';
-            // matrix[pawns[pawnNumber].Position.YCoordinate + dirY, pawns[pawnNumber].Position.XCoordinate + dirX] =
-            // pawnName;
+            DecodeMovement(move, ref dirX, ref dirY);
 
-            // var pawnCurrentPosition = pawns[pawnNumber].Position;
+            if (pawnXCoordinate + dirX < 0 ||
+                pawnXCoordinate + dirX > Size - 1 ||
+                pawnYCoordinate + dirY < 0 ||
+                pawnYCoordinate + dirY > Size - 1)
+            {
+                Renderer.InvalidMove();
 
-            // pawnCurrentPosition.YCoordinate += dirY;
-            // pawnCurrentPosition.XCoordinate += dirX;
+                // TODO - throw invalid move exception
+                return false;
+            }
 
-            // pawns[pawnNumber].Position = pawnCurrentPosition;
+            ChessBoard.Cells[pawnXCoordinate + dirX, pawnYCoordinate + dirY] =
+                new Cell(ChessBoard.Cells[pawnXCoordinate, pawnYCoordinate].ChessFigure);
+
+            ChessBoard.Cells[pawnXCoordinate, pawnYCoordinate] = null;
             return false;
         }
 
         public static void Main()
         {
             ChessBoard[0, 0] = new Cell(new Figure('A'));
-            ChessBoard.Cells[2, 0] = new Cell(new Figure('B'));
-            ChessBoard.Cells[4, 0] = new Cell(new Figure('C'));
-            ChessBoard.Cells[6, 0] = new Cell(new Figure('D'));
-            ChessBoard.Cells[3, 7] = new Cell(new Figure('K'));
+            ChessBoard[2, 0] = new Cell(new Figure('B'));
+            ChessBoard[4, 0] = new Cell(new Figure('C'));
+            ChessBoard[6, 0] = new Cell(new Figure('D'));
+            ChessBoard[3, 7] = new Cell(new Figure('K'));
 
             Renderer.Render(ChessBoard);
 
@@ -229,20 +157,25 @@
 
         private static bool? Play(bool? flag2, IUserInterface userCommander)
         {
-            // king.Position.YCoordinate > 0 && king.Position.YCoordinate < Size && 
+
             while (!flag2 == true)
             {
                 flag = true;
+
                 while (flag)
                 {
                     flag = false;
 
-                    Console.Write("King`s Turn:");
-                    var command = userCommander.SendCommand();
-                    var name = command.ComandeeName;
-                    var move = command.MoveCommand;
+                    Renderer.KingTurn();
 
-                    KingMove(name, move);
+                    var command = userCommander.ReadUserCommand();
+
+                    if (CheckForExitCommand(command.ComandeeName))
+                    {
+                        return null;
+                    }
+
+                    KingMove(command.ComandeeName, command.MoveCommand);
 
                     Renderer.Render(ChessBoard);
                 }
@@ -250,98 +183,32 @@
                 while (!flag)
                 {
                     flag = true;
-                    Renderer.Render(ChessBoard);
-                    Console.Write("Pawn`s Turn:");
-                    var input = Console.ReadLine();
-                    if (input == string.Empty)
-                    {
-                        flag = false;
-                        continue;
-                    }
 
-                    var commands = input.ToUpper().Split(' ');
-                    var direction = commands[0];
+                    Renderer.PawnsTurn();
 
-                    switch (direction)
-                    {
-                        case "ADR":
-                            {
-                                flag2 = PawnMove(1, 1, 0, 'A');
-                                break;
-                            }
+                    var command = userCommander.ReadUserCommand();
 
-                        case "ADL":
-                            {
-                                flag2 = PawnMove(-1, 1, 0, 'A');
-                                break;
-                            }
-
-                        case "BDL":
-                            {
-                                flag2 = PawnMove(-1, 1, 1, 'B');
-                                break;
-                            }
-
-                        case "BDR":
-                            {
-                                flag2 = PawnMove(1, 1, 1, 'B');
-                                break;
-                            }
-
-                        case "CDL":
-                            {
-                                flag2 = PawnMove(-1, 1, 2, 'C');
-                                break;
-                            }
-
-                        case "CDR":
-                            {
-                                flag2 = PawnMove(1, 1, 2, 'C');
-                                break;
-                            }
-
-                        case "DDR":
-                            {
-                                flag2 = PawnMove(1, 1, 3, 'D');
-                                break;
-                            }
-
-                        case "DDL":
-                            {
-                                flag2 = PawnMove(-1, 1, 3, 'D');
-                                break;
-                            }
-
-                        default:
-                            {
-                                flag = false;
-                                Console.WriteLine("Invalid input!");
-                                Console.WriteLine("**Press Enter to continue**");
-                                Console.ReadLine();
-                                break;
-                            }
-                    }
-
-                    Renderer.Render(ChessBoard);
-
-                    if (CheckForExitCommand(commands))
+                    if (CheckForExitCommand(command.ComandeeName))
                     {
                         return null;
                     }
+
+                    flag2 = PawnMove(command.ComandeeName, command.MoveCommand);
+
+                    Renderer.Render(ChessBoard);
+
+
                 }
             }
 
             return flag2;
         }
 
-        private static bool CheckForExitCommand(string[] commands)
+        private static bool CheckForExitCommand(char command)
         {
-            if (commands.Length > 1)
+            if (command == 'X')
             {
-                if (commands[1] == "EXIT")
-                {
-                    return true;
-                }
+                return true;
             }
 
             return false;

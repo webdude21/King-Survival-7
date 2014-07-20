@@ -5,5 +5,13 @@
     public interface IRenderer
     {
         void Render(ChessBoard chessRoot);
+
+        void InvalidMove();
+
+        void KingTurn();
+
+        void PawnsTurn();
+
+        void InvalidFigure();
     }
 }

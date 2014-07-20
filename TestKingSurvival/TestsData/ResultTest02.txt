@@ -1,10 +1,11 @@
-﻿Invalid input!
+﻿Invalid Figure!
 **Press Enter to continue**
  + - B - C - D -
  - A - + - + - +
  + - + - + - + -
  - + - + - + - +
  + - + - + - + -
- - + - + - + - +
- + - K - + - + -
- - + - + - + - +
+ - K - + - + - +
+ + - + - + - + -
+ - + - K - + - +
+Pawn`s Turn

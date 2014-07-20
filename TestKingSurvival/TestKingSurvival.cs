@@ -9,15 +9,6 @@
     public class TestKingSurvival
     {
         [TestMethod]
-        public void TestDefaultScenario()
-        {
-            const string ResultTestFilePath = @"..\..\TestsData\ResultTest00.txt";
-            const string InputTestFilePath = @"..\..\TestsData\InputTest00.txt";
-
-            ConsoleTest(ResultTestFilePath, InputTestFilePath);
-        }
-
-        [TestMethod]
         public void OneTurnThenExit()
         {
             const string ResultTestFilePath = @"..\..\TestsData\ResultTest01.txt";
@@ -26,11 +17,20 @@
             ConsoleTest(ResultTestFilePath, InputTestFilePath);
         }
 
-         [TestMethod]
+        [TestMethod]
         public void PawnsOverlapTest()
         {
             const string ResultTestFilePath = @"..\..\TestsData\ResultTest02.txt";
             const string InputTestFilePath = @"..\..\TestsData\InputTest02.txt";
+
+            ConsoleTest(ResultTestFilePath, InputTestFilePath);
+        }
+
+        [TestMethod]
+        public void TestDefaultScenario()
+        {
+            const string ResultTestFilePath = @"..\..\TestsData\ResultTest00.txt";
+            const string InputTestFilePath = @"..\..\TestsData\InputTest00.txt";
 
             ConsoleTest(ResultTestFilePath, InputTestFilePath);
         }
@@ -52,7 +52,7 @@
             KingSurvival.Main();
 
             var resultScreens = textWriter.ToString().Split(':');
-            var result = resultScreens[resultScreens.Length - 1];
+            var result = resultScreens[resultScreens.Length - 2];
 
             Assert.AreEqual(result, screen);
         }
