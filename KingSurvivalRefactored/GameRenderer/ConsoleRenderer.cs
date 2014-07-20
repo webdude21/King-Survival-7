@@ -9,27 +9,7 @@
         public void Board(ChessBoard board)
         {
             Console.Clear();
-
-            for (var j = 0; j < 8; j++)
-            {
-                for (var i = 0; i < 8; i++)
-                {
-                    if (board.Cells[i, j] != null)
-                    {
-                        Console.Write("{0,2}", board.Cells[i, j].ChessFigure.Name);
-                    }
-                    else if (j % 2 == 0)
-                    {
-                        Console.Write("{0,2}", i % 2 == 0 ? '+' : '-');
-                    }
-                    else
-                    {
-                        Console.Write("{0,2}", i % 2 == 0 ? '-' : '+');
-                    }
-                }
-
-                Console.WriteLine(string.Empty);
-            }
+            Console.Write(board.ToString());
         }
 
         public void IllegalMove()

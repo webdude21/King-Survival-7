@@ -9,6 +9,7 @@
 namespace KingSurvivalRefactored.GameCore
 {
     using System;
+    using System.Text;
 
     public class ChessBoard
     {
@@ -76,6 +77,34 @@ namespace KingSurvivalRefactored.GameCore
 
                 return instance;
             }
+        }
+
+        public override string ToString()
+        {
+            var stringBuilder = new StringBuilder();
+
+            for (var j = 0; j < 8; j++)
+            {
+                for (var i = 0; i < 8; i++)
+                {
+                    if (this[i, j] != null)
+                    {
+                        stringBuilder.AppendFormat("{0,2}", this[i, j].ChessFigure.Name);
+                    }
+                    else if (j % 2 == 0)
+                    {
+                        stringBuilder.AppendFormat("{0,2}", i % 2 == 0 ? '+' : '-');
+                    }
+                    else
+                    {
+                        stringBuilder.AppendFormat("{0,2}", i % 2 == 0 ? '-' : '+');
+                    }
+                }
+
+                stringBuilder.AppendLine();
+            }
+
+            return stringBuilder.ToString();
         }
     }
 }
