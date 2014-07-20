@@ -2,7 +2,7 @@
 {
     using KingSurvivalRefactored.GameCore;
   
-    public class KingSurvival
+    public class KingSurvivalConsole
     {
         public static void Main()
         {

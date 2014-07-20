@@ -77,7 +77,7 @@
     <Compile Include="GameCore\PieceFactory.cs" />
     <Compile Include="GameRenderer\ConsoleRenderer.cs" />
     <Compile Include="GameRenderer\IRenderer.cs" />
-    <Compile Include="KingSurvival.cs" />
+    <Compile Include="KingSurvivalConsole.cs" />
     <Compile Include="UserInteraction\ConsoleCommander.cs" />
     <Compile Include="UserInteraction\IUserCommand.cs" />
     <Compile Include="UserInteraction\IUserInterface.cs" />
