@@ -5,7 +5,7 @@
 
     public class ConsoleRenderer : IRenderer
     {
-        public void Render(ChessBoard board)
+        public void Board(ChessBoard board)
         {
             Console.Clear();
 

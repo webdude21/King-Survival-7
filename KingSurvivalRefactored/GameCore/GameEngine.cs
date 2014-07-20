@@ -194,7 +194,7 @@ namespace KingSurvivalRefactored.GameCore
 
             while (true)
             {
-                this.renderer.Render(ChessBoard);
+                this.renderer.Board(ChessBoard);
 
                 int xCoordinate = -1, yCoordinate = -1;
 
