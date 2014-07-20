@@ -176,7 +176,7 @@ namespace KingSurvivalRefactored.GameCore
             {
                 for (var j = 0; j < ChessBoard.BoardSize; j++)
                 {
-                    if (IsPawn(ChessBoard[i, j].ChessFigure))
+                    if (ChessBoard[i, j] != null && IsPawn(ChessBoard[i, j].ChessFigure))
                     {
                         return false;
                     }
