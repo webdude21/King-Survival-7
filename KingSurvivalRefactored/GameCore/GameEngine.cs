@@ -160,7 +160,7 @@ namespace KingSurvivalRefactored.GameCore
             }
         }
 
-        private bool IsPawn(Figure figure)
+        private static bool IsPawn(Figure figure)
         {
             return figure.Name == PawnA || figure.Name == PawnB || figure.Name == PawnC || figure.Name == PawnD;
         }
@@ -176,7 +176,10 @@ namespace KingSurvivalRefactored.GameCore
             {
                 for (var j = 0; j < ChessBoard.BoardSize; j++)
                 {
-                    
+                    if (IsPawn(ChessBoard[i, j].ChessFigure))
+                    {
+                        return false;
+                    }
                 }
             }
 
@@ -207,7 +210,11 @@ namespace KingSurvivalRefactored.GameCore
                     return moves;
                 }
 
-                // TODO , проверка дали са останали пешки и дали няма пешка стигнала края
+                if (KingHasSurvived())
+                {
+                    // King wins
+                }
+
                 try
                 {
                     // king turn
