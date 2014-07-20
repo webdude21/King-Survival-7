@@ -2,7 +2,7 @@
 {
     using System;
 
-    internal class InvalidCommandException : Exception
+    internal class InvalidCommandException : ApplicationException
     {
         private const string ErrorMessage = "Invalid command!";
 

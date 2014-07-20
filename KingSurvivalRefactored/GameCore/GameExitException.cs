@@ -2,7 +2,7 @@
 {
     using System;
 
-    internal class GameExitException : Exception
+    internal class GameExitException : ApplicationException
     {
         private const string ErrorMessage = "Exit game command issued!";
 
