@@ -1,4 +1,4 @@
-﻿namespace KingSurvivalRefactored.UserInteraction
+﻿namespace KingSurvivalRefactored.GameCore
 {
     using System;
 

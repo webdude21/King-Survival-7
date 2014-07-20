@@ -200,7 +200,7 @@ namespace KingSurvivalRefactored.GameCore
                 }
                 catch (InvalidCommandException)
                 {
-                    // TODO something about it
+                    this.renderer.InvalidCommand();
                 }
             }
         }
