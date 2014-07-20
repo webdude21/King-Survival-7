@@ -11,12 +11,12 @@
         {
         }
 
-        public Figure(char name, FigureType? designation)
+        public Figure(char name, FigureType? type)
         {
             this.Name = name;
-            if (designation != null)
+            if (type != null)
             {
-                this.Designation = (FigureType)designation;
+                this.Type = (FigureType)type;
             }
         }
 
@@ -38,6 +38,6 @@
             }
         }
 
-        public FigureType Designation { get; private set; }
+        public FigureType Type { get; private set; }
     }
 }

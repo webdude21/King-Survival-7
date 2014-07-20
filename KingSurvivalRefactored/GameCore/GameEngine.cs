@@ -61,7 +61,7 @@ namespace KingSurvivalRefactored.GameCore
             {
                 for (var x = 0; x < BoardSize; x++)
                 {
-                    if (ChessBoard.Cells[x, y] != null && ChessBoard.Cells[x, y].ChessFigure.Designation == figureType)
+                    if (ChessBoard.Cells[x, y] != null && ChessBoard.Cells[x, y].ChessFigure.Type == figureType)
                     {
                         xCoordinate = x;
                         yCoordinate = y;
@@ -152,24 +152,9 @@ namespace KingSurvivalRefactored.GameCore
             }
         }
 
-        private static bool IsPawn(Figure figure)
-        {
-            return figure.Designation != FigureType.King;
-        }
-
-        private static bool IsPawn(char figure)
-        {
-            return figure != King;
-        }
-
         private static bool IsPawn(FigureType figureType)
         {
             return !IsKing(figureType);
-        }
-
-        private static bool IsKing(Figure figure)
-        {
-            return !IsPawn(figure);
         }
 
         private static bool IsKing(FigureType figureType)
@@ -189,7 +174,7 @@ namespace KingSurvivalRefactored.GameCore
             {
                 for (var j = 0; j < ChessBoard.BoardSize; j++)
                 {
-                    if (ChessBoard[i, j] != null && IsPawn(ChessBoard[i, j].ChessFigure))
+                    if (ChessBoard[i, j] != null && IsPawn(ChessBoard[i, j].ChessFigure.Type))
                     {
                         return false;
                     }
