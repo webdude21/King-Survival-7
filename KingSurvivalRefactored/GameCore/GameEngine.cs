@@ -13,7 +13,6 @@ namespace KingSurvivalRefactored.GameCore
 
     public class GameEngine : IGameEngine
     {
-
         private const int Size = 8;
 
         private static readonly ChessBoard ChessBoard = new ChessBoard();
@@ -26,21 +25,21 @@ namespace KingSurvivalRefactored.GameCore
         {
             this.Commander = userCommander;
             this.Renderer = renderer;
-            ChessBoard.Cells = new Cell[8,8];
+            ChessBoard.Cells = new Cell[8, 8];
             PieceFactory.PushFigures(ChessBoard);
         }
 
         public void RunGame()
         {
-            int result = Play();
+            var result = this.Play();
 
             if (result < 0)
             {
-                Renderer.PawnsWin((int)(-result / 2));
+                this.Renderer.PawnsWin(-result / 2);
             }
             else if (result > 0)
             {
-                Renderer.KingWin((int)(result / 2) + 1);
+                this.Renderer.KingWin(result / 2 + 1);
             }
         }
 
@@ -90,7 +89,7 @@ namespace KingSurvivalRefactored.GameCore
 
             if (name != 'K')
             {
-                Renderer.InvalidFigure();
+                this.Renderer.InvalidFigure();
 
                 // TODO - throw invalid figure exception
                 return;
@@ -99,125 +98,116 @@ namespace KingSurvivalRefactored.GameCore
             FindFigure('K', ref kingXCoordinate, ref kingYCoordinate);
             DecodeMovement(move, ref dirX, ref dirY);
 
-            if (kingXCoordinate + dirX < 0 ||
-                kingXCoordinate + dirX > Size - 1 ||
-                kingYCoordinate + dirY < 0 ||
-                kingYCoordinate + dirY > Size - 1)
+            if (kingXCoordinate + dirX < 0 || kingXCoordinate + dirX > Size - 1 || kingYCoordinate + dirY < 0
+                || kingYCoordinate + dirY > Size - 1)
             {
-                Renderer.InvalidMove();
+                this.Renderer.InvalidMove();
 
                 // throw invalid move execption
                 return;
             }
 
             ChessBoard.Cells[kingXCoordinate + dirX, kingYCoordinate + dirY] =
-          new Cell(ChessBoard.Cells[kingXCoordinate, kingYCoordinate].ChessFigure);
+                new Cell(ChessBoard.Cells[kingXCoordinate, kingYCoordinate].ChessFigure);
 
             ChessBoard.Cells[kingXCoordinate, kingYCoordinate] = null;
         }
 
-        private bool PawnMove(char name, Movements move)
+        private void PawnMove(char name, Movements move)
         {
             int dirX = 0, dirY = 0, pawnXCoordinate = -1, pawnYCoordinate = -1;
 
             FindFigure(name, ref pawnXCoordinate, ref pawnYCoordinate);
 
-            if (pawnXCoordinate == -1 ||
-                (name != 'A' && name != 'B' && name != 'C' && name != 'D'))
+            if (pawnXCoordinate == -1 || (name != 'A' && name != 'B' && name != 'C' && name != 'D'))
             {
-                Renderer.InvalidFigure();
+                this.Renderer.InvalidFigure();
 
                 // TODO - throw invalid figure exception
-                return false;
+                return;
             }
 
             DecodeMovement(move, ref dirX, ref dirY);
 
-            if (pawnXCoordinate + dirX < 0 ||
-                pawnXCoordinate + dirX > Size - 1 ||
-                pawnYCoordinate + dirY < 0 ||
-                pawnYCoordinate + dirY > Size - 1)
+            if (pawnXCoordinate + dirX < 0 || pawnXCoordinate + dirX > Size - 1 || pawnYCoordinate + dirY < 0
+                || pawnYCoordinate + dirY > Size - 1)
             {
-                Renderer.InvalidMove();
+                this.Renderer.InvalidMove();
 
                 // TODO - throw invalid move exception
-                return false;
+                return;
             }
 
             ChessBoard.Cells[pawnXCoordinate + dirX, pawnYCoordinate + dirY] =
                 new Cell(ChessBoard.Cells[pawnXCoordinate, pawnYCoordinate].ChessFigure);
 
             ChessBoard.Cells[pawnXCoordinate, pawnYCoordinate] = null;
-            return false;
         }
 
         private int Play()
         {
-            int moves = 0;
+            var moves = 0;
 
             while (true)
             {
-                Renderer.Render(ChessBoard);
+                this.Renderer.Render(ChessBoard);
 
-                int XCoordinate = -1, YCoordinate = -1;
+                int xCoordinate = -1, yCoordinate = -1;
 
-                FindFigure('K', ref XCoordinate, ref YCoordinate);
+                FindFigure('K', ref xCoordinate, ref yCoordinate);
 
-                if (XCoordinate == -1) return -moves;
-                if (YCoordinate == 0) return moves;
+                if (xCoordinate == -1)
+                {
+                    return -moves;
+                }
 
-
+                if (yCoordinate == 0)
+                {
+                    return moves;
+                }
 
                 try
                 {
                     if (moves % 2 == 0)
                     {
-                        Renderer.KingTurn();
+                        this.Renderer.KingTurn();
 
-                        var command = Commander.ReadUserCommand();
+                        var command = this.Commander.ReadUserCommand();
 
                         if (CheckForExitCommand(command.ComandeeName))
                         {
                             return 0;
                         }
 
-                        KingMove(command.ComandeeName, command.MoveCommand);
-
+                        this.KingMove(command.ComandeeName, command.MoveCommand);
                     }
 
                     if (moves % 2 != 0)
                     {
-                        Renderer.PawnsTurn();
+                        this.Renderer.PawnsTurn();
 
-                        var command = Commander.ReadUserCommand();
+                        var command = this.Commander.ReadUserCommand();
 
                         if (CheckForExitCommand(command.ComandeeName))
                         {
                             return 0;
                         }
 
-                        PawnMove(command.ComandeeName, command.MoveCommand);
+                        this.PawnMove(command.ComandeeName, command.MoveCommand);
                     }
 
                     moves++;
-
                 }
-                catch (System.Exception)
+                catch (InvalidCommandException ex)
                 {
-                    throw;
+                    // TODO something about it
                 }
-
             }
         }
 
         private static bool CheckForExitCommand(char command)
         {
-            if (command == 'X')
-            {
-                return true;
-            }
-
-            return false;
+            return command == 'X';
         }
     }
 }

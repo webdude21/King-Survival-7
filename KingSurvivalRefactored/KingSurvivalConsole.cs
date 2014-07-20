@@ -8,10 +8,9 @@
     {
         public static void Main()
         {
-            var ConsoleCommander = new ConsoleCommander();
-            var Renderer = new ConsoleRenderer();
-
-            var gameEngine = new GameEngine(ConsoleCommander, Renderer);
+            var consoleCommander = new ConsoleCommander();
+            var renderer = new ConsoleRenderer();
+            var gameEngine = new GameEngine(consoleCommander, renderer);
             gameEngine.RunGame();
         }
     }
