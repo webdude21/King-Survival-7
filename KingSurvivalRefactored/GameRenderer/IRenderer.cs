@@ -6,7 +6,7 @@
     {
         void Render(ChessBoard chessRoot);
 
-        void InvalidMove();
+        void IllegalMove();
 
         void KingTurn();
 

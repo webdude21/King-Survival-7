@@ -6,7 +6,7 @@
     {
         private const string ErrorMessage = "Exit game command issued!";
 
-        public GameExitException(Exception innerException = null)
+        public GameExitException(ApplicationException innerException = null)
             : base(ErrorMessage, innerException)
         {
         }

@@ -6,7 +6,7 @@
     {
         private const string ErrorMessage = "Invalid command!";
 
-        public InvalidCommandException(Exception innerException = null)
+        public InvalidCommandException(ApplicationException innerException = null)
             : base(ErrorMessage, innerException)
         {
         }

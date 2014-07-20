@@ -101,10 +101,7 @@ namespace KingSurvivalRefactored.GameCore
 
             if (name != 'K')
             {
-                this.renderer.InvalidFigure();
-
-                // TODO - throw invalid figure exception
-                return;
+                throw new IllegalMoveExeception();
             }
 
             FindFigure('K', ref kingXCoordinate, ref kingYCoordinate);
@@ -113,10 +110,7 @@ namespace KingSurvivalRefactored.GameCore
             if (kingXCoordinate + dirX < 0 || kingXCoordinate + dirX > Size - 1 || kingYCoordinate + dirY < 0
                 || kingYCoordinate + dirY > Size - 1)
             {
-                this.renderer.InvalidMove();
-
-                // throw invalid move execption
-                return;
+                throw new IllegalMoveExeception();
             }
 
             ChessBoard.Cells[kingXCoordinate + dirX, kingYCoordinate + dirY] =
@@ -133,21 +127,15 @@ namespace KingSurvivalRefactored.GameCore
 
             if (pawnXCoordinate == -1 || (name != 'A' && name != 'B' && name != 'C' && name != 'D'))
             {
-                this.renderer.InvalidFigure();
-
-                // TODO - throw invalid figure exception
-                return;
+                throw new IllegalMoveExeception();
             }
 
             DecodeMovement(move, ref dirX, ref dirY);
 
-            if (pawnXCoordinate + dirX < 0 || pawnXCoordinate + dirX > Size - 1 || pawnYCoordinate + dirY < 0
+            if (dirY == -1 || pawnXCoordinate + dirX < 0 || pawnXCoordinate + dirX > Size - 1 || pawnYCoordinate + dirY < 0
                 || pawnYCoordinate + dirY > Size - 1)
             {
-                this.renderer.InvalidMove();
-
-                // TODO - throw invalid move exception
-                return;
+                throw new IllegalMoveExeception();
             }
 
             ChessBoard.Cells[pawnXCoordinate + dirX, pawnYCoordinate + dirY] =
@@ -201,6 +189,10 @@ namespace KingSurvivalRefactored.GameCore
                 catch (InvalidCommandException)
                 {
                     this.renderer.InvalidCommand();
+                }
+                catch (IllegalMoveExeception)
+                {
+                    this.renderer.IllegalMove();
                 }
             }
         }

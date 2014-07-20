@@ -45,9 +45,9 @@
             }
         }
 
-        public void InvalidMove()
+        public void IllegalMove()
         {
-            Console.WriteLine("Invalid Move!");
+            Console.WriteLine("Illegal Move!");
             Console.WriteLine("**Press Enter to continue**");
             Console.ReadLine();
         }
