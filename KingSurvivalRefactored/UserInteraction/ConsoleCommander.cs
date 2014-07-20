@@ -19,7 +19,7 @@
                 throw new NotImplementedException();
             }
 
-            return InterpretUserCommand(input);
+            return InterpretUserCommand(input.ToUpper());
         }
 
         private static IUserCommand InterpretUserCommand(string command)
