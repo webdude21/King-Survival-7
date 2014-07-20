@@ -1,11 +1,11 @@
-﻿Invalid Figure!
+﻿Illegal Move!
 **Press Enter to continue**
  + - B - C - D -
  - A - + - + - +
  + - + - + - + -
  - + - + - + - +
  + - + - + - + -
- - K - + - + - +
- + - + - + - + -
- - + - K - + - +
-Pawn`s Turn
+ - + - + - + - +
+ + - K - + - + -
+ - + - + - + - +
+King`s Turn
