@@ -15,9 +15,9 @@ namespace KingSurvivalRefactored.GameCore
 
     public class GameEngine : IGameEngine
     {
-        private const int Size = 8;
+        private const int BoardSize = 8;
 
-        private static readonly ChessBoard ChessBoard = new ChessBoard();
+        private static readonly ChessBoard ChessBoard = new ChessBoard(BoardSize);
 
         private readonly IUserInterface commander;
 
@@ -27,7 +27,7 @@ namespace KingSurvivalRefactored.GameCore
         {
             this.commander = userCommander;
             this.renderer = renderer;
-            ChessBoard.Cells = new Cell[8, 8];
+            ChessBoard.Cells = new Cell[BoardSize, BoardSize];
             PieceFactory.PushFigures(ChessBoard);
         }
 
@@ -57,9 +57,9 @@ namespace KingSurvivalRefactored.GameCore
             Justification = "Reviewed. Suppression is OK here.")]
         private static void FindFigure(char name, ref int xCoordinate, ref int yCoordinate)
         {
-            for (var y = 0; y < Size; y++)
+            for (var y = 0; y < BoardSize; y++)
             {
-                for (var x = 0; x < Size; x++)
+                for (var x = 0; x < BoardSize; x++)
                 {
                     if (ChessBoard.Cells[x, y] != null && ChessBoard.Cells[x, y].ChessFigure.Name == name)
                     {
@@ -106,8 +106,8 @@ namespace KingSurvivalRefactored.GameCore
             FindFigure('K', ref kingXCoordinate, ref kingYCoordinate);
             DecodeMovement(move, ref dirX, ref dirY);
 
-            if (kingXCoordinate + dirX < 0 || kingXCoordinate + dirX > Size - 1 || kingYCoordinate + dirY < 0
-                || kingYCoordinate + dirY > Size - 1)
+            if (kingXCoordinate + dirX < 0 || kingXCoordinate + dirX > BoardSize - 1 || kingYCoordinate + dirY < 0
+                || kingYCoordinate + dirY > BoardSize - 1)
             {
                 throw new IllegalMoveExeception();
             }
@@ -131,8 +131,8 @@ namespace KingSurvivalRefactored.GameCore
 
             DecodeMovement(move, ref dirX, ref dirY);
 
-            if (dirY == -1 || pawnXCoordinate + dirX < 0 || pawnXCoordinate + dirX > Size - 1 || pawnYCoordinate + dirY < 0
-                || pawnYCoordinate + dirY > Size - 1)
+            if (dirY == -1 || pawnXCoordinate + dirX < 0 || pawnXCoordinate + dirX > BoardSize - 1 || pawnYCoordinate + dirY < 0
+                || pawnYCoordinate + dirY > BoardSize - 1)
             {
                 throw new IllegalMoveExeception();
             }

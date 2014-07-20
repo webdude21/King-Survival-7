@@ -8,20 +8,43 @@
 // --------------------------------------------------------------------------------------------------------------------
 namespace KingSurvivalRefactored.GameCore
 {
+    using System;
+
     public class ChessBoard
     {
         private static readonly object SyncRoot = new object();
 
         private static volatile ChessBoard instance;
 
-        public ChessBoard()
+        private static int boardSize;
+
+        public ChessBoard(int boardSize)
         {
-            this.Cells = new Cell[8, 8];
+            this.BoardSize = boardSize;
+            this.Cells = new Cell[this.BoardSize, this.BoardSize];
+        }
+
+        public int BoardSize
+        {
+            get
+            {
+                return boardSize;
+            }
+
+            private set
+            {
+                if (value <= 0)
+                {
+                    throw new ArgumentOutOfRangeException("boardSize", "The boardSize should be positive number!");
+                }
+
+                boardSize = value;
+            }
         }
 
         public Cell[,] Cells { get; set; }
 
-        public Cell this[int x, int y] 
+        public Cell this[int x, int y]
         {
             get
             {
@@ -47,13 +70,12 @@ namespace KingSurvivalRefactored.GameCore
                 {
                     if (instance == null)
                     {
-                        instance = new ChessBoard();
+                        instance = new ChessBoard(boardSize);
                     }
                 }
 
                 return instance;
             }
         }
-
     }
 }
