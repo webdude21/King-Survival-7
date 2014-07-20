@@ -73,29 +73,28 @@ namespace KingSurvivalRefactored.GameCore
 
         private static void DecodeMovement(Movements move, ref int dirX, ref int dirY)
         {
-            if (move == Movements.DownLeft)
+            switch (move)
             {
-                dirX = -1;
-                dirY = 1;
-            }
-            else if (move == Movements.DownRight)
-            {
-                dirX = 1;
-                dirY = 1;
-            }
-            else if (move == Movements.UpLeft)
-            {
-                dirX = -1;
-                dirY = -1;
-            }
-            else if (move == Movements.UpRight)
-            {
-                dirX = 1;
-                dirY = -1;
+                case Movements.DownLeft:
+                    dirX = -1;
+                    dirY = 1;
+                    break;
+                case Movements.DownRight:
+                    dirX = 1;
+                    dirY = 1;
+                    break;
+                case Movements.UpLeft:
+                    dirX = -1;
+                    dirY = -1;
+                    break;
+                case Movements.UpRight:
+                    dirX = 1;
+                    dirY = -1;
+                    break;
             }
         }
 
-        private void KingMove(char name, Movements move)
+        private static void KingMove(char name, Movements move)
         {
             int dirX = 0, dirY = 0, kingXCoordinate = 0, kingYCoordinate = 0;
 
@@ -119,7 +118,7 @@ namespace KingSurvivalRefactored.GameCore
             ChessBoard.Cells[kingXCoordinate, kingYCoordinate] = null;
         }
 
-        private void PawnMove(char name, Movements move)
+        private static void PawnMove(char name, Movements move)
         {
             int dirX = 0, dirY = 0, pawnXCoordinate = -1, pawnYCoordinate = -1;
 
@@ -183,14 +182,14 @@ namespace KingSurvivalRefactored.GameCore
                     {
                         this.renderer.KingTurn();
                         var command = this.commander.ReadUserCommand();
-                        this.KingMove(command.ComandeeName, command.MoveCommand);
+                        KingMove(command.ComandeeName, command.MoveCommand);
                     }
 
                     if (moves % 2 != 0)
                     {
                         this.renderer.PawnsTurn();
                         var command = this.commander.ReadUserCommand();
-                        this.PawnMove(command.ComandeeName, command.MoveCommand);
+                        PawnMove(command.ComandeeName, command.MoveCommand);
                     }
 
                     moves++;
