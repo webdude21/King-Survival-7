@@ -73,25 +73,25 @@ namespace KingSurvivalRefactored.GameCore
             }
         }
 
-        private static void DecodeMovement(Movements move, ref int dirX, ref int dirY)
+        private static void DecodeMovement(Movements move, ref int directionChangeX, ref int directionChangeY)
         {
             switch (move)
             {
                 case Movements.DownLeft:
-                    dirX = -1;
-                    dirY = 1;
+                    directionChangeX = -1;
+                    directionChangeY = 1;
                     break;
                 case Movements.DownRight:
-                    dirX = 1;
-                    dirY = 1;
+                    directionChangeX = 1;
+                    directionChangeY = 1;
                     break;
                 case Movements.UpLeft:
-                    dirX = -1;
-                    dirY = -1;
+                    directionChangeX = -1;
+                    directionChangeY = -1;
                     break;
                 case Movements.UpRight:
-                    dirX = 1;
-                    dirY = -1;
+                    directionChangeX = 1;
+                    directionChangeY = -1;
                     break;
             }
         }
@@ -154,11 +154,6 @@ namespace KingSurvivalRefactored.GameCore
             }
         }
 
-        private bool IsKingsTurn()
-        {
-            return this.moves % 2 == 0;
-        }
-
         private static bool KingHasSurvived()
         {
             for (var i = 0; i < ChessBoard.BoardSize; i++)
@@ -173,6 +168,11 @@ namespace KingSurvivalRefactored.GameCore
             }
 
             return true;
+        }
+
+        private bool IsKingsTurn()
+        {
+            return this.moves % 2 == 0;
         }
 
         [SuppressMessage("StyleCop.CSharp.NamingRules", "SA1305:FieldNamesMustNotUseHungarianNotation", 
