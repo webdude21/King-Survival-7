@@ -9,7 +9,7 @@
         public bool IllegalMoveReceived { get; private set; }
         public bool BoardCommandReceived { get; private set; }
 
-        public void Board(ChessBoard chessRoot)
+        public void DrawBoard(ChessBoard chessRoot)
         {
             this.BoardCommandReceived = true;
         }

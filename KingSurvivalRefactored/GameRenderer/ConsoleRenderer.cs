@@ -6,7 +6,7 @@
 
     public class ConsoleRenderer : IRenderer
     {
-        public void Board(ChessBoard board)
+        public void DrawBoard(ChessBoard board)
         {
             Console.Clear();
             Console.Write(board.ToString());

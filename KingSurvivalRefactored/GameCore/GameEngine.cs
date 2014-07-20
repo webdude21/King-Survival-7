@@ -17,8 +17,6 @@ namespace KingSurvivalRefactored.GameCore
     {
         private const int BoardSize = 8;
 
-        private const char King = 'K';
-
         private static readonly ChessBoard ChessBoard = new ChessBoard(BoardSize);
 
         private readonly IUserInterface commander;
@@ -139,7 +137,7 @@ namespace KingSurvivalRefactored.GameCore
 
             var cellToMove = ChessBoard.Cells[pawnXCoordinate + dirX, pawnYCoordinate + dirY];
 
-            if (cellToMove == null || IsKing(cellToMove.ChessFigure.Type))
+            if (cellToMove == null || IsKing(cellToMove.ChessFigure))
             {
                 ChessBoard.Cells[pawnXCoordinate + dirX, pawnYCoordinate + dirY] =
                     new Cell(ChessBoard.Cells[pawnXCoordinate, pawnYCoordinate].ChessFigure);
@@ -152,14 +150,24 @@ namespace KingSurvivalRefactored.GameCore
             }
         }
 
+        private static bool IsKing(FigureType figureType)
+        {
+            return figureType == FigureType.King;
+        }
+
         private static bool IsPawn(FigureType figureType)
         {
             return !IsKing(figureType);
         }
 
-        private static bool IsKing(FigureType figureType)
+        private static bool IsKing(Figure figure)
         {
-            return figureType == FigureType.King;
+            return IsKing(figure.Type);
+        }
+
+        private static bool IsPawn(Figure figure)
+        {
+            return !IsKing(figure);
         }
 
 
@@ -174,7 +182,7 @@ namespace KingSurvivalRefactored.GameCore
             {
                 for (var j = 0; j < ChessBoard.BoardSize; j++)
                 {
-                    if (ChessBoard[i, j] != null && IsPawn(ChessBoard[i, j].ChessFigure.Type))
+                    if (ChessBoard[i, j] != null && IsPawn(ChessBoard[i, j].ChessFigure))
                     {
                         return false;
                     }
@@ -192,7 +200,7 @@ namespace KingSurvivalRefactored.GameCore
 
             while (true)
             {
-                this.renderer.Board(ChessBoard);
+                this.renderer.DrawBoard(ChessBoard);
 
                 int xCoordinate = -1, yCoordinate = -1;
 

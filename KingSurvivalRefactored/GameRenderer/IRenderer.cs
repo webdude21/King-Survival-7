@@ -4,7 +4,7 @@
 
     public interface IRenderer
     {
-        void Board(ChessBoard chessRoot);
+        void DrawBoard(ChessBoard chessRoot);
 
         void IllegalMove();
 
