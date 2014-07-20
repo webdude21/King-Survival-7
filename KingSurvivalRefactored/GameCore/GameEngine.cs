@@ -31,13 +31,11 @@ namespace KingSurvivalRefactored.GameCore
 
         public void RunGame()
         {
-
-
             int result = Play();
 
             if (result < 0)
             {
-                Renderer.PawnsWin((int)(-result / 2)+1);
+                Renderer.PawnsWin((int)(-result / 2));
             }
             else if (result > 0)
             {
