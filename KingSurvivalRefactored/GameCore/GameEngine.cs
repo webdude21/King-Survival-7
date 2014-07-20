@@ -26,6 +26,7 @@ namespace KingSurvivalRefactored.GameCore
         {
             this.Commander = userCommander;
             this.Renderer = renderer;
+            ChessBoard.Cells = new Cell[8,8];
             PieceFactory.PushFigures(ChessBoard);
         }
 
@@ -39,7 +40,7 @@ namespace KingSurvivalRefactored.GameCore
             }
             else if (result > 0)
             {
-                Renderer.KingWin((int)(result / 2)+1);
+                Renderer.KingWin((int)(result / 2) + 1);
             }
         }
 
@@ -166,7 +167,7 @@ namespace KingSurvivalRefactored.GameCore
                 if (YCoordinate == 0) return moves;
 
 
-                
+
                 try
                 {
                     if (moves % 2 == 0)
