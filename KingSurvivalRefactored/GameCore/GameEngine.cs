@@ -16,13 +16,42 @@ namespace KingSurvivalRefactored.GameCore
 
         private const int Size = 8;
 
-        private static bool flag = true;
-
-        private static readonly IRenderer Renderer = new ConsoleRenderer();
+        private bool flag = true;
 
         private static readonly ChessBoard ChessBoard = new ChessBoard();
 
-        private static readonly IUserInterface ConsoleCommander = new ConsoleCommander();
+        private IUserInterface Commander;
+
+        private IRenderer Renderer;
+
+        public GameEngine(IUserInterface userCommander, IRenderer renderer)
+        {
+            this.Commander = userCommander;
+            this.Renderer = renderer;
+        }
+
+        public void RunGame()
+        {
+            ChessBoard[0, 0] = new Cell(new Figure('A'));
+            ChessBoard[2, 0] = new Cell(new Figure('B'));
+            ChessBoard[4, 0] = new Cell(new Figure('C'));
+            ChessBoard[6, 0] = new Cell(new Figure('D'));
+            ChessBoard[3, 7] = new Cell(new Figure('K'));
+
+            Renderer.Render(ChessBoard);
+
+            bool? flag2 = false;
+
+            flag2 = Play(flag2);
+            if (flag2 == true)
+            {
+                // Console.WriteLine("Pawn`s win!");
+            }
+            else if (flag2 == false)
+            {
+                // Console.WriteLine("King`s win!");
+            }
+        }
 
         private static void FindFigure(char name, ref int xCoordinate, ref int yCoordinate)
         {
@@ -66,7 +95,7 @@ namespace KingSurvivalRefactored.GameCore
             }
         }
 
-        private static void KingMove(char name, Movements move)
+        private void KingMove(char name, Movements move)
         {
             int dirX = 0, dirY = 0, kingXCoordinate = 0, kingYCoordinate = 0;
 
@@ -98,7 +127,7 @@ namespace KingSurvivalRefactored.GameCore
             ChessBoard.Cells[kingXCoordinate, kingYCoordinate] = null;
         }
 
-        private static bool PawnMove(char name, Movements move)
+        private bool PawnMove(char name, Movements move)
         {
             int dirX = 0, dirY = 0, pawnXCoordinate = -1, pawnYCoordinate = -1;
 
@@ -133,30 +162,7 @@ namespace KingSurvivalRefactored.GameCore
             return false;
         }
 
-        public void RunGame()
-        {
-            ChessBoard[0, 0] = new Cell(new Figure('A'));
-            ChessBoard[2, 0] = new Cell(new Figure('B'));
-            ChessBoard[4, 0] = new Cell(new Figure('C'));
-            ChessBoard[6, 0] = new Cell(new Figure('D'));
-            ChessBoard[3, 7] = new Cell(new Figure('K'));
-
-            Renderer.Render(ChessBoard);
-
-            bool? flag2 = false;
-
-            flag2 = Play(flag2, ConsoleCommander);
-            if (flag2 == true)
-            {
-                // Console.WriteLine("Pawn`s win!");
-            }
-            else if (flag2 == false)
-            {
-                // Console.WriteLine("King`s win!");
-            }
-        }
-
-        private static bool? Play(bool? flag2, IUserInterface userCommander)
+        private bool? Play(bool? flag2)
         {
 
             while (!flag2 == true)
@@ -169,7 +175,7 @@ namespace KingSurvivalRefactored.GameCore
 
                     Renderer.KingTurn();
 
-                    var command = userCommander.ReadUserCommand();
+                    var command = Commander.ReadUserCommand();
 
                     if (CheckForExitCommand(command.ComandeeName))
                     {
@@ -187,7 +193,7 @@ namespace KingSurvivalRefactored.GameCore
 
                     Renderer.PawnsTurn();
 
-                    var command = userCommander.ReadUserCommand();
+                    var command = Commander.ReadUserCommand();
 
                     if (CheckForExitCommand(command.ComandeeName))
                     {
@@ -213,12 +219,6 @@ namespace KingSurvivalRefactored.GameCore
             }
 
             return false;
-        }
-
-        private IUserCommand RecieveCommand(IUserInterface userInterface)
-        {
-            var command = userInterface.ReadUserCommand();
-            return command;
         }
     }
 }

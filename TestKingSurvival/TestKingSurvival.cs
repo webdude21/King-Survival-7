@@ -49,7 +49,7 @@
             Console.SetOut(textWriter);
             Console.SetIn(new StreamReader(inputTestFilePath));
 
-            KingSurvivalConsole.Main();
+            KingSurvival.Main();
 
             var resultScreens = textWriter.ToString().Split(':');
             var result = resultScreens[resultScreens.Length - 2];

@@ -1,12 +1,17 @@
 ﻿namespace KingSurvivalRefactored
 {
     using KingSurvivalRefactored.GameCore;
-  
-    public class KingSurvivalConsole
+    using KingSurvivalRefactored.GameRenderer;
+    using KingSurvivalRefactored.UserInteraction;
+
+    public class KingSurvival
     {
         public static void Main()
         {
-            var gameEngine = new GameEngine();
+            var ConsoleCommander = new ConsoleCommander();
+            var Renderer = new ConsoleRenderer();
+
+            var gameEngine = new GameEngine(ConsoleCommander, Renderer);
             gameEngine.RunGame();
         }
     }
