@@ -23,6 +23,8 @@ namespace KingSurvivalRefactored.GameCore
 
         private readonly IRenderer renderer;
 
+        private int moves = 0;
+
         public GameEngine(IUserInterface userCommander, IRenderer renderer)
         {
             this.commander = userCommander;
@@ -150,6 +152,11 @@ namespace KingSurvivalRefactored.GameCore
             }
         }
 
+        public bool IsKingsTurn()
+        {
+            return this.moves % 2 == 0;
+        }
+
         private static bool IsKing(FigureType figureType)
         {
             return figureType == FigureType.King;
@@ -196,7 +203,6 @@ namespace KingSurvivalRefactored.GameCore
             Justification = "Reviewed. Suppression is OK here.")]
         private int Play()
         {
-            var moves = 0;
 
             while (true)
             {
@@ -223,8 +229,7 @@ namespace KingSurvivalRefactored.GameCore
 
                 try
                 {
-                    // king turn
-                    if (moves % 2 == 0)
+                    if (this.IsKingsTurn())
                     {
                         this.renderer.KingTurn();
                         var command = this.commander.ReadUserCommand();
@@ -232,7 +237,6 @@ namespace KingSurvivalRefactored.GameCore
                     }
                     else
                     {
-                        // pawns turn
                         this.renderer.PawnsTurn();
                         var command = this.commander.ReadUserCommand();
                         PawnMove(ConvertCharToFigureType(command.ComandeeName), command.MoveCommand);
