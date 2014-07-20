@@ -6,4 +6,4 @@
  - + - + - + - +
  + - + - + - + -
  - + - + - + - +
-King`s win!
+King wins in 7 turns.
