@@ -33,16 +33,24 @@ namespace KingSurvivalRefactored.GameCore
 
         public void RunGame()
         {
-            var result = this.Play();
+            try
+            {
+                var result = this.Play();
 
-            if (result < 0)
-            {
-                this.renderer.PawnsWin(-result / 2);
+                if (result < 0)
+                {
+                    this.renderer.PawnsWin(-result / 2);
+                }
+                else if (result > 0)
+                {
+                    this.renderer.KingWin((result / 2) + 1);
+                }
             }
-            else if (result > 0)
+            catch (GameExitException)
             {
-                this.renderer.KingWin((result / 2) + 1);
+                
             }
+            
         }
 
         [SuppressMessage("StyleCop.CSharp.NamingRules", "SA1305:FieldNamesMustNotUseHungarianNotation", 
