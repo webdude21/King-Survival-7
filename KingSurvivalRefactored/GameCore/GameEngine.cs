@@ -177,16 +177,19 @@ namespace KingSurvivalRefactored.GameCore
                     return moves;
                 }
 
+                // TODO , проверка дали са останали пешки и дали няма пешка стигнала края
+
                 try
                 {
+                    // king turn
                     if (moves % 2 == 0)
                     {
                         this.renderer.KingTurn();
                         var command = this.commander.ReadUserCommand();
                         this.KingMove(command.ComandeeName, command.MoveCommand);
-                    }
-
-                    if (moves % 2 != 0)
+                    } 
+                    else 
+                    // pawns turn
                     {
                         this.renderer.PawnsTurn();
                         var command = this.commander.ReadUserCommand();
