@@ -132,7 +132,7 @@ namespace KingSurvivalRefactored.GameCore
 
             FindFigure(name, ref pawnXCoordinate, ref pawnYCoordinate);
 
-            if (pawnXCoordinate == -1 || (name != PawnA && name != PawnB && name != PawnC && name != PawnD))
+            if (pawnXCoordinate == -1 || (!IsPawn(name)))
             {
                 throw new IllegalMoveExeception();
             }
@@ -160,8 +160,21 @@ namespace KingSurvivalRefactored.GameCore
             }
         }
 
-        private bool CheckIfKingHasSurvived()
+        private bool IsPawn(Figure figure)
         {
+            if (figure.Name == PawnA || figure.Name == PawnB || figure.Name == PawnC || figure.Name == PawnD)
+            {
+                return true;
+            }
+            return false;
+        }
+
+        private static bool IsPawn(char figure)
+        {
+            if (figure == PawnA || figure == PawnB || figure == PawnC || figure == PawnD)
+            {
+                return true;
+            }
             return false;
         }
 
