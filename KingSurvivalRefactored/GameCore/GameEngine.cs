@@ -55,13 +55,13 @@ namespace KingSurvivalRefactored.GameCore
 
         [SuppressMessage("StyleCop.CSharp.NamingRules", "SA1305:FieldNamesMustNotUseHungarianNotation",
             Justification = "Reviewed. Suppression is OK here.")]
-        private static void FindFigure(char name, ref int xCoordinate, ref int yCoordinate)
+        private static void FindFigure(FigureType figureType, ref int xCoordinate, ref int yCoordinate)
         {
             for (var y = 0; y < BoardSize; y++)
             {
                 for (var x = 0; x < BoardSize; x++)
                 {
-                    if (ChessBoard.Cells[x, y] != null && ChessBoard.Cells[x, y].ChessFigure.Name == name)
+                    if (ChessBoard.Cells[x, y] != null && ChessBoard.Cells[x, y].ChessFigure.Designation == figureType)
                     {
                         xCoordinate = x;
                         yCoordinate = y;
@@ -94,16 +94,16 @@ namespace KingSurvivalRefactored.GameCore
             }
         }
 
-        private static void KingMove(char name, Movements move)
+        private static void KingMove(FigureType figure, Movements move)
         {
             int dirX = 0, dirY = 0, kingXCoordinate = 0, kingYCoordinate = 0;
 
-            if (name != King)
+            if (IsPawn(figure))
             {
                 throw new IllegalMoveExeception();
             }
 
-            FindFigure(King, ref kingXCoordinate, ref kingYCoordinate);
+            FindFigure(FigureType.King, ref kingXCoordinate, ref kingYCoordinate);
             DecodeMovement(move, ref dirX, ref dirY);
 
             if (kingXCoordinate + dirX < 0 || kingXCoordinate + dirX > BoardSize - 1 || kingYCoordinate + dirY < 0
@@ -118,13 +118,13 @@ namespace KingSurvivalRefactored.GameCore
             ChessBoard.Cells[kingXCoordinate, kingYCoordinate] = null;
         }
 
-        private static void PawnMove(char name, Movements move)
+        private static void PawnMove(FigureType figure, Movements move)
         {
             int dirX = 0, dirY = 0, pawnXCoordinate = -1, pawnYCoordinate = -1;
 
-            FindFigure(name, ref pawnXCoordinate, ref pawnYCoordinate);
+            FindFigure(figure, ref pawnXCoordinate, ref pawnYCoordinate);
 
-            if (pawnXCoordinate == -1 || (!IsPawn(name)))
+            if (pawnXCoordinate == -1 || (!IsPawn(figure)))
             {
                 throw new IllegalMoveExeception();
             }
@@ -154,7 +154,7 @@ namespace KingSurvivalRefactored.GameCore
 
         private static bool IsPawn(Figure figure)
         {
-            return figure.Designation != FigureSymbol.King;
+            return figure.Designation != FigureType.King;
         }
 
         private static bool IsPawn(char figure)
@@ -162,6 +162,26 @@ namespace KingSurvivalRefactored.GameCore
             return figure != King;
         }
 
+        private static bool IsPawn(FigureType figureType)
+        {
+            return !IsKing(figureType);
+        }
+
+        private static bool IsKing(Figure figure)
+        {
+            return !IsPawn(figure);
+        }
+
+        private static bool IsKing(FigureType figureType)
+        {
+            return figureType == FigureType.King;
+        }
+
+
+        private static FigureType ConvertCharToFigureType(char name)
+        {
+            return (FigureType)name;
+        }
 
         private static bool KingHasSurvived()
         {
@@ -191,7 +211,7 @@ namespace KingSurvivalRefactored.GameCore
 
                 int xCoordinate = -1, yCoordinate = -1;
 
-                FindFigure(King, ref xCoordinate, ref yCoordinate);
+                FindFigure(FigureType.King, ref xCoordinate, ref yCoordinate);
 
                 if (xCoordinate == -1)
                 {
@@ -215,14 +235,14 @@ namespace KingSurvivalRefactored.GameCore
                     {
                         this.renderer.KingTurn();
                         var command = this.commander.ReadUserCommand();
-                        KingMove(command.ComandeeName, command.MoveCommand);
+                        KingMove(ConvertCharToFigureType(command.ComandeeName), command.MoveCommand);
                     }
                     else
                     {
                         // pawns turn
                         this.renderer.PawnsTurn();
                         var command = this.commander.ReadUserCommand();
-                        PawnMove(command.ComandeeName, command.MoveCommand);
+                        PawnMove(ConvertCharToFigureType(command.ComandeeName), command.MoveCommand);
                     }
 
                     moves++;

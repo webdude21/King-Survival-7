@@ -1,6 +1,6 @@
 ﻿namespace KingSurvivalRefactored.GameCore
 {
-    public enum FigureSymbol
+    public enum FigureType
     {
         PawnA = 'A', 
 
