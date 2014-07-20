@@ -8,6 +8,8 @@
 // --------------------------------------------------------------------------------------------------------------------
 namespace KingSurvivalRefactored.GameCore
 {
+    using System.Diagnostics.CodeAnalysis;
+
     using KingSurvivalRefactored.GameRenderer;
     using KingSurvivalRefactored.UserInteraction;
 
@@ -17,14 +19,14 @@ namespace KingSurvivalRefactored.GameCore
 
         private static readonly ChessBoard ChessBoard = new ChessBoard();
 
-        private IUserInterface Commander;
+        private readonly IUserInterface commander;
 
-        private IRenderer Renderer;
+        private readonly IRenderer renderer;
 
         public GameEngine(IUserInterface userCommander, IRenderer renderer)
         {
-            this.Commander = userCommander;
-            this.Renderer = renderer;
+            this.commander = userCommander;
+            this.renderer = renderer;
             ChessBoard.Cells = new Cell[8, 8];
             PieceFactory.PushFigures(ChessBoard);
         }
@@ -35,14 +37,15 @@ namespace KingSurvivalRefactored.GameCore
 
             if (result < 0)
             {
-                this.Renderer.PawnsWin(-result / 2);
+                this.renderer.PawnsWin(-result / 2);
             }
             else if (result > 0)
             {
-                this.Renderer.KingWin(result / 2 + 1);
+                this.renderer.KingWin((result / 2) + 1);
             }
         }
 
+        [SuppressMessage("StyleCop.CSharp.NamingRules", "SA1305:FieldNamesMustNotUseHungarianNotation", Justification = "Reviewed. Suppression is OK here.")]
         private static void FindFigure(char name, ref int xCoordinate, ref int yCoordinate)
         {
             for (var y = 0; y < Size; y++)
@@ -89,7 +92,7 @@ namespace KingSurvivalRefactored.GameCore
 
             if (name != 'K')
             {
-                this.Renderer.InvalidFigure();
+                this.renderer.InvalidFigure();
 
                 // TODO - throw invalid figure exception
                 return;
@@ -101,7 +104,7 @@ namespace KingSurvivalRefactored.GameCore
             if (kingXCoordinate + dirX < 0 || kingXCoordinate + dirX > Size - 1 || kingYCoordinate + dirY < 0
                 || kingYCoordinate + dirY > Size - 1)
             {
-                this.Renderer.InvalidMove();
+                this.renderer.InvalidMove();
 
                 // throw invalid move execption
                 return;
@@ -121,7 +124,7 @@ namespace KingSurvivalRefactored.GameCore
 
             if (pawnXCoordinate == -1 || (name != 'A' && name != 'B' && name != 'C' && name != 'D'))
             {
-                this.Renderer.InvalidFigure();
+                this.renderer.InvalidFigure();
 
                 // TODO - throw invalid figure exception
                 return;
@@ -132,7 +135,7 @@ namespace KingSurvivalRefactored.GameCore
             if (pawnXCoordinate + dirX < 0 || pawnXCoordinate + dirX > Size - 1 || pawnYCoordinate + dirY < 0
                 || pawnYCoordinate + dirY > Size - 1)
             {
-                this.Renderer.InvalidMove();
+                this.renderer.InvalidMove();
 
                 // TODO - throw invalid move exception
                 return;
@@ -144,13 +147,14 @@ namespace KingSurvivalRefactored.GameCore
             ChessBoard.Cells[pawnXCoordinate, pawnYCoordinate] = null;
         }
 
+        [SuppressMessage("StyleCop.CSharp.NamingRules", "SA1305:FieldNamesMustNotUseHungarianNotation", Justification = "Reviewed. Suppression is OK here.")]
         private int Play()
         {
             var moves = 0;
 
             while (true)
             {
-                this.Renderer.Render(ChessBoard);
+                this.renderer.Render(ChessBoard);
 
                 int xCoordinate = -1, yCoordinate = -1;
 
@@ -170,29 +174,15 @@ namespace KingSurvivalRefactored.GameCore
                 {
                     if (moves % 2 == 0)
                     {
-                        this.Renderer.KingTurn();
-
-                        var command = this.Commander.ReadUserCommand();
-
-                        if (CheckForExitCommand(command.ComandeeName))
-                        {
-                            return 0;
-                        }
-
+                        this.renderer.KingTurn();
+                        var command = this.commander.ReadUserCommand();
                         this.KingMove(command.ComandeeName, command.MoveCommand);
                     }
 
                     if (moves % 2 != 0)
                     {
-                        this.Renderer.PawnsTurn();
-
-                        var command = this.Commander.ReadUserCommand();
-
-                        if (CheckForExitCommand(command.ComandeeName))
-                        {
-                            return 0;
-                        }
-
+                        this.renderer.PawnsTurn();
+                        var command = this.commander.ReadUserCommand();
                         this.PawnMove(command.ComandeeName, command.MoveCommand);
                     }
 
@@ -203,11 +193,6 @@ namespace KingSurvivalRefactored.GameCore
                     // TODO something about it
                 }
             }
-        }
-
-        private static bool CheckForExitCommand(char command)
-        {
-            return command == 'X';
         }
     }
 }
