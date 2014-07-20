@@ -7,6 +7,7 @@
     public class ConsoleCommander : IUserInterface
     {
         private const string InvalidCommandMessage = "The command is not valid!";
+        private const string ExitCommand = "EXIT";
         private const string ArgumantNullOrEmpty = "The command is null or empty";
 
         public IUserCommand ReadUserCommand()
@@ -28,10 +29,9 @@
             var directionCommand = command.Substring(1);
             Movements movement;
 
-            if (command == "EXIT")
+            if (command == ExitCommand)
             {
-                // TODO throw GameExit Exception
-                return new UserCommand('X', Movements.UpLeft);
+                throw new GameExitException();
             }
 
             switch (directionCommand)
