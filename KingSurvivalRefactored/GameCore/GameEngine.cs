@@ -162,20 +162,25 @@ namespace KingSurvivalRefactored.GameCore
 
         private bool IsPawn(Figure figure)
         {
-            if (figure.Name == PawnA || figure.Name == PawnB || figure.Name == PawnC || figure.Name == PawnD)
-            {
-                return true;
-            }
-            return false;
+            return figure.Name == PawnA || figure.Name == PawnB || figure.Name == PawnC || figure.Name == PawnD;
         }
 
         private static bool IsPawn(char figure)
         {
-            if (figure == PawnA || figure == PawnB || figure == PawnC || figure == PawnD)
+            return figure == PawnA || figure == PawnB || figure == PawnC || figure == PawnD;
+        }
+
+        private static bool KingHasSurvived()
+        {
+            for (var i = 0; i < ChessBoard.BoardSize; i++)
             {
-                return true;
+                for (var j = 0; j < ChessBoard.BoardSize; j++)
+                {
+                    
+                }
             }
-            return false;
+
+            return true;
         }
 
         [SuppressMessage("StyleCop.CSharp.NamingRules", "SA1305:FieldNamesMustNotUseHungarianNotation", 
