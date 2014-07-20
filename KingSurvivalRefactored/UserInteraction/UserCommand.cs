@@ -2,7 +2,7 @@
 {
     using KingSurvivalRefactored.GameCore;
 
-    internal class UserCommand : IUserCommand
+    public class UserCommand : IUserCommand
     {
         public UserCommand(char commandeeName, Movements moveCommand)
         {

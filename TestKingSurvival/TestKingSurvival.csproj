@@ -50,8 +50,11 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
-    <Compile Include="TestKingSurvival.cs" />
+    <Compile Include="MockUserInterface.cs" />
+    <Compile Include="MockViewEngine.cs" />
+    <Compile Include="TestKingSurvivalConsole.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TestKingSurvivalGameEngine.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="TestsData\ResultTest01.txt" />

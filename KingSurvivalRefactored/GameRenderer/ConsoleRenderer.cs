@@ -19,25 +19,11 @@
                     }
                     else if (j % 2 == 0)
                     {
-                        if (i % 2 == 0)
-                        {
-                            Console.Write("{0,2}", '+');
-                        }
-                        else
-                        {
-                            Console.Write("{0,2}", '-');
-                        }
+                        Console.Write("{0,2}", i % 2 == 0 ? '+' : '-');
                     }
                     else
                     {
-                        if (i % 2 == 0)
-                        {
-                            Console.Write("{0,2}", '-');
-                        }
-                        else
-                        {
-                            Console.Write("{0,2}", '+');
-                        }
+                        Console.Write("{0,2}", i % 2 == 0 ? '-' : '+');
                     }
                 }
                 Console.WriteLine(string.Empty);
