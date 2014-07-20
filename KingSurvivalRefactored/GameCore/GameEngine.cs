@@ -139,7 +139,7 @@ namespace KingSurvivalRefactored.GameCore
 
             var cellToMove = ChessBoard.Cells[pawnXCoordinate + dirX, pawnYCoordinate + dirY];
 
-            if (cellToMove == null || cellToMove.ChessFigure.Name == King)
+            if (cellToMove == null || IsKing(cellToMove.ChessFigure.Type))
             {
                 ChessBoard.Cells[pawnXCoordinate + dirX, pawnYCoordinate + dirY] =
                     new Cell(ChessBoard.Cells[pawnXCoordinate, pawnYCoordinate].ChessFigure);
