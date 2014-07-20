@@ -6,9 +6,15 @@
 
     public class ConsoleCommander : IUserInterface
     {
-        private const string InvalidCommandMessage = "The command is not valid!";
         private const string ExitCommand = "EXIT";
-        private const string ArgumantNullOrEmpty = "The command is null or empty";
+
+        private const string UpLeftCommand = "UL";
+
+        private const string UpRightCommand = "UR";
+
+        private const string DownLeftCommand = "DL";
+
+        private const string DownRightCommand = "DR";
 
         public IUserCommand ReadUserCommand()
         {
@@ -16,8 +22,7 @@
 
             if (string.IsNullOrEmpty(input))
             {
-                // TODO throw invalid command exepction
-                throw new NotImplementedException();
+                throw new InvalidCommandException();
             }
 
             return InterpretUserCommand(input.ToUpper());
@@ -36,20 +41,20 @@
 
             switch (directionCommand)
             {
-                case "UL":
+                case UpLeftCommand:
                     movement = Movements.UpLeft;
                     break;
-                case "UR":
+                case UpRightCommand:
                     movement = Movements.UpRight;
                     break;
-                case "DL":
+                case DownLeftCommand:
                     movement = Movements.DownLeft;
                     break;
-                case "DR":
+                case DownRightCommand:
                     movement = Movements.DownRight;
                     break;
                 default:
-                    throw new ArgumentException(InvalidCommandMessage);
+                    throw new InvalidCommandException();
             }
 
             return new UserCommand(nameOfReciever, movement);

@@ -80,6 +80,7 @@
     <Compile Include="KingSurvivalConsole.cs" />
     <Compile Include="UserInteraction\ConsoleCommander.cs" />
     <Compile Include="UserInteraction\GameExitException.cs" />
+    <Compile Include="UserInteraction\InvalidCommandException.cs" />
     <Compile Include="UserInteraction\IUserCommand.cs" />
     <Compile Include="UserInteraction\IUserInterface.cs" />
     <Compile Include="UserInteraction\UserCommand.cs" />

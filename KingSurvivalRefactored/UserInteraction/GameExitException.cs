@@ -4,8 +4,10 @@
 
     internal class GameExitException : Exception
     {
+        private const string ErrorMessage = "Exit game command issued!";
+
         public GameExitException(Exception innerException = null)
-            : base("Exit game command issued!", innerException)
+            : base(ErrorMessage, innerException)
         {
         }
     }
