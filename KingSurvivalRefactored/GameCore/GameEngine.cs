@@ -45,7 +45,8 @@ namespace KingSurvivalRefactored.GameCore
             }
         }
 
-        [SuppressMessage("StyleCop.CSharp.NamingRules", "SA1305:FieldNamesMustNotUseHungarianNotation", Justification = "Reviewed. Suppression is OK here.")]
+        [SuppressMessage("StyleCop.CSharp.NamingRules", "SA1305:FieldNamesMustNotUseHungarianNotation", 
+            Justification = "Reviewed. Suppression is OK here.")]
         private static void FindFigure(char name, ref int xCoordinate, ref int yCoordinate)
         {
             for (var y = 0; y < Size; y++)
@@ -147,7 +148,8 @@ namespace KingSurvivalRefactored.GameCore
             ChessBoard.Cells[pawnXCoordinate, pawnYCoordinate] = null;
         }
 
-        [SuppressMessage("StyleCop.CSharp.NamingRules", "SA1305:FieldNamesMustNotUseHungarianNotation", Justification = "Reviewed. Suppression is OK here.")]
+        [SuppressMessage("StyleCop.CSharp.NamingRules", "SA1305:FieldNamesMustNotUseHungarianNotation", 
+            Justification = "Reviewed. Suppression is OK here.")]
         private int Play()
         {
             var moves = 0;
