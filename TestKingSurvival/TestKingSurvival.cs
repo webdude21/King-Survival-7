@@ -18,7 +18,7 @@
         }
 
         [TestMethod]
-        public void PawnsOverlapTest()
+        public void PawnTakeKingMove()
         {
             const string ResultTestFilePath = @"..\..\TestsData\ResultTest02.txt";
             const string InputTestFilePath = @"..\..\TestsData\InputTest02.txt";
