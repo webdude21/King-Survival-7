@@ -15,7 +15,7 @@
 
         public static Figure GetFigure(FigureSymbol name)
         {
-            return new Figure((char)name);
+            return new Figure((char)name, name);
         }
     }
 }

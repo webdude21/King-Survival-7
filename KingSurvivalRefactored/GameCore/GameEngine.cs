@@ -17,14 +17,6 @@ namespace KingSurvivalRefactored.GameCore
     {
         private const int BoardSize = 8;
 
-        private const char PawnA = 'A';
-
-        private const char PawnB = 'B';
-
-        private const char PawnC = 'C';
-
-        private const char PawnD = 'D';
-
         private const char King = 'K';
 
         private static readonly ChessBoard ChessBoard = new ChessBoard(BoardSize);
@@ -162,13 +154,14 @@ namespace KingSurvivalRefactored.GameCore
 
         private static bool IsPawn(Figure figure)
         {
-            return figure.Name == PawnA || figure.Name == PawnB || figure.Name == PawnC || figure.Name == PawnD;
+            return figure.Designation != FigureSymbol.King;
         }
 
         private static bool IsPawn(char figure)
         {
-            return figure == PawnA || figure == PawnB || figure == PawnC || figure == PawnD;
+            return figure != King;
         }
+
 
         private static bool KingHasSurvived()
         {
