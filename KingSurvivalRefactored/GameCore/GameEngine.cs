@@ -212,7 +212,7 @@ namespace KingSurvivalRefactored.GameCore
 
                 if (KingHasSurvived())
                 {
-                    // King wins
+                    return moves;
                 }
 
                 try

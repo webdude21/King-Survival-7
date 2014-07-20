@@ -73,7 +73,6 @@
     <Compile Include="GameCore\GameEngine.cs" />
     <Compile Include="GameCore\IGameEngine.cs" />
     <Compile Include="GameCore\IllegalMoveExeception.cs" />
-    <Compile Include="GameCore\IMovable.cs" />
     <Compile Include="GameCore\Movements.cs" />
     <Compile Include="GameCore\PieceFactory.cs" />
     <Compile Include="GameRenderer\ConsoleRenderer.cs" />
