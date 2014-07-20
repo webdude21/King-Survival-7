@@ -8,5 +8,7 @@
         }
 
         public Figure ChessFigure { get; set; }
+
+        public Position Position { get; set; }
     }
 }

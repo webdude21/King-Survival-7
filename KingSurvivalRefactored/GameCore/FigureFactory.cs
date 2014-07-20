@@ -37,10 +37,5 @@
         {
             return !IsKing(figure);
         }
-
-        public static FigureType ConvertCharToFigureName(char name)
-        {
-            return (FigureType)name;
-        }
     }
 }

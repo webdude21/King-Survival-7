@@ -120,7 +120,7 @@ namespace KingSurvivalRefactored.GameCore
             ChessBoard.Cells[kingXCoordinate, kingYCoordinate] = null;
         }
 
-        private static void PawnMove(FigureType figure, Movements move)
+        private static void PawnMove(FigureType figure, Movements movement)
         {
             int dirX = 0, dirY = 0, pawnXCoordinate = -1, pawnYCoordinate = -1;
 
@@ -131,7 +131,7 @@ namespace KingSurvivalRefactored.GameCore
                 throw new IllegalMoveExeception();
             }
 
-            DecodeMovement(move, ref dirX, ref dirY);
+            DecodeMovement(movement, ref dirX, ref dirY);
 
             if (dirY == -1 || pawnXCoordinate + dirX < 0 || pawnXCoordinate + dirX > BoardSize - 1
                 || pawnYCoordinate + dirY < 0 || pawnYCoordinate + dirY > BoardSize - 1)
@@ -208,13 +208,13 @@ namespace KingSurvivalRefactored.GameCore
                     {
                         this.renderer.KingTurn();
                         var command = this.commander.ReadUserCommand();
-                        KingMove(FigureFactory.ConvertCharToFigureName(command.ComandeeName), command.MoveCommand);
+                        KingMove((FigureType)command.ComandeeName, command.MoveCommand);
                     }
                     else
                     {
                         this.renderer.PawnsTurn();
                         var command = this.commander.ReadUserCommand();
-                        PawnMove(FigureFactory.ConvertCharToFigureName(command.ComandeeName), command.MoveCommand);
+                        PawnMove((FigureType)command.ComandeeName, command.MoveCommand);
                     }
 
                     this.moves++;
