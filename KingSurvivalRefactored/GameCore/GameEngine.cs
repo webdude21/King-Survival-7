@@ -138,10 +138,19 @@ namespace KingSurvivalRefactored.GameCore
                 throw new IllegalMoveExeception();
             }
 
-            ChessBoard.Cells[pawnXCoordinate + dirX, pawnYCoordinate + dirY] =
-                new Cell(ChessBoard.Cells[pawnXCoordinate, pawnYCoordinate].ChessFigure);
+            var cellToMove = ChessBoard.Cells[pawnXCoordinate + dirX, pawnYCoordinate + dirY];
 
-            ChessBoard.Cells[pawnXCoordinate, pawnYCoordinate] = null;
+            if (cellToMove == null || cellToMove.ChessFigure.Name == 'K')
+            {
+                ChessBoard.Cells[pawnXCoordinate + dirX, pawnYCoordinate + dirY] =
+                    new Cell(ChessBoard.Cells[pawnXCoordinate, pawnYCoordinate].ChessFigure);
+
+                ChessBoard.Cells[pawnXCoordinate, pawnYCoordinate] = null;
+            }
+            else 
+            {
+                throw new IllegalMoveExeception();
+            }
         }
 
         [SuppressMessage("StyleCop.CSharp.NamingRules", "SA1305:FieldNamesMustNotUseHungarianNotation", 
