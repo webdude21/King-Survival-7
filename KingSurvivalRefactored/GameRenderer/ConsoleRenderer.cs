@@ -1,7 +1,8 @@
 ﻿namespace KingSurvivalRefactored.GameRenderer
 {
-    using KingSurvivalRefactored.GameCore;
     using System;
+
+    using KingSurvivalRefactored.GameCore;
 
     public class ConsoleRenderer : IRenderer
     {
@@ -26,8 +27,8 @@
                         Console.Write("{0,2}", i % 2 == 0 ? '-' : '+');
                     }
                 }
-                Console.WriteLine(string.Empty);
 
+                Console.WriteLine(string.Empty);
             }
         }
 
