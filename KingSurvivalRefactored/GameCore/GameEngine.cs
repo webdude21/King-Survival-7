@@ -198,7 +198,7 @@ namespace KingSurvivalRefactored.GameCore
 
                     moves++;
                 }
-                catch (InvalidCommandException ex)
+                catch (InvalidCommandException)
                 {
                     // TODO something about it
                 }

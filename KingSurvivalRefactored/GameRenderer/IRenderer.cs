@@ -17,5 +17,7 @@
         void KingWin(int turns);
 
         void PawnsWin(int turns);
+
+        void InvalidCommand();
     }
 }

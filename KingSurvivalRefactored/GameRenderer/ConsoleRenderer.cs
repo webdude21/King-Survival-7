@@ -59,6 +59,13 @@
             Console.ReadLine();
         }
 
+        public void InvalidCommand()
+        {
+            Console.WriteLine("Invalid Command!");
+            Console.WriteLine("**Press Enter to continue**");
+            Console.ReadLine();
+        }
+
         public void KingTurn()
         {
             Console.Write("King`s Turn:");
