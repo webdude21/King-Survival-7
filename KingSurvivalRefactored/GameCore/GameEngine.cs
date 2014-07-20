@@ -38,7 +38,7 @@ namespace KingSurvivalRefactored.GameCore
             this.commander = userCommander;
             this.renderer = renderer;
             ChessBoard.Cells = new Cell[BoardSize, BoardSize];
-            PieceFactory.PushFigures(ChessBoard);
+            PieceFactory.InitializeFigures(ChessBoard);
         }
 
         public void RunGame()
@@ -61,7 +61,7 @@ namespace KingSurvivalRefactored.GameCore
             }
         }
 
-        [SuppressMessage("StyleCop.CSharp.NamingRules", "SA1305:FieldNamesMustNotUseHungarianNotation", 
+        [SuppressMessage("StyleCop.CSharp.NamingRules", "SA1305:FieldNamesMustNotUseHungarianNotation",
             Justification = "Reviewed. Suppression is OK here.")]
         private static void FindFigure(char name, ref int xCoordinate, ref int yCoordinate)
         {
@@ -186,7 +186,7 @@ namespace KingSurvivalRefactored.GameCore
             return true;
         }
 
-        [SuppressMessage("StyleCop.CSharp.NamingRules", "SA1305:FieldNamesMustNotUseHungarianNotation", 
+        [SuppressMessage("StyleCop.CSharp.NamingRules", "SA1305:FieldNamesMustNotUseHungarianNotation",
             Justification = "Reviewed. Suppression is OK here.")]
         private int Play()
         {

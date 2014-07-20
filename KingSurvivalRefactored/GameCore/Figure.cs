@@ -7,8 +7,17 @@
         private char name;
 
         public Figure(char name)
+            : this(name, null)
+        {
+        }
+
+        public Figure(char name, FigureSymbol? designation)
         {
             this.Name = name;
+            if (designation != null)
+            {
+                this.Designation = (FigureSymbol)designation;
+            }
         }
 
         public char Name
@@ -29,5 +38,6 @@
             }
         }
 
+        public FigureSymbol Designation { get; set; }
     }
 }

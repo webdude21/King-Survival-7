@@ -70,6 +70,7 @@
     <Compile Include="GameCore\Cell.cs" />
     <Compile Include="GameCore\ChessBoard.cs" />
     <Compile Include="GameCore\Figure.cs" />
+    <Compile Include="GameCore\FigureSymbol.cs" />
     <Compile Include="GameCore\GameEngine.cs" />
     <Compile Include="GameCore\IGameEngine.cs" />
     <Compile Include="GameCore\IllegalMoveExeception.cs" />
