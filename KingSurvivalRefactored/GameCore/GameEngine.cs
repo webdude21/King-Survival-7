@@ -10,6 +10,7 @@ namespace KingSurvivalRefactored.GameCore
 {
     using System.Diagnostics.CodeAnalysis;
 
+    using KingSurvivalRefactored.Enums;
     using KingSurvivalRefactored.Exceptions;
     using KingSurvivalRefactored.GameRenderer;
     using KingSurvivalRefactored.UserInteraction;
@@ -31,7 +32,7 @@ namespace KingSurvivalRefactored.GameCore
             this.commander = userCommander;
             this.renderer = renderer;
             ChessBoard.Cells = new Cell[BoardSize, BoardSize];
-            PieceFactory.InitializeFigures(ChessBoard);
+            FigureFactory.InitializeFigures(ChessBoard);
         }
 
         public void RunGame()
@@ -99,7 +100,7 @@ namespace KingSurvivalRefactored.GameCore
         {
             int dirX = 0, dirY = 0, kingXCoordinate = 0, kingYCoordinate = 0;
 
-            if (IsPawn(figure))
+            if (FigureFactory.IsPawn(figure))
             {
                 throw new IllegalMoveExeception();
             }
@@ -125,7 +126,7 @@ namespace KingSurvivalRefactored.GameCore
 
             FindFigure(figure, ref pawnXCoordinate, ref pawnYCoordinate);
 
-            if (pawnXCoordinate == -1 || (!IsPawn(figure)))
+            if (pawnXCoordinate == -1 || (!FigureFactory.IsPawn(figure)))
             {
                 throw new IllegalMoveExeception();
             }
@@ -140,7 +141,7 @@ namespace KingSurvivalRefactored.GameCore
 
             var cellToMove = ChessBoard.Cells[pawnXCoordinate + dirX, pawnYCoordinate + dirY];
 
-            if (cellToMove == null || IsKing(cellToMove.ChessFigure))
+            if (cellToMove == null || FigureFactory.IsKing(cellToMove.ChessFigure))
             {
                 ChessBoard.Cells[pawnXCoordinate + dirX, pawnYCoordinate + dirY] =
                     new Cell(ChessBoard.Cells[pawnXCoordinate, pawnYCoordinate].ChessFigure);
@@ -153,34 +154,9 @@ namespace KingSurvivalRefactored.GameCore
             }
         }
 
-        public bool IsKingsTurn()
+        private bool IsKingsTurn()
         {
             return this.moves % 2 == 0;
-        }
-
-        private static bool IsKing(FigureType figureType)
-        {
-            return figureType == FigureType.King;
-        }
-
-        private static bool IsPawn(FigureType figureType)
-        {
-            return !IsKing(figureType);
-        }
-
-        private static bool IsKing(Figure figure)
-        {
-            return IsKing(figure.Type);
-        }
-
-        private static bool IsPawn(Figure figure)
-        {
-            return !IsKing(figure);
-        }
-
-        private static FigureType ConvertCharToFigureType(char name)
-        {
-            return (FigureType)name;
         }
 
         private static bool KingHasSurvived()
@@ -189,7 +165,7 @@ namespace KingSurvivalRefactored.GameCore
             {
                 for (var j = 0; j < ChessBoard.BoardSize; j++)
                 {
-                    if (ChessBoard[i, j] != null && IsPawn(ChessBoard[i, j].ChessFigure))
+                    if (ChessBoard[i, j] != null && FigureFactory.IsPawn(ChessBoard[i, j].ChessFigure))
                     {
                         return false;
                     }
@@ -232,13 +208,13 @@ namespace KingSurvivalRefactored.GameCore
                     {
                         this.renderer.KingTurn();
                         var command = this.commander.ReadUserCommand();
-                        KingMove(ConvertCharToFigureType(command.ComandeeName), command.MoveCommand);
+                        KingMove(FigureFactory.ConvertCharToFigureName(command.ComandeeName), command.MoveCommand);
                     }
                     else
                     {
                         this.renderer.PawnsTurn();
                         var command = this.commander.ReadUserCommand();
-                        PawnMove(ConvertCharToFigureType(command.ComandeeName), command.MoveCommand);
+                        PawnMove(FigureFactory.ConvertCharToFigureName(command.ComandeeName), command.MoveCommand);
                     }
 
                     this.moves++;

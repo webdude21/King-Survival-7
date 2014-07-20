@@ -2,6 +2,7 @@
 {
     using System;
 
+    using KingSurvivalRefactored.Enums;
     using KingSurvivalRefactored.Exceptions;
     using KingSurvivalRefactored.GameCore;
 

@@ -1,4 +1,4 @@
-﻿namespace KingSurvivalRefactored.GameCore
+﻿namespace KingSurvivalRefactored.Enums
 {
     public enum FigureType
     {

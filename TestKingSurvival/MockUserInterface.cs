@@ -1,5 +1,6 @@
 ﻿namespace TestKingSurvival
 {
+    using KingSurvivalRefactored.Enums;
     using KingSurvivalRefactored.GameCore;
     using KingSurvivalRefactored.UserInteraction;
 
