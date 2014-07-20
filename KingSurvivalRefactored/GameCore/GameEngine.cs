@@ -10,6 +10,7 @@ namespace KingSurvivalRefactored.GameCore
 {
     using System.Diagnostics.CodeAnalysis;
 
+    using KingSurvivalRefactored.Exceptions;
     using KingSurvivalRefactored.GameRenderer;
     using KingSurvivalRefactored.UserInteraction;
 
@@ -23,7 +24,7 @@ namespace KingSurvivalRefactored.GameCore
 
         private readonly IRenderer renderer;
 
-        private int moves = 0;
+        private int moves;
 
         public GameEngine(IUserInterface userCommander, IRenderer renderer)
         {
@@ -53,7 +54,7 @@ namespace KingSurvivalRefactored.GameCore
             }
         }
 
-        [SuppressMessage("StyleCop.CSharp.NamingRules", "SA1305:FieldNamesMustNotUseHungarianNotation",
+        [SuppressMessage("StyleCop.CSharp.NamingRules", "SA1305:FieldNamesMustNotUseHungarianNotation", 
             Justification = "Reviewed. Suppression is OK here.")]
         private static void FindFigure(FigureType figureType, ref int xCoordinate, ref int yCoordinate)
         {
@@ -177,7 +178,6 @@ namespace KingSurvivalRefactored.GameCore
             return !IsKing(figure);
         }
 
-
         private static FigureType ConvertCharToFigureType(char name)
         {
             return (FigureType)name;
@@ -199,11 +199,10 @@ namespace KingSurvivalRefactored.GameCore
             return true;
         }
 
-        [SuppressMessage("StyleCop.CSharp.NamingRules", "SA1305:FieldNamesMustNotUseHungarianNotation",
+        [SuppressMessage("StyleCop.CSharp.NamingRules", "SA1305:FieldNamesMustNotUseHungarianNotation", 
             Justification = "Reviewed. Suppression is OK here.")]
         private int Play()
         {
-
             while (true)
             {
                 this.renderer.DrawBoard(ChessBoard);
@@ -214,17 +213,17 @@ namespace KingSurvivalRefactored.GameCore
 
                 if (xCoordinate == -1)
                 {
-                    return -moves;
+                    return -this.moves;
                 }
 
                 if (yCoordinate == 0)
                 {
-                    return moves;
+                    return this.moves;
                 }
 
                 if (KingHasSurvived())
                 {
-                    return moves;
+                    return this.moves;
                 }
 
                 try
@@ -242,7 +241,7 @@ namespace KingSurvivalRefactored.GameCore
                         PawnMove(ConvertCharToFigureType(command.ComandeeName), command.MoveCommand);
                     }
 
-                    moves++;
+                    this.moves++;
                 }
                 catch (InvalidCommandException)
                 {

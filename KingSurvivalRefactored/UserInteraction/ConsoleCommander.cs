@@ -2,6 +2,7 @@
 {
     using System;
 
+    using KingSurvivalRefactored.Exceptions;
     using KingSurvivalRefactored.GameCore;
 
     public class ConsoleCommander : IUserInterface
