@@ -16,8 +16,6 @@ namespace KingSurvivalRefactored.GameCore
 
         private const int Size = 8;
 
-        private bool flag = true;
-
         private static readonly ChessBoard ChessBoard = new ChessBoard();
 
         private IUserInterface Commander;
@@ -28,28 +26,22 @@ namespace KingSurvivalRefactored.GameCore
         {
             this.Commander = userCommander;
             this.Renderer = renderer;
+            PieceFactory.PushFigures(ChessBoard);
         }
 
         public void RunGame()
         {
-            ChessBoard[0, 0] = new Cell(new Figure('A'));
-            ChessBoard[2, 0] = new Cell(new Figure('B'));
-            ChessBoard[4, 0] = new Cell(new Figure('C'));
-            ChessBoard[6, 0] = new Cell(new Figure('D'));
-            ChessBoard[3, 7] = new Cell(new Figure('K'));
 
-            Renderer.Render(ChessBoard);
 
-            bool? flag2 = false;
+            int result = Play();
 
-            flag2 = Play(flag2);
-            if (flag2 == true)
+            if (result < 0)
             {
-                // Console.WriteLine("Pawn`s win!");
+                Renderer.PawnsWin((int)(-result / 2)+1);
             }
-            else if (flag2 == false)
+            else if (result > 0)
             {
-                // Console.WriteLine("King`s win!");
+                Renderer.KingWin((int)(result / 2)+1);
             }
         }
 
@@ -67,8 +59,6 @@ namespace KingSurvivalRefactored.GameCore
                     }
                 }
             }
-
-            // throw new invalid move execption
         }
 
         private static void DecodeMovement(Movements move, ref int dirX, ref int dirY)
@@ -162,53 +152,63 @@ namespace KingSurvivalRefactored.GameCore
             return false;
         }
 
-        private bool? Play(bool? flag2)
+        private int Play()
         {
+            int moves = 0;
 
-            while (!flag2 == true)
+            while (true)
             {
-                flag = true;
+                Renderer.Render(ChessBoard);
 
-                while (flag)
+                int XCoordinate = -1, YCoordinate = -1;
+
+                FindFigure('K', ref XCoordinate, ref YCoordinate);
+
+                if (XCoordinate == -1) return -moves;
+                if (YCoordinate == 0) return moves;
+
+
+                
+                try
                 {
-                    flag = false;
-
-                    Renderer.KingTurn();
-
-                    var command = Commander.ReadUserCommand();
-
-                    if (CheckForExitCommand(command.ComandeeName))
+                    if (moves % 2 == 0)
                     {
-                        return null;
+                        Renderer.KingTurn();
+
+                        var command = Commander.ReadUserCommand();
+
+                        if (CheckForExitCommand(command.ComandeeName))
+                        {
+                            return 0;
+                        }
+
+                        KingMove(command.ComandeeName, command.MoveCommand);
+
                     }
 
-                    KingMove(command.ComandeeName, command.MoveCommand);
-
-                    Renderer.Render(ChessBoard);
-                }
-
-                while (!flag)
-                {
-                    flag = true;
-
-                    Renderer.PawnsTurn();
-
-                    var command = Commander.ReadUserCommand();
-
-                    if (CheckForExitCommand(command.ComandeeName))
+                    if (moves % 2 != 0)
                     {
-                        return null;
+                        Renderer.PawnsTurn();
+
+                        var command = Commander.ReadUserCommand();
+
+                        if (CheckForExitCommand(command.ComandeeName))
+                        {
+                            return 0;
+                        }
+
+                        PawnMove(command.ComandeeName, command.MoveCommand);
                     }
 
-                    flag2 = PawnMove(command.ComandeeName, command.MoveCommand);
-
-                    Renderer.Render(ChessBoard);
-
+                    moves++;
 
                 }
+                catch (System.Exception)
+                {
+                    throw;
+                }
+
             }
-
-            return flag2;
         }
 
         private static bool CheckForExitCommand(char command)

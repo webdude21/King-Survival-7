@@ -13,5 +13,9 @@
         void PawnsTurn();
 
         void InvalidFigure();
+
+        void KingWin(int turns);
+
+        void PawnsWin(int turns);
     }
 }

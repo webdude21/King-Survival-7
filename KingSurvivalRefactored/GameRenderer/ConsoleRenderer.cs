@@ -68,5 +68,15 @@
         {
             Console.Write("Pawn`s Turn:");
         }
+
+        public void KingWin(int turns)
+        {
+            Console.WriteLine("King wins in {0} turns.", turns);
+        }
+
+        public void PawnsWin(int turns)
+        {
+            Console.WriteLine("Pawns wins in {0} turns.", turns);
+        }
     }
 }

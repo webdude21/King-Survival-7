@@ -4,7 +4,7 @@
     using KingSurvivalRefactored.GameRenderer;
     using KingSurvivalRefactored.UserInteraction;
 
-    public class KingSurvival
+    public class KingSurvivalConsole
     {
         public static void Main()
         {
