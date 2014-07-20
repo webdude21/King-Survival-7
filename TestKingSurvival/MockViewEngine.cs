@@ -5,13 +5,18 @@
 
     public class MockViewEngine : IRenderer
     {
+
+        public bool IllegalMoveReceived { get; private set; }
+        public bool BoardCommandReceived { get; private set; }
+
         public void Board(ChessBoard chessRoot)
         {
+            this.BoardCommandReceived = true;
         }
 
         public void IllegalMove()
         {
-            
+            this.IllegalMoveReceived = true;
         }
 
         public void KingTurn()

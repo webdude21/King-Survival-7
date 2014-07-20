@@ -1,7 +1,6 @@
 ﻿namespace TestKingSurvival
 {
     using KingSurvivalRefactored.GameCore;
-
     using Microsoft.VisualStudio.TestTools.UnitTesting;
 
     [TestClass]
@@ -15,13 +14,6 @@
         public void InitGameEngine()
         {
             this.gameEngine = new GameEngine(this.userInterface, this.rendererEngine);   
-        }
-
-        [TestMethod]
-
-        public void TestKingMove()
-        {
-            this.userInterface.SetMoveCommand('A', Movements.UpLeft);
         }
     }
 }
