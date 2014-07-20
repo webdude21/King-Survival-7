@@ -2,7 +2,9 @@
 {
     using System;
     using System.IO;
+
     using KingSurvivalRefactored;
+
     using Microsoft.VisualStudio.TestTools.UnitTesting;
 
     [TestClass]
@@ -53,7 +55,10 @@
 
             var resultScreens = textWriter.ToString().Split(':');
             var result = resultScreens[resultScreens.Length - 1];
-            if (result == "") result = resultScreens[resultScreens.Length - 2];
+            if (string.IsNullOrWhiteSpace(result))
+            {
+                result = resultScreens[resultScreens.Length - 2];
+            }
 
             Assert.AreEqual(result, screen);
         }

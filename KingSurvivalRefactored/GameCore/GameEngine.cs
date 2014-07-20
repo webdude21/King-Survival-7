@@ -17,6 +17,16 @@ namespace KingSurvivalRefactored.GameCore
     {
         private const int BoardSize = 8;
 
+        private const char PawnA = 'A';
+
+        private const char PawnB = 'B';
+
+        private const char PawnC = 'C';
+
+        private const char PawnD = 'D';
+
+        private const char King = 'K';
+
         private static readonly ChessBoard ChessBoard = new ChessBoard(BoardSize);
 
         private readonly IUserInterface commander;
@@ -48,9 +58,7 @@ namespace KingSurvivalRefactored.GameCore
             }
             catch (GameExitException)
             {
-                
             }
-            
         }
 
         [SuppressMessage("StyleCop.CSharp.NamingRules", "SA1305:FieldNamesMustNotUseHungarianNotation", 
@@ -76,20 +84,20 @@ namespace KingSurvivalRefactored.GameCore
             switch (move)
             {
                 case Movements.DownLeft:
-                dirX = -1;
-                dirY = 1;
+                    dirX = -1;
+                    dirY = 1;
                     break;
                 case Movements.DownRight:
-                dirX = 1;
-                dirY = 1;
+                    dirX = 1;
+                    dirY = 1;
                     break;
                 case Movements.UpLeft:
-                dirX = -1;
-                dirY = -1;
+                    dirX = -1;
+                    dirY = -1;
                     break;
                 case Movements.UpRight:
-                dirX = 1;
-                dirY = -1;
+                    dirX = 1;
+                    dirY = -1;
                     break;
             }
         }
@@ -98,12 +106,12 @@ namespace KingSurvivalRefactored.GameCore
         {
             int dirX = 0, dirY = 0, kingXCoordinate = 0, kingYCoordinate = 0;
 
-            if (name != 'K')
+            if (name != King)
             {
                 throw new IllegalMoveExeception();
             }
 
-            FindFigure('K', ref kingXCoordinate, ref kingYCoordinate);
+            FindFigure(King, ref kingXCoordinate, ref kingYCoordinate);
             DecodeMovement(move, ref dirX, ref dirY);
 
             if (kingXCoordinate + dirX < 0 || kingXCoordinate + dirX > BoardSize - 1 || kingYCoordinate + dirY < 0
@@ -124,32 +132,37 @@ namespace KingSurvivalRefactored.GameCore
 
             FindFigure(name, ref pawnXCoordinate, ref pawnYCoordinate);
 
-            if (pawnXCoordinate == -1 || (name != 'A' && name != 'B' && name != 'C' && name != 'D'))
+            if (pawnXCoordinate == -1 || (name != PawnA && name != PawnB && name != PawnC && name != PawnD))
             {
                 throw new IllegalMoveExeception();
             }
 
             DecodeMovement(move, ref dirX, ref dirY);
 
-            if (dirY == -1 || pawnXCoordinate + dirX < 0 || pawnXCoordinate + dirX > BoardSize - 1 || pawnYCoordinate + dirY < 0
-                || pawnYCoordinate + dirY > BoardSize - 1)
+            if (dirY == -1 || pawnXCoordinate + dirX < 0 || pawnXCoordinate + dirX > BoardSize - 1
+                || pawnYCoordinate + dirY < 0 || pawnYCoordinate + dirY > BoardSize - 1)
             {
                 throw new IllegalMoveExeception();
             }
 
             var cellToMove = ChessBoard.Cells[pawnXCoordinate + dirX, pawnYCoordinate + dirY];
 
-            if (cellToMove == null || cellToMove.ChessFigure.Name == 'K')
+            if (cellToMove == null || cellToMove.ChessFigure.Name == King)
             {
                 ChessBoard.Cells[pawnXCoordinate + dirX, pawnYCoordinate + dirY] =
                     new Cell(ChessBoard.Cells[pawnXCoordinate, pawnYCoordinate].ChessFigure);
 
                 ChessBoard.Cells[pawnXCoordinate, pawnYCoordinate] = null;
             }
-            else 
+            else
             {
                 throw new IllegalMoveExeception();
             }
+        }
+
+        private bool CheckIfKingHasSurvived()
+        {
+            return false;
         }
 
         [SuppressMessage("StyleCop.CSharp.NamingRules", "SA1305:FieldNamesMustNotUseHungarianNotation", 
@@ -164,7 +177,7 @@ namespace KingSurvivalRefactored.GameCore
 
                 int xCoordinate = -1, yCoordinate = -1;
 
-                FindFigure('K', ref xCoordinate, ref yCoordinate);
+                FindFigure(King, ref xCoordinate, ref yCoordinate);
 
                 if (xCoordinate == -1)
                 {
@@ -177,7 +190,6 @@ namespace KingSurvivalRefactored.GameCore
                 }
 
                 // TODO , проверка дали са останали пешки и дали няма пешка стигнала края
-
                 try
                 {
                     // king turn
@@ -187,9 +199,9 @@ namespace KingSurvivalRefactored.GameCore
                         var command = this.commander.ReadUserCommand();
                         KingMove(command.ComandeeName, command.MoveCommand);
                     }
-                    else 
-                    // pawns turn
+                    else
                     {
+                        // pawns turn
                         this.renderer.PawnsTurn();
                         var command = this.commander.ReadUserCommand();
                         PawnMove(command.ComandeeName, command.MoveCommand);
