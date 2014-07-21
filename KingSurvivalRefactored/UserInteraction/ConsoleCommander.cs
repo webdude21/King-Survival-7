@@ -4,7 +4,6 @@
 
     using KingSurvivalRefactored.Enums;
     using KingSurvivalRefactored.Exceptions;
-    using KingSurvivalRefactored.GameCore;
 
     public class ConsoleCommander : IUserInterface
     {

@@ -1,7 +1,6 @@
 ﻿namespace KingSurvivalRefactored.UserInteraction
 {
     using KingSurvivalRefactored.Enums;
-    using KingSurvivalRefactored.GameCore;
 
     public class UserCommand : IUserCommand
     {
