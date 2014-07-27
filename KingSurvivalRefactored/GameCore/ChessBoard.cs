@@ -83,8 +83,15 @@ namespace KingSurvivalRefactored.GameCore
         {
             var stringBuilder = new StringBuilder();
 
+            stringBuilder.AppendLine();
+            stringBuilder.AppendLine("     0 1 2 3 4 5 6 7");
+            stringBuilder.AppendLine("    -----------------");
+
+
             for (var j = 0; j < 8; j++)
             {
+                stringBuilder.AppendFormat("{0,2} |", j);
+
                 for (var i = 0; i < 8; i++)
                 {
                     if (this[i, j] != null)
@@ -101,8 +108,10 @@ namespace KingSurvivalRefactored.GameCore
                     }
                 }
 
-                stringBuilder.AppendLine();
+                stringBuilder.AppendLine(" |");
             }
+
+            stringBuilder.AppendLine("    -----------------");
 
             return stringBuilder.ToString();
         }
