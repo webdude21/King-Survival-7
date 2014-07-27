@@ -39,11 +39,11 @@
 
         private static void ConsoleTest(string resultTestFilePath, string inputTestFilePath)
         {
-            string screen;
+            string expected;
 
             using (var sr = new StreamReader(resultTestFilePath))
             {
-                screen = sr.ReadToEnd();
+                expected = sr.ReadToEnd();
             }
 
             var textWriter = new StringWriter();
@@ -55,12 +55,13 @@
 
             var resultScreens = textWriter.ToString().Split(':');
             var result = resultScreens[resultScreens.Length - 1];
+
             if (string.IsNullOrWhiteSpace(result))
             {
                 result = resultScreens[resultScreens.Length - 2];
             }
 
-            Assert.AreEqual(result, screen);
+            Assert.AreEqual(expected, result);
         }
     }
 }
