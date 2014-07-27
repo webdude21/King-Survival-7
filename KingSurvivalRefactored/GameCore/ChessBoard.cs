@@ -19,10 +19,12 @@ namespace KingSurvivalRefactored.GameCore
 
         private static int boardSize;
 
+        private Figure[,] cells;
+
         public ChessBoard(int boardSize)
         {
             this.BoardSize = boardSize;
-            this.Cells = new Cell[this.BoardSize, this.BoardSize];
+            this.cells = new Figure[this.BoardSize, this.BoardSize];
         }
 
         public int BoardSize
@@ -43,18 +45,16 @@ namespace KingSurvivalRefactored.GameCore
             }
         }
 
-        public Cell[,] Cells { get; set; }
-
-        public Cell this[int x, int y]
+        public Figure this[int x, int y]
         {
             get
             {
-                return this.Cells[x, y];
+                return this.cells[x, y];
             }
 
             set
             {
-                this.Cells[x, y] = value;
+                this.cells[x, y] = value;
             }
         }
 
@@ -89,7 +89,7 @@ namespace KingSurvivalRefactored.GameCore
                 {
                     if (this[i, j] != null)
                     {
-                        stringBuilder.AppendFormat("{0,2}", this[i, j].ChessFigure.Name);
+                        stringBuilder.AppendFormat("{0,2}", this[i, j].Name);
                     }
                     else if (j % 2 == 0)
                     {

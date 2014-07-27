@@ -31,7 +31,6 @@ namespace KingSurvivalRefactored.GameCore
         {
             this.commander = userCommander;
             this.renderer = renderer;
-            ChessBoard.Cells = new Cell[BoardSize, BoardSize];
             FigureFactory.InitializeFigures(ChessBoard);
         }
 
@@ -64,7 +63,7 @@ namespace KingSurvivalRefactored.GameCore
             {
                 for (var x = 0; x < BoardSize; x++)
                 {
-                    if (ChessBoard.Cells[x, y] != null && ChessBoard.Cells[x, y].ChessFigure.Type == figureType)
+                    if (ChessBoard[x, y] != null && ChessBoard[x, y].Type == figureType)
                     {
                         xCoordinate = x;
                         yCoordinate = y;
@@ -115,10 +114,10 @@ namespace KingSurvivalRefactored.GameCore
                 throw new IllegalMoveExeception();
             }
 
-            ChessBoard.Cells[kingXCoordinate + dirX, kingYCoordinate + dirY] =
-                new Cell(ChessBoard.Cells[kingXCoordinate, kingYCoordinate].ChessFigure);
+            ChessBoard[kingXCoordinate + dirX, kingYCoordinate + dirY] =
+                 ChessBoard[kingXCoordinate, kingYCoordinate];
 
-            ChessBoard.Cells[kingXCoordinate, kingYCoordinate] = null;
+            ChessBoard[kingXCoordinate, kingYCoordinate] = null;
         }
 
         private static void PawnMove(FigureType figure, Movements movement)
@@ -140,14 +139,14 @@ namespace KingSurvivalRefactored.GameCore
                 throw new IllegalMoveExeception();
             }
 
-            var cellToMove = ChessBoard.Cells[pawnXCoordinate + dirX, pawnYCoordinate + dirY];
+            var figureToMove = ChessBoard[pawnXCoordinate + dirX, pawnYCoordinate + dirY];
 
-            if (cellToMove == null || FigureFactory.IsKing(cellToMove.ChessFigure))
+            if (figureToMove == null || FigureFactory.IsKing(figureToMove))
             {
-                ChessBoard.Cells[pawnXCoordinate + dirX, pawnYCoordinate + dirY] =
-                    new Cell(ChessBoard.Cells[pawnXCoordinate, pawnYCoordinate].ChessFigure);
+                ChessBoard[pawnXCoordinate + dirX, pawnYCoordinate + dirY] =
+                     ChessBoard[pawnXCoordinate, pawnYCoordinate];
 
-                ChessBoard.Cells[pawnXCoordinate, pawnYCoordinate] = null;
+                ChessBoard[pawnXCoordinate, pawnYCoordinate] = null;
             }
             else
             {
@@ -161,7 +160,7 @@ namespace KingSurvivalRefactored.GameCore
             {
                 for (var j = 0; j < ChessBoard.BoardSize; j++)
                 {
-                    if (ChessBoard[i, j] != null && FigureFactory.IsPawn(ChessBoard[i, j].ChessFigure))
+                    if (ChessBoard[i, j] != null && FigureFactory.IsPawn(ChessBoard[i, j]))
                     {
                         return false;
                     }

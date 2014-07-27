@@ -6,11 +6,19 @@
     {
         public static void InitializeFigures(ChessBoard chessBoard)
         {
-            chessBoard[0, 0] = new Cell(GetFigure(FigureType.PawnA));
-            chessBoard[2, 0] = new Cell(GetFigure(FigureType.PawnB));
-            chessBoard[4, 0] = new Cell(GetFigure(FigureType.PawnC));
-            chessBoard[6, 0] = new Cell(GetFigure(FigureType.PawnD));
-            chessBoard[3, 7] = new Cell(GetFigure(FigureType.King));
+            for (var j = 0; j < 8; j++)
+            {
+                for (var i = 0; i < 8; i++)
+                {
+                    chessBoard[i, j] = null;
+                }
+            }
+              
+            chessBoard[0, 0] = GetFigure(FigureType.PawnA);
+            chessBoard[2, 0] = GetFigure(FigureType.PawnB);
+            chessBoard[4, 0] = GetFigure(FigureType.PawnC);
+            chessBoard[6, 0] = GetFigure(FigureType.PawnD);
+            chessBoard[3, 7] = GetFigure(FigureType.King);
         }
 
         public static Figure GetFigure(FigureType name)
