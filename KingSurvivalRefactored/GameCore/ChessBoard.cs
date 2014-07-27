@@ -19,12 +19,33 @@ namespace KingSurvivalRefactored.GameCore
 
         private static int boardSize;
 
-        private Figure[,] cells;
+        private readonly Figure[,] cells;
 
         public ChessBoard(int boardSize)
         {
             this.BoardSize = boardSize;
             this.cells = new Figure[this.BoardSize, this.BoardSize];
+        }
+
+        public static ChessBoard Instance
+        {
+            get
+            {
+                if (instance != null)
+                {
+                    return instance;
+                }
+
+                lock (SyncRoot)
+                {
+                    if (instance == null)
+                    {
+                        instance = new ChessBoard(boardSize);
+                    }
+                }
+
+                return instance;
+            }
         }
 
         public int BoardSize
@@ -58,27 +79,6 @@ namespace KingSurvivalRefactored.GameCore
             }
         }
 
-        public static ChessBoard Instance
-        {
-            get
-            {
-                if (instance != null)
-                {
-                    return instance;
-                }
-
-                lock (SyncRoot)
-                {
-                    if (instance == null)
-                    {
-                        instance = new ChessBoard(boardSize);
-                    }
-                }
-
-                return instance;
-            }
-        }
-
         public override string ToString()
         {
             var stringBuilder = new StringBuilder();
@@ -86,7 +86,6 @@ namespace KingSurvivalRefactored.GameCore
             stringBuilder.AppendLine();
             stringBuilder.AppendLine("     0 1 2 3 4 5 6 7");
             stringBuilder.AppendLine("    -----------------");
-
 
             for (var j = 0; j < 8; j++)
             {

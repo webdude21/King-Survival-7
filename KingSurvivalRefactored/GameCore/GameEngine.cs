@@ -51,7 +51,6 @@ namespace KingSurvivalRefactored.GameCore
             }
             catch (GameExitException)
             {
-                
             }
         }
 
